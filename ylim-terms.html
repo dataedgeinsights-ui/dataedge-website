@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions — YLIM Certification | DataEdge Insights Ghana</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A3D6B;
+    --navy-deep: #061F38;
+    --green: #1A7F5E;
+    --green-light: #E2F4ED;
+    --amber: #C97D1A;
+    --amber-light: #FEF3E0;
+    --sand: #F5F2EB;
+    --sand-mid: #EDE9DF;
+    --white: #FEFEFE;
+    --dark: #14140F;
+    --mid: #4A4A44;
+    --muted: #7A7A72;
+    --border: #E0DDD5;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sand);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--navy-deep);
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .topbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .topbar-brand span { color: #7FC9A8; }
+
+  .topbar-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .topbar-links a {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .topbar-links a:hover { color: #7FC9A8; }
+
+  .topbar-links .enrol-link {
+    background: var(--green);
+    color: #fff;
+    padding: 7px 18px;
+    border-radius: 2px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .topbar-links .enrol-link:hover { background: #14664A; color: #fff; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 52px 48px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(26,127,94,0.12);
+    pointer-events: none;
+  }
+
+  .hero-kicker {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #7FC9A8;
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    max-width: 540px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .hero-meta-item strong {
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    align-items: start;
+  }
+
+  /* ── TOC SIDEBAR ── */
+  .toc {
+    position: sticky;
+    top: 32px;
+    padding-right: 32px;
+  }
+
+  .toc-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .toc-item {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 0 6px 12px;
+    border-left: 2px solid var(--border);
+    line-height: 1.4;
+    transition: all 0.15s;
+    margin-bottom: 2px;
+  }
+
+  .toc-item:hover {
+    color: var(--navy);
+    border-left-color: var(--navy);
+  }
+
+  .toc-item.active {
+    color: var(--navy);
+    border-left-color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ── CONTENT ── */
+  .content { }
+
+  .section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px 36px;
+    margin-bottom: 16px;
+    scroll-margin-top: 32px;
+  }
+
+  .section-num {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.3;
+  }
+
+  .section-body {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.75;
+  }
+
+  .section-body p { margin-bottom: 14px; }
+  .section-body p:last-child { margin-bottom: 0; }
+
+  .section-body h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 20px 0 8px;
+  }
+
+  .section-body ul, .section-body ol {
+    padding-left: 20px;
+    margin-bottom: 14px;
+  }
+
+  .section-body li {
+    margin-bottom: 7px;
+    line-height: 1.65;
+  }
+
+  .section-body strong { color: var(--dark); font-weight: 600; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-radius: 2px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .callout-green {
+    background: var(--green-light);
+    border-left: 3px solid var(--green);
+    color: #0F4A36;
+  }
+
+  .callout-amber {
+    background: var(--amber-light);
+    border-left: 3px solid var(--amber);
+    color: #5C3A0A;
+  }
+
+  .callout-navy {
+    background: #EEF3F9;
+    border-left: 3px solid var(--navy);
+    color: #1A2E42;
+  }
+
+  .callout strong { font-weight: 600; }
+
+  /* ── REFUND TABLE ── */
+  .refund-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+
+  .refund-table th {
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .refund-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--mid);
+    vertical-align: top;
+  }
+
+  .refund-table tr:nth-child(even) td { background: var(--sand); }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .badge-green { background: var(--green-light); color: #0F4A36; }
+  .badge-amber { background: var(--amber-light); color: #5C3A0A; }
+  .badge-red   { background: #FDECEA; color: #7A1F17; }
+
+  /* ── CONTACT BOX ── */
+  .contact-box {
+    background: var(--navy);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-top: 8px;
+  }
+
+  .contact-box-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .contact-row:last-child { margin-bottom: 0; }
+
+  .contact-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #7FC9A8;
+    min-width: 80px;
+  }
+
+  .contact-val {
+    color: rgba(255,255,255,0.85);
+  }
+
+  .contact-val a {
+    color: #7FC9A8;
+    text-decoration: none;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--navy-deep);
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .footer-brand span { color: #7FC9A8; }
+
+  .footer-info {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  .footer-info a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; padding: 24px 16px 60px; }
+    .toc { display: none; }
+    .topbar { padding: 12px 20px; }
+    .hero { padding: 36px 20px 28px; }
+    .section { padding: 24px 20px; }
+    .footer { padding: 16px 20px; flex-direction: column; gap: 8px; text-align: center; }
+    .footer-info { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a class="topbar-brand" href="#">DataEdge <span>Insights</span> Ghana</a>
+  <div class="topbar-links">
+    <a href="YLIM_Marketing_Flyer_v2.html">Programme Flyer</a>
+    <a href="YLIM_Enrolment_Form_v2.html" class="enrol-link">Enrol Now</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-kicker">YLIM Practitioner Certification</div>
+  <div class="hero-title">Terms &amp; Conditions</div>
+  <div class="hero-sub">Please read these terms carefully before enrolling in the YLIM Practitioner Certification Programme. By submitting an enrolment form, you agree to be bound by these terms.</div>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><strong>Effective date:</strong> April 2026</div>
+    <div class="hero-meta-item"><strong>Issued by:</strong> DataEdge Insights Ghana</div>
+    <div class="hero-meta-item"><strong>Programme:</strong> YLIM Practitioner Certification</div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <a class="toc-item" href="#s1">1. Definitions</a>
+    <a class="toc-item" href="#s2">2. Enrolment & Admission</a>
+    <a class="toc-item" href="#s3">3. Fees & Payment</a>
+    <a class="toc-item" href="#s4">4. Refund Policy</a>
+    <a class="toc-item" href="#s5">5. Course Access</a>
+    <a class="toc-item" href="#s6">6. Certification</a>
+    <a class="toc-item" href="#s7">7. Intellectual Property</a>
+    <a class="toc-item" href="#s8">8. Trainer Licensing</a>
+    <a class="toc-item" href="#s9">9. Participant Conduct</a>
+    <a class="toc-item" href="#s10">10. Limitation of Liability</a>
+    <a class="toc-item" href="#s11">11. Privacy & Data</a>
+    <a class="toc-item" href="#s12">12. Amendments</a>
+    <a class="toc-item" href="#s13">13. Governing Law</a>
+    <a class="toc-item" href="#s14">14. Contact</a>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- 1. DEFINITIONS -->
+    <div class="section" id="s1">
+      <div class="section-num">Section 1</div>
+      <div class="section-title">Definitions</div>
+      <div class="section-body">
+        <p>In these Terms and Conditions, the following definitions apply:</p>
+        <ul>
+          <li><strong>"DataEdge" / "We" / "Us"</strong> refers to DataEdge Insights Ghana, the organisation that owns, develops, and delivers the YLIM Practitioner Certification Programme.</li>
+          <li><strong>"YLIM"</strong> refers to the Youth Leadership Impact Model, the intellectual property of DataEdge Insights Ghana.</li>
+          <li><strong>"Programme"</strong> refers to the YLIM Practitioner Certification, delivered online and in full as a self-paced course.</li>
+          <li><strong>"Participant" / "You"</strong> refers to any individual who submits an enrolment form and/or accesses the Programme.</li>
+          <li><strong>"Organisation"</strong> refers to the institution, company, NGO, or agency sponsoring or enrolling one or more Participants.</li>
+          <li><strong>"Certificate"</strong> refers to the DataEdge Insights Ghana YLIM Practitioner Certificate awarded upon successful completion of the Programme.</li>
+          <li><strong>"Trainer Licence"</strong> refers to the annual licence granted to certified facilitators permitting them to deliver YLIM content to third parties under DataEdge's framework.</li>
+          <li><strong>"Fee"</strong> refers to the enrolment fee payable for access to the Programme, as set out in the current pricing schedule.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2. ENROLMENT -->
+    <div class="section" id="s2">
+      <div class="section-num">Section 2</div>
+      <div class="section-title">Enrolment &amp; Admission</div>
+      <div class="section-body">
+        <h4>2.1 Application Process</h4>
+        <p>Enrolment in the Programme requires submission of a completed enrolment form. Submission of the form does not constitute confirmed enrolment. Enrolment is confirmed only upon receipt of full payment of the applicable Fee.</p>
+
+        <h4>2.2 Eligibility</h4>
+        <p>The Programme is open to individuals worldwide. There are no formal academic prerequisites. Participants are expected to have a working level of English and basic computer literacy sufficient to access online content and work with spreadsheet software.</p>
+
+        <h4>2.3 Institutional Enrolment</h4>
+        <p>Where an Organisation enrolls multiple Participants, the Organisation accepts these Terms on behalf of all enrolled individuals. The Organisation is responsible for ensuring each Participant receives, reads, and complies with these Terms.</p>
+
+        <h4>2.4 Right to Decline</h4>
+        <p>DataEdge reserves the right to decline any enrolment application at its sole discretion, including where the application is incomplete, payment is not received, or the applicant's stated purpose conflicts with the Programme's values. In the event of a declined application, any payment received will be refunded in full.</p>
+
+        <div class="callout callout-navy">
+          <strong>Places are not guaranteed</strong> until full payment has been received and confirmed by DataEdge Insights Ghana. You will receive a payment invoice within 2 working days of submitting your enrolment form.
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. FEES & PAYMENT -->
+    <div class="section" id="s3">
+      <div class="section-num">Section 3</div>
+      <div class="section-title">Fees &amp; Payment</div>
+      <div class="section-body">
+        <h4>3.1 Fee Schedule</h4>
+        <p>The current fee schedule is as follows:</p>
+        <ul>
+          <li><strong>Individual (1 seat):</strong> GHS 200 per person</li>
+          <li><strong>Group (2 seats, same organisation):</strong> GHS 180 per person</li>
+          <li><strong>Group (3–5 seats, same organisation):</strong> GHS 150 per person</li>
+          <li><strong>Group (6–10 seats, same organisation):</strong> GHS 120 per person</li>
+          <li><strong>Group (11+ seats):</strong> Negotiated — custom cohort available, contact DataEdge for a tailored quote</li>
+          <li><strong>Trainer Licensing Add-on:</strong> GHS 2,000 per year (Facilitator track only, billed annually post-certification)</li>
+        </ul>
+        <p>All fees are quoted in Ghana Cedis (GHS). International participants may be invoiced in USD or GBP equivalent at the prevailing rate at the time of invoicing.</p>
+
+        <h4>3.2 Payment Methods</h4>
+        <p>Accepted payment methods include Mobile Money (MTN, Vodafone, AirtelTigo), bank transfer (Ghana and international), and institutional purchase order. Payment details will be provided in the invoice issued following enrolment.</p>
+
+        <h4>3.3 Payment Deadline</h4>
+        <p>Full payment must be received within <strong>14 calendar days</strong> of the invoice date. Failure to pay within this period may result in the enrolment being cancelled and the place being released.</p>
+
+        <h4>3.4 Fee Inclusions</h4>
+        <p>The enrolment fee includes: full access to all course materials for the duration of the Programme, the YLIM Excel workbook, the interactive HTML digital model, all assessments and quizzes, facilitator support, and the digital certificate upon successful completion. It does not include the Trainer Licensing Add-on, which is priced separately.</p>
+
+        <h4>3.5 Invoicing for Organisations</h4>
+        <p>Organisations requiring a formal invoice or purchase order process should indicate this on the enrolment form. DataEdge will issue a VAT-compliant invoice upon request.</p>
+      </div>
+    </div>
+
+    <!-- 4. REFUND POLICY -->
+    <div class="section" id="s4">
+      <div class="section-num">Section 4</div>
+      <div class="section-title">Refund Policy</div>
+      <div class="section-body">
+
+        <div class="callout callout-green">
+          <strong>Summary:</strong> We offer a full refund within 7 days of payment <em>only</em> if no course content has been accessed. Once any course content has been accessed, no refund is available under any circumstances. No refunds are issued once a certificate has been awarded.
+        </div>
+
+        <h4>4.1 Refund Schedule</h4>
+        <p>The following refund schedule applies from the date full payment is received:</p>
+
+        <table class="refund-table">
+          <thead>
+            <tr>
+              <th>Timing</th>
+              <th>Condition</th>
+              <th>Refund</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Within 7 days</strong> of payment</td>
+              <td>No course content accessed</td>
+              <td>100% of fee paid</td>
+              <td><span class="badge badge-green">Full Refund</span></td>
+            </tr>
+            <tr>
+              <td><strong>Within 7 days</strong> of payment</td>
+              <td>Any course content accessed</td>
+              <td>No refund</td>
+              <td><span class="badge badge-red">No Refund</span></td>
+            </tr>
+            <tr>
+              <td><strong>After 7 days</strong></td>
+              <td>Any access level</td>
+              <td>No refund</td>
+              <td><span class="badge badge-red">No Refund</span></td>
+            </tr>
+            <tr>
+              <td><strong>After certificate awarded</strong></td>
+              <td>Completion confirmed</td>
+              <td>No refund</td>
+              <td><span class="badge badge-red">No Refund</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>4.2 How to Request a Refund</h4>
+        <p>Refund requests must be submitted in writing to <strong>dataedgeinsights@gmail.com</strong> with the subject line "Refund Request — [Your Full Name]". Requests must include your full name, enrolment date, payment confirmation reference, and reason for withdrawal. DataEdge will acknowledge your request within 3 working days and process any approved refund within 10 working days.</p>
+
+        <h4>4.3 Transfer of Enrolment</h4>
+        <p>As an alternative to a refund, Participants may transfer their enrolment to another individual within the same Organisation at no additional charge, provided the transfer is requested before the original Participant has accessed any content in Module 1. Transfer requests must be submitted in writing to DataEdge.</p>
+
+        <h4>4.4 Programme Cancellation by DataEdge</h4>
+        <p>In the unlikely event that DataEdge cancels the Programme entirely, all Participants will receive a full refund of fees paid, regardless of content accessed. DataEdge will not be liable for any additional costs incurred by Participants as a result of such cancellation.</p>
+
+        <h4>4.5 Programme Changes</h4>
+        <p>DataEdge reserves the right to update, revise, or improve course content at any time without notice. Such changes do not constitute grounds for a refund. Participants will always have access to the most current version of the course materials.</p>
+
+        <div class="callout callout-amber">
+          <strong>Group enrolments:</strong> For organisational enrolments of 2 or more seats, the no-refund-after-access rule applies per seat. A full refund for any individual seat is available only if that seat's Participant has not accessed any course content and the refund is requested within 7 days of payment. Seats that have been accessed are not refundable under any circumstances.
+        </div>
+
+        <h4>4.6 Trainer Licensing Add-on</h4>
+        <p>The annual Trainer Licensing fee is non-refundable once the licence has been activated and training materials have been accessed. Where a licence has been purchased but not yet activated, a full refund may be requested within 14 days of payment.</p>
+      </div>
+    </div>
+
+    <!-- 5. COURSE ACCESS -->
+    <div class="section" id="s5">
+      <div class="section-num">Section 5</div>
+      <div class="section-title">Course Access</div>
+      <div class="section-body">
+        <h4>5.1 Access Period</h4>
+        <p>Participants have access to the course platform and all associated materials for a period of <strong>12 months</strong> from the date payment is confirmed. Access will expire at the end of this period regardless of whether the Programme has been completed.</p>
+
+        <h4>5.2 Self-Paced Learning</h4>
+        <p>The Programme is delivered entirely on a self-paced basis. There are no fixed schedules, mandatory live sessions, or cohort start dates. Participants may access content at any time within their 12-month access period.</p>
+
+        <h4>5.3 Technical Requirements</h4>
+        <p>Participants are responsible for ensuring they have the necessary equipment and internet connectivity to access the Programme. Minimum requirements include a computer or laptop, a modern web browser (Chrome, Firefox, or Edge), Microsoft Excel 2016 or later (or Google Sheets), and a stable internet connection. DataEdge is not liable for access issues arising from inadequate technical equipment on the part of the Participant.</p>
+
+        <h4>5.4 Access Credentials</h4>
+        <p>Course access details are issued to the email address provided at enrolment. Participants must not share access credentials with others. Each fee covers one individual's access only. Sharing credentials is a breach of these Terms and may result in access being revoked without refund.</p>
+
+        <h4>5.5 Access Extension</h4>
+        <p>Participants who are unable to complete the Programme within the 12-month access period due to documented exceptional circumstances (such as serious illness or bereavement) may apply in writing to DataEdge for a one-time access extension of up to 3 months. Extensions are granted at DataEdge's sole discretion and are not guaranteed.</p>
+      </div>
+    </div>
+
+    <!-- 6. CERTIFICATION -->
+    <div class="section" id="s6">
+      <div class="section-num">Section 6</div>
+      <div class="section-title">Certification</div>
+      <div class="section-body">
+        <h4>6.1 Completion Requirements</h4>
+        <p>To be awarded the DataEdge Insights Ghana YLIM Practitioner Certificate, Participants must complete at least <strong>80% of all course lessons</strong>, submit all required reflection tasks and exercises, pass the final assessment with a score of 70% or above, and (for the Facilitator track) pass the assessed teach-back submission.</p>
+
+        <h4>6.2 Re-assessment</h4>
+        <p>Participants who do not pass the final assessment on their first attempt may re-take it up to <strong>twice</strong> within 20 days at no additional charge. A third failed attempt will require the Participant to re-enrol at the current fee if they wish to be assessed again.</p>
+
+        <h4>6.3 Certificate Validity</h4>
+        <p>The YLIM Practitioner Certificate is issued in digital format and is valid indefinitely from the date of issue. DataEdge does not guarantee that the certificate will be recognised by any specific employer, institution, or regulatory body.</p>
+
+        <h4>6.4 Revocation of Certificate</h4>
+        <p>DataEdge reserves the right to revoke a certificate where it is found that a Participant obtained it through dishonest means, including academic misconduct, sharing answers, or misrepresentation. Revocation will be communicated in writing and is final.</p>
+      </div>
+    </div>
+
+    <!-- 7. INTELLECTUAL PROPERTY -->
+    <div class="section" id="s7">
+      <div class="section-num">Section 7</div>
+      <div class="section-title">Intellectual Property</div>
+      <div class="section-body">
+        <h4>7.1 Ownership</h4>
+        <p>All course content, materials, models, frameworks, tools, assessments, templates, and the YLIM framework itself are the exclusive intellectual property of DataEdge Insights Ghana. This includes but is not limited to the Teaching Manual, the Excel model, the interactive HTML tool, all video content, written lessons, quiz questions, and branded materials.</p>
+
+        <h4>7.2 Permitted Use</h4>
+        <p>Participants are granted a personal, non-transferable, non-exclusive licence to access and use course materials solely for their own learning and professional development during the access period. Certified Participants (without a Trainer Licence) may apply YLIM within their own organisation's internal programmes.</p>
+
+        <h4>7.3 Prohibited Use</h4>
+        <p>Without a Trainer Licence, Participants may not: reproduce or distribute course materials to third parties; teach, train, or certify others using YLIM content; publish, sell, or sublicence any materials derived from the Programme; or represent themselves as authorised YLIM trainers or facilitators.</p>
+
+        <h4>7.4 Attribution</h4>
+        <p>Where Participants reference YLIM in publications, reports, or presentations, they must attribute the framework to DataEdge Insights Ghana and include the statement: "YLIM is a framework developed by DataEdge Insights Ghana."</p>
+      </div>
+    </div>
+
+    <!-- 8. TRAINER LICENSING -->
+    <div class="section" id="s8">
+      <div class="section-num">Section 8</div>
+      <div class="section-title">Trainer Licensing</div>
+      <div class="section-body">
+        <h4>8.1 Eligibility</h4>
+        <p>The Trainer Licence is available exclusively to Participants who have completed the Facilitator Track of the Programme and been awarded a certificate. The licence is not available to Participants on the Institutional or Programme Manager tracks unless they subsequently complete the Facilitator track.</p>
+
+        <h4>8.2 Licence Scope</h4>
+        <p>A Trainer Licence grants the holder the right to deliver YLIM-based training to external participants under the DataEdge brand framework, charge fees for such delivery, and use DataEdge-approved training materials provided with the licence. It does not grant the right to modify the core YLIM methodology, issue certificates on behalf of DataEdge, or sub-licence to other trainers.</p>
+
+        <h4>8.3 Annual Renewal</h4>
+        <p>The Trainer Licence is valid for 12 months from the date of activation and must be renewed annually at the published rate (currently GHS 2,000 per year). Failure to renew will result in the licence lapsing. Delivery of YLIM training with a lapsed licence is a breach of these Terms.</p>
+
+        <h4>8.4 Quality Standards</h4>
+        <p>Licensed trainers are required to maintain the quality and integrity of YLIM delivery. DataEdge reserves the right to audit or observe training delivered under licence and to withdraw the licence where delivery is found to be materially inconsistent with the YLIM framework or DataEdge's standards.</p>
+      </div>
+    </div>
+
+    <!-- 9. PARTICIPANT CONDUCT -->
+    <div class="section" id="s9">
+      <div class="section-num">Section 9</div>
+      <div class="section-title">Participant Conduct</div>
+      <div class="section-body">
+        <p>Participants agree to engage with the Programme honestly and in good faith. The following constitute breaches of these Terms and may result in immediate removal from the Programme without refund:</p>
+        <ul>
+          <li>Sharing quiz answers, assessment responses, or course materials with others</li>
+          <li>Submitting work that is not the Participant's own</li>
+          <li>Misrepresenting qualifications, experience, or institutional affiliation on the enrolment form</li>
+          <li>Harassing, threatening, or acting disrespectfully toward DataEdge staff</li>
+          <li>Using course materials for commercial purposes without a Trainer Licence</li>
+          <li>Attempting to reverse-engineer, copy, or replicate the YLIM model or digital tools</li>
+        </ul>
+        <p>DataEdge reserves the right to determine what constitutes a breach and to act accordingly. Such decisions are final.</p>
+      </div>
+    </div>
+
+    <!-- 10. LIMITATION OF LIABILITY -->
+    <div class="section" id="s10">
+      <div class="section-num">Section 10</div>
+      <div class="section-title">Limitation of Liability</div>
+      <div class="section-body">
+        <h4>10.1 No Guarantee of Outcomes</h4>
+        <p>DataEdge does not guarantee any specific professional outcome, employment result, salary increase, or organisational impact arising from participation in the Programme. The Programme is an educational offering; its value depends in large part on how Participants apply what they learn.</p>
+
+        <h4>10.2 Programme Availability</h4>
+        <p>While DataEdge will make reasonable efforts to ensure continuous availability of the course platform, it does not guarantee uninterrupted access. Scheduled maintenance will be communicated in advance where possible. DataEdge is not liable for access disruptions caused by third-party services, internet outages, or force majeure events.</p>
+
+        <h4>10.3 Limit of Liability</h4>
+        <p>To the fullest extent permitted by applicable law, DataEdge's total liability to any Participant for any claim arising from or related to the Programme shall not exceed the total fee paid by that Participant. DataEdge shall not be liable for indirect, consequential, or incidental loss of any kind.</p>
+
+        <h4>10.4 Accuracy of Content</h4>
+        <p>Course content reflects DataEdge's best knowledge and practice at the time of publication. DataEdge does not warrant that all content is error-free or complete. Participants are encouraged to apply professional judgement when applying YLIM in their own contexts.</p>
+      </div>
+    </div>
+
+    <!-- 11. PRIVACY & DATA -->
+    <div class="section" id="s11">
+      <div class="section-num">Section 11</div>
+      <div class="section-title">Privacy &amp; Data</div>
+      <div class="section-body">
+        <h4>11.1 Data Collected</h4>
+        <p>By enrolling, Participants consent to DataEdge collecting and processing the personal information provided on the enrolment form, including name, email address, phone number, country, and organisational details. This data is used solely for the purposes of administering the Programme, issuing invoices and certificates, and communicating with Participants about the Programme and related DataEdge offerings.</p>
+
+        <h4>11.2 Data Sharing</h4>
+        <p>DataEdge will not sell, rent, or share Participant data with third parties except where required by law or where Participants have given explicit consent (for example, to be featured in DataEdge's certified practitioners network).</p>
+
+        <h4>11.3 Retention</h4>
+        <p>DataEdge retains Participant records (including certificate records) for a period of 7 years following the completion of the Programme, in accordance with standard organisational record-keeping practice.</p>
+
+        <h4>11.4 Right to Erasure</h4>
+        <p>Participants may request deletion of their personal data at any time by contacting DataEdge in writing. Note that certificate records may be retained for verification purposes even following a deletion request.</p>
+
+        <div class="callout callout-navy">
+          DataEdge Insights Ghana is committed to handling all personal data responsibly and in accordance with applicable data protection principles. For data-related queries, contact <strong>dataedgeinsights@gmail.com</strong>.
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. AMENDMENTS -->
+    <div class="section" id="s12">
+      <div class="section-num">Section 12</div>
+      <div class="section-title">Amendments to These Terms</div>
+      <div class="section-body">
+        <p>DataEdge reserves the right to amend these Terms and Conditions at any time. Where amendments are material, DataEdge will notify enrolled Participants by email at least <strong>14 days</strong> before changes take effect. Continued access to the Programme after that date constitutes acceptance of the revised Terms.</p>
+        <p>The most current version of these Terms will always be available at <a href="https://www.dataedgeinsights.org" target="_blank" style="color:var(--green);">www.dataedgeinsights.org</a>. Participants are encouraged to check periodically for updates.</p>
+      </div>
+    </div>
+
+    <!-- 13. GOVERNING LAW -->
+    <div class="section" id="s13">
+      <div class="section-num">Section 13</div>
+      <div class="section-title">Governing Law &amp; Dispute Resolution</div>
+      <div class="section-body">
+        <h4>13.1 Governing Law</h4>
+        <p>These Terms and Conditions are governed by and construed in accordance with the laws of the <strong>Republic of Ghana</strong>. Any disputes arising from or in connection with the Programme shall be subject to the exclusive jurisdiction of the courts of Ghana.</p>
+
+        <h4>13.2 Dispute Resolution</h4>
+        <p>Before initiating any formal legal proceedings, Participants agree to first contact DataEdge in writing to attempt to resolve the dispute amicably. DataEdge will respond to all written complaints within 10 working days and make reasonable efforts to reach a fair resolution.</p>
+
+        <h4>13.3 Severability</h4>
+        <p>If any provision of these Terms is found to be unenforceable or invalid under applicable law, that provision will be modified to the minimum extent necessary to make it enforceable. All other provisions will remain in full force and effect.</p>
+      </div>
+    </div>
+
+    <!-- 14. CONTACT -->
+    <div class="section" id="s14">
+      <div class="section-num">Section 14</div>
+      <div class="section-title">Contact &amp; Queries</div>
+      <div class="section-body">
+        <p>For any questions about these Terms, refund requests, enrolment queries, or complaints, please contact DataEdge Insights Ghana through any of the following channels:</p>
+      </div>
+      <div class="contact-box" style="margin-top:20px;">
+        <div class="contact-box-title">DataEdge Insights Ghana</div>
+        <div class="contact-row">
+          <div class="contact-label">Email</div>
+          <div class="contact-val"><a href="mailto:dataedgeinsights@gmail.com">dataedgeinsights@gmail.com</a></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-val"><a href="https://wa.me/233531667123" target="_blank">+233 531 667 123</a></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-label">Website</div>
+          <div class="contact-val"><a href="https://www.dataedgeinsights.org" target="_blank">www.dataedgeinsights.org</a></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-label">Location</div>
+          <div class="contact-val">Accra, Ghana</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end content -->
+</div><!-- end layout -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">DataEdge <span>Insights</span> Ghana</div>
+  <div class="footer-info">
+    Terms &amp; Conditions — YLIM Practitioner Certification &nbsp;·&nbsp; Effective April 2026<br>
+    <a href="mailto:dataedgeinsights@gmail.com">dataedgeinsights@gmail.com</a> &nbsp;·&nbsp;
+    <a href="https://www.dataedgeinsights.org" target="_blank">www.dataedgeinsights.org</a>
+  </div>
+</div>
+
+<!-- COPYRIGHT BAR -->
+<div style="background:#061F38; padding:10px 48px; text-align:left; border-top:1px solid rgba(255,255,255,0.05);">
+  <p style="font-family:'DM Sans',sans-serif; font-size:10px; color:rgba(255,255,255,0.38); letter-spacing:0.05em; line-height:1.7;">
+    &copy; 2026 DataEdge Insights Ghana. All rights reserved. The Youth Leadership Impact Model (YLIM), this document, and all associated content are the exclusive intellectual property of DataEdge Insights Ghana, protected under the Ghana Copyright Act 2005 (Act 690) and international copyright law. No part of this material may be reproduced, distributed, or used to create derivative works without prior written permission. Unauthorised use constitutes infringement and may result in civil and criminal liability.
+  </p>
+</div>
+
+<script>
+  // Highlight active TOC item on scroll
+  const sections = document.querySelectorAll('.section');
+  const tocItems = document.querySelectorAll('.toc-item');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        tocItems.forEach(item => {
+          item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

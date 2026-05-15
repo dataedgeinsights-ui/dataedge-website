@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YLIM Certification – Enrolment Form | DataEdge Insights Ghana</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- EmailJS SDK for sending confirmation emails directly from the browser -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A3D6B;
+    --green: #1A7F5E;
+    --purple: #5A4BA0;
+    --sand: #F4F1EB;
+    --dark: #1A1A18;
+    --mid: #555552;
+    --light: #8A8A86;
+    --border: #DDD9D0;
+    --focus: #0A3D6B;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #EDEAE2;
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+    color: var(--dark);
+  }
+
+  .page { max-width: 720px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .form-header {
+    background: var(--navy);
+    padding: 36px 44px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-header::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(26,127,94,0.15);
+    pointer-events: none;
+  }
+
+  .header-kicker {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #7FC9A8; margin-bottom: 8px;
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700; color: #fff; line-height: 1.2;
+  }
+
+  .header-title span { color: #7FC9A8; }
+
+  .header-sub {
+    font-size: 13px; font-weight: 300;
+    color: rgba(255,255,255,0.65); margin-top: 8px; line-height: 1.5;
+  }
+
+  .header-meta { display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
+
+  .meta-pill {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8); font-size: 11px; font-weight: 500;
+    padding: 4px 12px; border-radius: 2px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-bar { background: #fff; padding: 0 44px; border-bottom: 1px solid var(--border); }
+  .progress-inner { display: flex; }
+
+  .prog-step {
+    flex: 1; padding: 14px 0 12px; text-align: center;
+    font-size: 11px; font-weight: 500; color: var(--light);
+    border-bottom: 2px solid transparent; cursor: pointer;
+    transition: all 0.2s; letter-spacing: 0.04em;
+  }
+  .prog-step.active { color: var(--navy); border-bottom-color: var(--navy); }
+  .prog-step.done   { color: var(--green); border-bottom-color: var(--green); }
+
+  /* ── FORM BODY ── */
+  .form-body { background: #fff; padding: 36px 44px 40px; }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 4px;
+  }
+
+  .section-sub { font-size: 12px; color: var(--light); margin-bottom: 24px; line-height: 1.5; }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.span-2 { grid-column: span 2; }
+
+  label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--mid);
+  }
+
+  label .req { color: var(--green); margin-left: 2px; }
+
+  input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400;
+    color: var(--dark); background: var(--sand); border: 1.5px solid var(--border);
+    border-radius: 2px; padding: 10px 14px; width: 100%;
+    transition: border-color 0.15s, background 0.15s; appearance: none; outline: none;
+  }
+
+  input:focus, select:focus, textarea:focus { border-color: var(--focus); background: #fff; }
+  textarea { resize: vertical; min-height: 90px; }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8A86' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+  }
+
+  .hint { font-size: 11px; color: var(--light); margin-top: -2px; line-height: 1.4; }
+
+  /* ── TRACK SELECTOR ── */
+  .track-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 4px; }
+  .track-option input { display: none; }
+
+  .track-card {
+    border: 2px solid var(--border); border-radius: 2px;
+    padding: 16px 14px 18px; cursor: pointer; transition: all 0.15s; position: relative;
+  }
+
+  .track-option input:checked + .track-card                { border-color: var(--navy); background: #EEF3F9; }
+  .track-option.green input:checked + .track-card          { border-color: var(--green); background: #EDF5F1; }
+  .track-option.purple input:checked + .track-card         { border-color: var(--purple); background: #F0EEF8; }
+
+  .track-card::after {
+    content: ''; position: absolute; top: 10px; right: 10px;
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid var(--border); background: #fff; transition: all 0.15s;
+  }
+
+  .track-option input:checked + .track-card::after         { background: var(--navy); border-color: var(--navy); }
+  .track-option.green input:checked + .track-card::after   { background: var(--green); border-color: var(--green); }
+  .track-option.purple input:checked + .track-card::after  { background: var(--purple); border-color: var(--purple); }
+
+  .track-name { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
+  .track-option.green .track-name  { color: var(--green); }
+  .track-option.purple .track-name { color: var(--purple); }
+  .track-for { font-size: 11px; color: var(--mid); line-height: 1.4; }
+
+  /* ── CHECKBOXES ── */
+  .checkbox-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .checkbox-row input[type="checkbox"] {
+    width: 16px; height: 16px; accent-color: var(--navy);
+    flex-shrink: 0; margin-top: 2px; cursor: pointer;
+  }
+  .checkbox-row span { font-size: 13px; color: var(--mid); line-height: 1.5; }
+
+  /* ── DIVIDER ── */
+  .form-divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+  /* ── DECLARATION ── */
+  .declaration {
+    background: var(--sand); border-left: 3px solid var(--navy);
+    padding: 16px 18px; font-size: 12px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  /* ── SUBMIT ── */
+  .form-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+  }
+
+  .submit-note { font-size: 11px; color: var(--light); line-height: 1.5; max-width: 320px; }
+
+  .submit-btn {
+    background: var(--navy); color: #fff; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; padding: 14px 36px; cursor: pointer; border-radius: 2px;
+    transition: background 0.15s; white-space: nowrap;
+  }
+
+  .submit-btn:hover { background: #0C4E88; }
+  .submit-btn:disabled { background: #aaa; cursor: not-allowed; }
+
+  /* ── SENDING SPINNER ── */
+  .sending-msg {
+    display: none; text-align: center; padding: 20px;
+    font-size: 13px; color: var(--mid);
+  }
+
+  /* ── FOOTER BAR ── */
+  .form-footer-bar {
+    background: var(--navy); padding: 14px 44px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 13px; color: #fff; }
+  .footer-brand span { color: #7FC9A8; }
+
+  .footer-info { font-size: 10px; color: rgba(255,255,255,0.55); text-align: right; }
+  .footer-info a { color: rgba(255,255,255,0.75); text-decoration: none; }
+  .footer-info a:hover { color: #7FC9A8; }
+
+  /* ── CONFIRMATION ── */
+  #confirmation { display: none; background: #fff; padding: 60px 44px; text-align: center; }
+
+  .confirm-icon {
+    width: 56px; height: 56px; background: var(--green); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+  }
+
+  .confirm-icon svg { width: 26px; height: 26px; }
+
+  .confirm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 10px;
+  }
+
+  .confirm-body {
+    font-size: 14px; color: var(--mid); line-height: 1.6;
+    max-width: 460px; margin: 0 auto;
+  }
+
+  .confirm-body a { color: var(--green); text-decoration: none; font-weight: 600; }
+
+  .email-preview {
+    background: var(--sand); border: 1px solid var(--border);
+    border-radius: 4px; padding: 20px 24px; margin: 24px auto 0;
+    text-align: left; max-width: 460px; font-size: 13px;
+    color: var(--mid); line-height: 1.7;
+  }
+
+  .email-preview-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 10px;
+  }
+
+  /* ── INLINE ERROR ── */
+  .field-error { font-size: 11px; color: #C0392B; display: none; }
+  .field-error.show { display: block; }
+  input.invalid, select.invalid, textarea.invalid { border-color: #C0392B !important; }
+
+  @media (max-width: 600px) {
+    .form-header, .form-body, .progress-bar, .form-footer-bar { padding-left: 20px; padding-right: 20px; }
+    .form-grid, .track-grid { grid-template-columns: 1fr; }
+    .field.span-2 { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="form-header">
+    <div class="header-kicker">DataEdge Insights Ghana</div>
+    <div class="header-title">YLIM <span>Practitioner</span><br>Certification — Enrolment Form</div>
+    <div class="header-sub">Complete this form to reserve your place in the next YLIM cohort.<br>A confirmation email will be sent to you immediately upon submission.</div>
+    <div class="header-meta">
+      <div class="meta-pill">4-Week Online Programme</div>
+      <div class="meta-pill">April 2026 Cohort</div>
+      <div class="meta-pill">Max 20 Participants</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar">
+    <div class="progress-inner">
+      <div class="prog-step active" id="step1-tab">1 &nbsp;·&nbsp; Your Details</div>
+      <div class="prog-step" id="step2-tab">2 &nbsp;·&nbsp; Organisation</div>
+      <div class="prog-step" id="step3-tab">3 &nbsp;·&nbsp; Track &amp; Payment</div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <form id="enrolForm" novalidate>
+
+    <!-- ══ STEP 1: PERSONAL DETAILS ══ -->
+    <div class="form-body" id="step1">
+      <div class="section-heading">Personal Details</div>
+      <div class="section-sub">Fields marked <span style="color:var(--green)">✦</span> are required.</div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label>First Name <span class="req">✦</span></label>
+          <input type="text" id="first_name" name="first_name" placeholder="e.g. Akosua" required>
+          <div class="field-error" id="err-first_name">Please enter your first name.</div>
+        </div>
+        <div class="field">
+          <label>Last Name <span class="req">✦</span></label>
+          <input type="text" id="last_name" name="last_name" placeholder="e.g. Mensah" required>
+          <div class="field-error" id="err-last_name">Please enter your last name.</div>
+        </div>
+        <div class="field">
+          <label>Email Address <span class="req">✦</span></label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          <div class="hint">Your confirmation email will be sent here</div>
+          <div class="field-error" id="err-email">Please enter a valid email address.</div>
+        </div>
+        <div class="field">
+          <label>Phone / WhatsApp <span class="req">✦</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+233 __ ___ ____" required>
+          <div class="field-error" id="err-phone">Please enter your phone number.</div>
+        </div>
+        <div class="field">
+          <label>Country <span class="req">✦</span></label>
+          <select id="country" name="country" required>
+            <option value="" disabled selected>Select country</option>
+            <option>Afghanistan</option>
+            <option>Albania</option>
+            <option>Algeria</option>
+            <option>Andorra</option>
+            <option>Angola</option>
+            <option>Antigua and Barbuda</option>
+            <option>Argentina</option>
+            <option>Armenia</option>
+            <option>Australia</option>
+            <option>Austria</option>
+            <option>Azerbaijan</option>
+            <option>Bahamas</option>
+            <option>Bahrain</option>
+            <option>Bangladesh</option>
+            <option>Barbados</option>
+            <option>Belarus</option>
+            <option>Belgium</option>
+            <option>Belize</option>
+            <option>Benin</option>
+            <option>Bhutan</option>
+            <option>Bolivia</option>
+            <option>Bosnia and Herzegovina</option>
+            <option>Botswana</option>
+            <option>Brazil</option>
+            <option>Brunei</option>
+            <option>Bulgaria</option>
+            <option>Burkina Faso</option>
+            <option>Burundi</option>
+            <option>Cabo Verde</option>
+            <option>Cambodia</option>
+            <option>Cameroon</option>
+            <option>Canada</option>
+            <option>Central African Republic</option>
+            <option>Chad</option>
+            <option>Chile</option>
+            <option>China</option>
+            <option>Colombia</option>
+            <option>Comoros</option>
+            <option>Congo (Brazzaville)</option>
+            <option>Congo (Kinshasa)</option>
+            <option>Costa Rica</option>
+            <option>Croatia</option>
+            <option>Cuba</option>
+            <option>Cyprus</option>
+            <option>Czech Republic</option>
+            <option>Denmark</option>
+            <option>Djibouti</option>
+            <option>Dominica</option>
+            <option>Dominican Republic</option>
+            <option>Ecuador</option>
+            <option>Egypt</option>
+            <option>El Salvador</option>
+            <option>Equatorial Guinea</option>
+            <option>Eritrea</option>
+            <option>Estonia</option>
+            <option>Eswatini</option>
+            <option>Ethiopia</option>
+            <option>Fiji</option>
+            <option>Finland</option>
+            <option>France</option>
+            <option>Gabon</option>
+            <option>Gambia</option>
+            <option>Georgia</option>
+            <option>Germany</option>
+            <option>Ghana</option>
+            <option>Greece</option>
+            <option>Grenada</option>
+            <option>Guatemala</option>
+            <option>Guinea</option>
+            <option>Guinea-Bissau</option>
+            <option>Guyana</option>
+            <option>Haiti</option>
+            <option>Honduras</option>
+            <option>Hungary</option>
+            <option>Iceland</option>
+            <option>India</option>
+            <option>Indonesia</option>
+            <option>Iran</option>
+            <option>Iraq</option>
+            <option>Ireland</option>
+            <option>Israel</option>
+            <option>Italy</option>
+            <option>Jamaica</option>
+            <option>Japan</option>
+            <option>Jordan</option>
+            <option>Kazakhstan</option>
+            <option>Kenya</option>
+            <option>Kiribati</option>
+            <option>Kuwait</option>
+            <option>Kyrgyzstan</option>
+            <option>Laos</option>
+            <option>Latvia</option>
+            <option>Lebanon</option>
+            <option>Lesotho</option>
+            <option>Liberia</option>
+            <option>Libya</option>
+            <option>Liechtenstein</option>
+            <option>Lithuania</option>
+            <option>Luxembourg</option>
+            <option>Madagascar</option>
+            <option>Malawi</option>
+            <option>Malaysia</option>
+            <option>Maldives</option>
+            <option>Mali</option>
+            <option>Malta</option>
+            <option>Marshall Islands</option>
+            <option>Mauritania</option>
+            <option>Mauritius</option>
+            <option>Mexico</option>
+            <option>Micronesia</option>
+            <option>Moldova</option>
+            <option>Monaco</option>
+            <option>Mongolia</option>
+            <option>Montenegro</option>
+            <option>Morocco</option>
+            <option>Mozambique</option>
+            <option>Myanmar</option>
+            <option>Namibia</option>
+            <option>Nauru</option>
+            <option>Nepal</option>
+            <option>Netherlands</option>
+            <option>New Zealand</option>
+            <option>Nicaragua</option>
+            <option>Niger</option>
+            <option>Nigeria</option>
+            <option>North Korea</option>
+            <option>North Macedonia</option>
+            <option>Norway</option>
+            <option>Oman</option>
+            <option>Pakistan</option>
+            <option>Palau</option>
+            <option>Palestine</option>
+            <option>Panama</option>
+            <option>Papua New Guinea</option>
+            <option>Paraguay</option>
+            <option>Peru</option>
+            <option>Philippines</option>
+            <option>Poland</option>
+            <option>Portugal</option>
+            <option>Qatar</option>
+            <option>Romania</option>
+            <option>Russia</option>
+            <option>Rwanda</option>
+            <option>Saint Kitts and Nevis</option>
+            <option>Saint Lucia</option>
+            <option>Saint Vincent and the Grenadines</option>
+            <option>Samoa</option>
+            <option>San Marino</option>
+            <option>Sao Tome and Principe</option>
+            <option>Saudi Arabia</option>
+            <option>Senegal</option>
+            <option>Serbia</option>
+            <option>Seychelles</option>
+            <option>Sierra Leone</option>
+            <option>Singapore</option>
+            <option>Slovakia</option>
+            <option>Slovenia</option>
+            <option>Solomon Islands</option>
+            <option>Somalia</option>
+            <option>South Africa</option>
+            <option>South Korea</option>
+            <option>South Sudan</option>
+            <option>Spain</option>
+            <option>Sri Lanka</option>
+            <option>Sudan</option>
+            <option>Suriname</option>
+            <option>Sweden</option>
+            <option>Switzerland</option>
+            <option>Syria</option>
+            <option>Taiwan</option>
+            <option>Tajikistan</option>
+            <option>Tanzania</option>
+            <option>Thailand</option>
+            <option>Timor-Leste</option>
+            <option>Togo</option>
+            <option>Tonga</option>
+            <option>Trinidad and Tobago</option>
+            <option>Tunisia</option>
+            <option>Turkey</option>
+            <option>Turkmenistan</option>
+            <option>Tuvalu</option>
+            <option>Uganda</option>
+            <option>Ukraine</option>
+            <option>United Arab Emirates</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Uruguay</option>
+            <option>Uzbekistan</option>
+            <option>Vanuatu</option>
+            <option>Vatican City</option>
+            <option>Venezuela</option>
+            <option>Vietnam</option>
+            <option>Yemen</option>
+            <option>Zambia</option>
+            <option>Zimbabwe</option>
+          </select>
+          <div class="field-error" id="err-country">Please select your country.</div>
+        </div>
+        <div class="field">
+          <label>Preferred Name (for certificate)</label>
+          <input type="text" id="cert_name" name="cert_name" placeholder="Leave blank to use First + Last name">
+          <div class="hint">Name that will appear on your certificate</div>
+        </div>
+        <div class="field span-2">
+          <label>LinkedIn Profile URL</label>
+          <input type="text" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+          <div class="hint">Optional — we share certified practitioners on our channels</div>
+        </div>
+      </div>
+
+      <div style="margin-top:28px; display:flex; justify-content:flex-end;">
+        <button type="button" class="submit-btn" onclick="goStep(2)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 2: ORGANISATION ══ -->
+    <div class="form-body" id="step2" style="display:none;">
+      <div class="section-heading">Organisation &amp; Background</div>
+      <div class="section-sub">Help us understand your context so we can tailor the learning experience.</div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label>Organisation Name <span class="req">✦</span></label>
+          <input type="text" id="org_name" name="org_name" placeholder="e.g. Ghana Youth Foundation" required>
+          <div class="field-error" id="err-org_name">Please enter your organisation name.</div>
+        </div>
+        <div class="field">
+          <label>Organisation Type <span class="req">✦</span></label>
+          <select id="org_type" name="org_type" required>
+            <option value="" disabled selected>Select type</option>
+            <option>NGO / Non-profit</option>
+            <option>Government / Public sector</option>
+            <option>Corporate / Private sector</option>
+            <option>International development / Donor</option>
+            <option>Academic / Research institution</option>
+            <option>Consultancy / Freelance</option>
+            <option>Other</option>
+          </select>
+          <div class="field-error" id="err-org_type">Please select an organisation type.</div>
+        </div>
+        <div class="field">
+          <label>Your Role / Job Title <span class="req">✦</span></label>
+          <input type="text" id="role" name="role" placeholder="e.g. Programme Manager" required>
+          <div class="field-error" id="err-role">Please enter your role or job title.</div>
+        </div>
+        <div class="field">
+          <label>Years in Youth Development</label>
+          <select id="experience" name="experience">
+            <option value="" disabled selected>Select range</option>
+            <option>Less than 1 year</option>
+            <option>1–3 years</option>
+            <option>3–5 years</option>
+            <option>5–10 years</option>
+            <option>10+ years</option>
+          </select>
+        </div>
+        <div class="field span-2">
+          <label>Have you used any M&amp;E frameworks for youth leadership before?</label>
+          <select id="prior_framework" name="prior_framework">
+            <option value="" disabled selected>Select one</option>
+            <option>No — this will be my first</option>
+            <option>Yes — internal/custom frameworks</option>
+            <option>Yes — donor-mandated frameworks (e.g. logframes)</option>
+            <option>Yes — other published models</option>
+          </select>
+        </div>
+        <div class="field span-2">
+          <label>Why do you want to be YLIM-certified? <span class="req">✦</span></label>
+          <textarea id="motivation" name="motivation" placeholder="Briefly describe what you hope to achieve from this certification and how you plan to apply YLIM in your work..." required></textarea>
+          <div class="field-error" id="err-motivation">Please share your motivation for enrolling.</div>
+        </div>
+        <div class="field span-2">
+          <label>How did you hear about this programme?</label>
+          <select id="referral" name="referral">
+            <option value="" disabled selected>Select one</option>
+            <option>DataEdge website</option>
+            <option>LinkedIn</option>
+            <option>WhatsApp / Social media</option>
+            <option>Colleague or peer referral</option>
+            <option>Conference or event</option>
+            <option>Email newsletter</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <button type="button" class="submit-btn" style="background:#888;" onclick="goStep(1)">← Back</button>
+        <button type="button" class="submit-btn" onclick="goStep(3)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 3: TRACK & PAYMENT ══ -->
+    <div class="form-body" id="step3" style="display:none;">
+      <div class="section-heading">Track Selection &amp; Payment</div>
+      <div class="section-sub">Choose your learning track and how you will pay.</div>
+
+      <label style="display:block; margin-bottom:12px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--mid);">
+        Select your track <span class="req" style="color:var(--green)">✦</span>
+      </label>
+      <div class="track-grid">
+        <label class="track-option">
+          <input type="radio" name="track" value="Institutional Track">
+          <div class="track-card">
+            <div class="track-name">Institutional</div>
+            <div class="track-for">For organisations embedding YLIM into M&amp;E systems</div>
+          </div>
+        </label>
+        <label class="track-option green">
+          <input type="radio" name="track" value="Facilitator Track">
+          <div class="track-card">
+            <div class="track-name">Facilitator</div>
+            <div class="track-for">For trainers delivering YLIM content to others</div>
+          </div>
+        </label>
+        <label class="track-option purple">
+          <input type="radio" name="track" value="Programme Manager Track">
+          <div class="track-card">
+            <div class="track-name">Programme Manager</div>
+            <div class="track-for">For M&amp;E officers &amp; programme leads</div>
+          </div>
+        </label>
+      </div>
+      <div class="field-error" id="err-track" style="margin-top:6px; margin-bottom:16px;">Please select a track.</div>
+      <div class="hint" style="margin-bottom:24px;">Not sure which track? Email us at <a href="mailto:dataedgeinsights@gmail.com" style="color:var(--green);">dataedgeinsights@gmail.com</a> or WhatsApp <a href="https://wa.me/233531667123" target="_blank" style="color:var(--green);">+233 531 667 123</a></div>
+
+      <div class="form-divider"></div>
+
+      <div class="section-heading" style="font-size:15px; margin-bottom:4px;">Number of Seats</div>
+      <div class="section-sub" style="margin-bottom:16px;">Enrolling colleagues from the same organisation? Group pricing applies.</div>
+
+      <div class="form-grid" style="margin-bottom:8px;">
+        <div class="field">
+          <label>Number of seats <span class="req">✦</span></label>
+          <select id="seats" name="seats" required>
+            <option value="" disabled selected>Select</option>
+            <option value="1 seat — GHS 200 per person">1 seat — GHS 200 per person</option>
+            <option value="2 seats — GHS 180 per person">2 seats — GHS 180 per person</option>
+            <option value="3–5 seats — GHS 150 per person">3–5 seats — GHS 150 per person</option>
+            <option value="6–10 seats — GHS 120 per person">6–10 seats — GHS 120 per person</option>
+            <option value="11+ seats — Negotiated, contact DataEdge for a tailored quote">11+ seats — Negotiated, contact DataEdge for a tailored quote</option>
+          </select>
+          <div class="field-error" id="err-seats">Please select the number of seats.</div>
+        </div>
+        <div class="field">
+          <label>Payment Method <span class="req">✦</span></label>
+          <select id="payment_method" name="payment_method" required>
+            <option value="" disabled selected>Select</option>
+            <option>Mobile Money (MTN / Vodafone / AirtelTigo)</option>
+            <option>Bank Transfer (Ghana)</option>
+            <option>Bank Transfer (International)</option>
+            <option>Institutional Purchase Order</option>
+          </select>
+          <div class="field-error" id="err-payment_method">Please select a payment method.</div>
+        </div>
+        <div class="field">
+          <label>Billing Name / Organisation</label>
+          <input type="text" id="billing_name" name="billing_name" placeholder="Name or org for invoice">
+        </div>
+        <div class="field">
+          <label>Billing Email</label>
+          <input type="email" id="billing_email" name="billing_email" placeholder="finance@yourorg.com">
+          <div class="hint">If different from your personal email above</div>
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="trainer_addon" name="trainer_addon">
+        <span><strong>Add Trainer Licensing (GHS 2,000/yr)</strong> — Facilitator track only. Grants you the right to deliver YLIM under DataEdge licence. Billed annually after certification.</span>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="custom_cohort" name="custom_cohort">
+        <span><strong>I am interested in a private/custom cohort</strong> for my organisation (8+ participants). Please contact me with a tailored proposal.</span>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <div class="declaration">
+        By submitting this form I confirm that the information provided is accurate and I agree to the DataEdge Insights Ghana Certification Programme terms and conditions. I understand that enrolment is confirmed only upon receipt of full payment, and that a place cannot be guaranteed until payment is made. I consent to DataEdge Insights Ghana contacting me regarding this programme and related professional development opportunities.
+      </div>
+
+      <div class="sending-msg" id="sending-msg">
+        Submitting your enrolment and sending your confirmation email…
+      </div>
+
+      <div class="form-footer">
+        <div class="submit-note">
+          A confirmation email will be sent to you immediately. A payment invoice will follow within 2 working days.
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button type="button" class="submit-btn" style="background:#888;" onclick="goStep(2)">← Back</button>
+          <button type="submit" class="submit-btn" id="submit-btn">Submit Enrolment</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- ══ CONFIRMATION ══ -->
+  <div id="confirmation" class="form-body">
+    <div class="confirm-icon">
+      <svg viewBox="0 0 26 26" fill="none">
+        <path d="M5 13l6 6L21 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="confirm-title">Enrolment Received!</div>
+    <div class="confirm-body">
+      Thank you, <strong id="confirm-name"></strong>! Your enrolment for the YLIM Practitioner Certification has been received.<br><br>
+      A confirmation email has been sent to <strong id="confirm-email"></strong>. Please check your inbox — including your spam folder — within a few minutes.<br><br>
+      A payment invoice will follow within 2 working days. Once payment is confirmed, your course access details will be sent to you.<br><br>
+      Questions? Email us at <a href="mailto:dataedgeinsights@gmail.com">dataedgeinsights@gmail.com</a>, WhatsApp us on <a href="https://wa.me/233531667123" target="_blank">+233 531 667 123</a>, or visit <a href="https://www.dataedgeinsights.org" target="_blank">www.dataedgeinsights.org</a>.
+    </div>
+
+    <div class="email-preview">
+      <div class="email-preview-label">Confirmation email sent to you</div>
+      <div id="email-preview-body"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="form-footer-bar">
+    <div class="footer-brand">DataEdge <span>Insights</span> Ghana</div>
+    <div class="footer-info">
+      <a href="mailto:dataedgeinsights@gmail.com">dataedgeinsights@gmail.com</a> &nbsp;·&nbsp;
+      <a href="https://wa.me/233531667123" target="_blank">WhatsApp: +233 531 667 123</a><br>
+      <a href="https://www.dataedgeinsights.org" target="_blank">www.dataedgeinsights.org</a> &nbsp;·&nbsp; Accra, Ghana
+    </div>
+  </div>
+
+  <!-- COPYRIGHT BAR -->
+  <div style="background:#061F38; padding:10px 44px; text-align:left;">
+    <p style="font-family:'DM Sans',sans-serif; font-size:10px; color:rgba(255,255,255,0.38); letter-spacing:0.05em; line-height:1.7;">
+      &copy; 2026 DataEdge Insights Ghana. All rights reserved. The Youth Leadership Impact Model (YLIM), this document, and all associated content are the exclusive intellectual property of DataEdge Insights Ghana, protected under the Ghana Copyright Act 2005 (Act 690) and international copyright law. No part of this material may be reproduced, distributed, or used to create derivative works without prior written permission. Unauthorised use constitutes infringement and may result in civil and criminal liability.
+    </p>
+  </div>
+
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// EMAILJS SETUP
+// ──────────────────────────────────────────────────────
+// HOW TO ACTIVATE REAL EMAIL SENDING:
+//
+// 1. Go to https://www.emailjs.com and create a free account
+// 2. Add an Email Service (connect your Gmail: dataedgeinsights@gmail.com)
+// 3. Create an Email Template using the variables below:
+//
+//    Subject:  Enrolment Confirmed — YLIM Certification, DataEdge Insights Ghana
+//
+//    Body (HTML template in EmailJS):
+//    ──────────────────────────────────
+//    Dear {{to_name}},
+//
+//    Thank you for enrolling in the YLIM Practitioner Certification Programme.
+//    Your enrolment has been received and is being processed.
+//
+//    ENROLMENT SUMMARY
+//    Name: {{to_name}}
+//    Email: {{to_email}}
+//    Country: {{country}}
+//    Organisation: {{organisation}}
+//    Role: {{role}}
+//    Track: {{track}}
+//    Seats: {{seats}}
+//    Payment Method: {{payment_method}}
+//
+//    Next steps: You will receive a payment invoice within 2 working days.
+//    Course access is granted upon payment confirmation.
+//
+//    For questions: dataedgeinsights@gmail.com | WhatsApp: +233 531 667 123
+//    Website: https://www.dataedgeinsights.org
+//
+//    Warm regards,
+//    DataEdge Insights Ghana Team
+//    ──────────────────────────────────
+//
+// 4. Copy your PUBLIC KEY from EmailJS → Account → API Keys
+// 5. Copy your SERVICE ID and TEMPLATE ID
+// 6. Replace the three values below:
+// ══════════════════════════════════════════════════════
+
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // e.g. 'user_abc123xyz'
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. 'service_gmail'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_ylim_confirm'
+
+// Initialise EmailJS
+(function() {
+  try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch(e) {}
+})();
+
+// ══ STEP NAVIGATION ══
+function goStep(n) {
+  if (n > 1 && !validateStep(n - 1)) return;
+  [1,2,3].forEach(i => {
+    const el  = document.getElementById('step' + i);
+    const tab = document.getElementById('step' + i + '-tab');
+    if (el)  el.style.display = i === n ? 'block' : 'none';
+    if (tab) {
+      tab.classList.remove('active', 'done');
+      if (i === n) tab.classList.add('active');
+      else if (i < n) tab.classList.add('done');
+    }
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ══ VALIDATION ══
+const REQUIRED = {
+  1: ['first_name','last_name','email','phone','country'],
+  2: ['org_name','org_type','role','motivation'],
+  3: ['seats','payment_method']
+};
+
+function validateStep(step) {
+  let ok = true;
+  (REQUIRED[step] || []).forEach(id => {
+    const el = document.getElementById(id);
+    const err = document.getElementById('err-' + id);
+    if (!el) return;
+    const val = el.value.trim();
+    const invalid = !val || (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val));
+    el.classList.toggle('invalid', invalid);
+    if (err) err.classList.toggle('show', invalid);
+    if (invalid) ok = false;
+  });
+  // Track radio
+  if (step === 3) {
+    const trackChosen = document.querySelector('input[name="track"]:checked');
+    const trackErr = document.getElementById('err-track');
+    if (!trackChosen) {
+      if (trackErr) trackErr.classList.add('show');
+      ok = false;
+    } else {
+      if (trackErr) trackErr.classList.remove('show');
+    }
+  }
+  return ok;
+}
+
+// ══ COLLECT FORM DATA ══
+function collectData() {
+  const g = id => (document.getElementById(id) || {}).value || '';
+  const trackEl = document.querySelector('input[name="track"]:checked');
+  return {
+    to_name:        `${g('first_name')} ${g('last_name')}`.trim(),
+    to_email:       g('email'),
+    phone:          g('phone'),
+    country:        g('country'),
+    cert_name:      g('cert_name') || `${g('first_name')} ${g('last_name')}`.trim(),
+    linkedin:       g('linkedin') || '—',
+    organisation:   g('org_name'),
+    org_type:       g('org_type'),
+    role:           g('role'),
+    experience:     g('experience') || 'Not specified',
+    prior_framework:g('prior_framework') || 'Not specified',
+    motivation:     g('motivation'),
+    referral:       g('referral') || 'Not specified',
+    track:          trackEl ? trackEl.value : '—',
+    seats:          g('seats'),
+    payment_method: g('payment_method'),
+    billing_name:   g('billing_name') || '—',
+    billing_email:  g('billing_email') || g('email'),
+    trainer_addon:  document.getElementById('trainer_addon').checked ? 'Yes' : 'No',
+    custom_cohort:  document.getElementById('custom_cohort').checked ? 'Yes' : 'No',
+    reply_to:       'dataedgeinsights@gmail.com',
+    from_name:      'DataEdge Insights Ghana',
+  };
+}
+
+// ══ FORM SUBMIT ══
+document.getElementById('enrolForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  if (!validateStep(3)) return;
+
+  const data = collectData();
+  const submitBtn = document.getElementById('submit-btn');
+  const sendingMsg = document.getElementById('sending-msg');
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+  sendingMsg.style.display = 'block';
+
+  // ── Send to Formspree (admin notification to dataedgeinsights@gmail.com) ──
+  let formspreeOk = false;
+  try {
+    const formspreePayload = {
+      name:           data.to_name,
+      email:          data.to_email,
+      organisation:   data.organisation,
+      country:        data.country,
+      job_title:      data.job_title,
+      track:          data.track,
+      seats:          data.seats,
+      payment_method: data.payment_method,
+      billing_email:  data.billing_email,
+      motivation:     data.motivation || '',
+      _subject:       'New YLIM Enrolment — ' + data.to_name + ' (' + data.track + ')'
+    };
+    const res = await fetch('https://formspree.io/f/maqvjqlq', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(formspreePayload)
+    });
+    formspreeOk = res.ok;
+  } catch (err) {
+    console.warn('Formspree error:', err);
+  }
+
+  // ── Try EmailJS for participant auto-email (if configured) ──
+  let emailSent = false;
+  if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, data);
+      emailSent = true;
+    } catch (err) {
+      console.warn('EmailJS error:', err);
+    }
+  }
+
+  // Show confirmation
+  showConfirmation(data, emailSent);
+});
+
+// ══ SHOW CONFIRMATION ══
+function showConfirmation(data, emailSent) {
+  [1,2,3].forEach(i => {
+    const el = document.getElementById('step' + i);
+    if (el) el.style.display = 'none';
+    const tab = document.getElementById('step' + i + '-tab');
+    if (tab) { tab.classList.remove('active'); tab.classList.add('done'); }
+  });
+
+  document.getElementById('sending-msg').style.display = 'none';
+  document.getElementById('confirmation').style.display = 'block';
+  document.getElementById('confirm-name').textContent  = data.to_name;
+  document.getElementById('confirm-email').textContent = data.to_email;
+
+  const preview = `
+    <strong>From:</strong> DataEdge Insights Ghana &lt;dataedgeinsights@gmail.com&gt;<br>
+    <strong>To:</strong> ${data.to_name} &lt;${data.to_email}&gt;<br>
+    <strong>Subject:</strong> Enrolment Confirmed — YLIM Certification Programme<br><br>
+    Dear ${data.to_name},<br><br>
+    Thank you for enrolling in the <strong>YLIM Practitioner Certification Programme</strong> with DataEdge Insights Ghana. Your enrolment has been received and is being processed.<br><br>
+    <strong>Your Enrolment Summary</strong><br>
+    Track: ${data.track}<br>
+    Seats: ${data.seats}<br>
+    Organisation: ${data.organisation}<br>
+    Country: ${data.country}<br>
+    Payment Method: ${data.payment_method}<br><br>
+    <strong>Next Steps</strong><br>
+    You will receive a payment invoice within 2 working days to ${data.billing_email}. Course access will be granted upon payment confirmation.<br><br>
+    For any questions, please contact us at <strong>dataedgeinsights@gmail.com</strong>, WhatsApp <strong>+233 531 667 123</strong>, or visit <strong>www.dataedgeinsights.org</strong>.<br><br>
+    Warm regards,<br>
+    <strong>DataEdge Insights Ghana Team</strong>
+  `;
+
+  document.getElementById('email-preview-body').innerHTML = preview;
+
+  if (!emailSent) {
+    document.querySelector('.email-preview-label').textContent =
+      'Confirmation email content (configure EmailJS to send automatically — see code comments)';
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
