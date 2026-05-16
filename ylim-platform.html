@@ -2202,7 +2202,7 @@ function enterApp() {
   btn.textContent = 'Verifying access…';
   btn.disabled = true;
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxzBgv4_2r2sRm9o4jxoYkszEW1fJKNoq0qWHMZMdeWVH2ocvrEEek6kC52zHYcL44/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSu0zYCAnMLKtDtuC_SxswpqmS-CDhnc4vblDGmvAe0HjviKj8e-k9tP52pf1cSA/exec';
 
   fetch(SCRIPT_URL + '?email=' + encodeURIComponent(email) + '&track=' + encodeURIComponent(track) + '&password=' + encodeURIComponent(password))
     .then(r => r.json())
