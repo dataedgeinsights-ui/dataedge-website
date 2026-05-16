@@ -1261,6 +1261,9 @@ body {
       <div class="lfield">
         <label>Email Address <span style="color:#c0392b;">*</span></label>
         <input type="email" id="login-email" value="" placeholder="your@email.com">
+        <label class="login-label" style="margin-top:12px;">Password</label>
+        <input type="password" id="login-password" value="" placeholder="Enter your password" style="width:100%;padding:12px 16px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:14px;font-family:inherit;outline:none;margin-top:4px;">
+        <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;">Your password is provided by DataEdge Insights Ghana upon payment confirmation. Contact us on WhatsApp +233 531 667 123 if you have not received yours.</div>
       </div>
       <div id="login-error" style="display:none; color:#c0392b; font-size:12px; margin-bottom:10px; line-height:1.6;"></div>
       <button class="login-btn" onclick="enterApp()">Enter Platform →</button>
@@ -2152,6 +2155,7 @@ function logOff() {
   document.getElementById('login-name').value = '';
   document.getElementById('login-track').value = '';
   document.getElementById('login-email').value = '';
+  if (document.getElementById('login-password')) document.getElementById('login-password').value = '';
   const saved = loadState();
   if (saved) { showResumeBanner(saved); }
 }
@@ -2171,18 +2175,20 @@ function showResumeBanner(saved) {
 }
 
 function enterApp() {
-  const name  = document.getElementById('login-name').value.trim();
-  const track = document.getElementById('login-track').value;
-  const email = document.getElementById('login-email').value.trim().toLowerCase();
-  const errorEl = document.getElementById('login-error');
-  const btn   = document.querySelector('.login-btn');
-  const errors = [];
+  const name     = document.getElementById('login-name').value.trim();
+  const track    = document.getElementById('login-track').value;
+  const email    = document.getElementById('login-email').value.trim().toLowerCase();
+  const password = document.getElementById('login-password') ? document.getElementById('login-password').value.trim() : '';
+  const errorEl  = document.getElementById('login-error');
+  const btn      = document.querySelector('.login-btn');
+  const errors   = [];
 
-  if (!name)  errors.push('Please enter your full name as it should appear on your certificate.');
-  if (!track) errors.push('Please select your track.');
+  if (!name)     errors.push('Please enter your full name as it should appear on your certificate.');
+  if (!track)    errors.push('Please select your track.');
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if (!email) errors.push('Please enter your email address.');
+  if (!email)    errors.push('Please enter your email address.');
   else if (!emailValid) errors.push('Please enter a valid email address.');
+  if (!password) errors.push('Please enter your password. Contact DataEdge on WhatsApp +233 531 667 123 if you have not received yours.');
 
   if (errors.length > 0) {
     errorEl.innerHTML = errors.map(e => '⚠ ' + e).join('<br>');
@@ -2194,23 +2200,21 @@ function enterApp() {
   btn.textContent = 'Verifying access…';
   btn.disabled = true;
 
-  // ── CHECK AGAINST GOOGLE SHEET ──────────────────────────
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwx5piFV4pfyLRU2Vv9KvjnJXYWJmiz8I5iAOYlW5wg0zIaBOzKJpNYMVXE2XqNJ3iP/exec';
 
-  fetch(SCRIPT_URL + '?email=' + encodeURIComponent(email) + '&track=' + encodeURIComponent(track))
+  fetch(SCRIPT_URL + '?email=' + encodeURIComponent(email) + '&track=' + encodeURIComponent(track) + '&password=' + encodeURIComponent(password))
     .then(r => r.json())
     .then(data => {
       btn.textContent = 'Enter Platform →';
       btn.disabled = false;
 
       if (data.status === 'approved') {
-        // ✅ Access granted — load the platform
         state.userName  = name;
         state.userTrack = track;
         state.userEmail = email;
         const saved = loadState();
         if (saved && saved.userEmail === email) {
-          state.completed     = new Set(saved.completed || []);
+          state.completed        = new Set(saved.completed || []);
           state.exerciseAnswers  = saved.exerciseAnswers  || {};
           state.exerciseUploads  = saved.exerciseUploads  || {};
           state.quizAnswers      = saved.quizAnswers      || {};
@@ -2229,18 +2233,19 @@ function enterApp() {
         buildSidebar();
         navigate(state.currentLesson || 'home');
 
+      } else if (data.status === 'wrong_password') {
+        errorEl.innerHTML = '🔒 <strong>Incorrect password.</strong> Please check your password and try again. If you have forgotten your password contact DataEdge on WhatsApp: <strong>+233 531 667 123</strong> or email <strong>dataedgeinsights@gmail.com</strong>.';
+        errorEl.style.display = 'block';
+
       } else if (data.status === 'pending') {
-        // ⏳ Enrolled but payment not yet confirmed
         errorEl.innerHTML = '⏳ <strong>Payment pending.</strong> Your enrolment has been received but payment has not yet been confirmed. Please contact DataEdge on WhatsApp: <strong>+233 531 667 123</strong> or email <strong>dataedgeinsights@gmail.com</strong>.';
         errorEl.style.display = 'block';
 
       } else if (data.status === 'not_found') {
-        // ❌ Email not in the system
         errorEl.innerHTML = '❌ <strong>Access not found.</strong> This email address is not registered in the YLIM programme. Please check your email or enrol at <strong>dataedgeinsights.org</strong>. If you believe this is an error, contact us on WhatsApp: <strong>+233 531 667 123</strong>.';
         errorEl.style.display = 'block';
 
       } else {
-        // ⚠ Unexpected response
         errorEl.innerHTML = '⚠ <strong>Verification error.</strong> Unable to verify your access at this time. Please try again or contact DataEdge on WhatsApp: <strong>+233 531 667 123</strong>.';
         errorEl.style.display = 'block';
       }
@@ -3174,4 +3179,3 @@ function renderCert() {
 </div>
 </body>
 </html>
-
