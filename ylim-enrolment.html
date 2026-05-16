@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YLIM Certification – Enrolment Form | DataEdge Insights Ghana</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<!-- EmailJS SDK for sending confirmation emails directly from the browser -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -562,9 +563,9 @@
           <select id="experience" name="experience">
             <option value="" disabled selected>Select range</option>
             <option>Less than 1 year</option>
-            <option>1–2 years</option>
+            <option>1–3 years</option>
             <option>3–5 years</option>
-            <option>6–10 years</option>
+            <option>5–10 years</option>
             <option>10+ years</option>
           </select>
         </div>
@@ -591,7 +592,6 @@
             <option>LinkedIn</option>
             <option>WhatsApp / Social media</option>
             <option>Colleague or peer referral</option>
-            <option>Professional network</option>
             <option>Conference or event</option>
             <option>Email newsletter</option>
             <option>Other</option>
@@ -661,11 +661,10 @@
           <label>Payment Method <span class="req">✦</span></label>
           <select id="payment_method" name="payment_method" required>
             <option value="" disabled selected>Select</option>
-            <option>Mobile Money (MTN / Telecel / AirtelTigo)</option>
+            <option>Mobile Money (MTN / Vodafone / AirtelTigo)</option>
             <option>Bank Transfer (Ghana)</option>
             <option>Bank Transfer (International)</option>
             <option>Institutional Purchase Order</option>
-            <option>Cash Payment</option>
           </select>
           <div class="field-error" id="err-payment_method">Please select a payment method.</div>
         </div>
@@ -692,11 +691,6 @@
       </div>
 
       <div class="form-divider"></div>
-
-      <div class="field" style="margin-bottom:24px;">
-        <label>Any questions or notes for DataEdge?</label>
-        <textarea id="notes" name="notes" placeholder="Any questions, special requirements, or anything else you'd like us to know..." style="min-height:80px;"></textarea>
-      </div>
 
       <div class="declaration">
         By submitting this form I confirm that the information provided is accurate and I agree to the DataEdge Insights Ghana Certification Programme terms and conditions. I understand that enrolment is confirmed only upon receipt of full payment, and that a place cannot be guaranteed until payment is made. I consent to DataEdge Insights Ghana contacting me regarding this programme and related professional development opportunities.
@@ -761,35 +755,56 @@
 
 <script>
 // ══════════════════════════════════════════════════════
-// GOOGLE FORM SUBMISSION
-// Submits to Google Form → Google Sheet → Apps Script
-// sends confirmation email automatically
+// EMAILJS SETUP
+// ──────────────────────────────────────────────────────
+// HOW TO ACTIVATE REAL EMAIL SENDING:
+//
+// 1. Go to https://www.emailjs.com and create a free account
+// 2. Add an Email Service (connect your Gmail: dataedgeinsights@gmail.com)
+// 3. Create an Email Template using the variables below:
+//
+//    Subject:  Enrolment Confirmed — YLIM Certification, DataEdge Insights Ghana
+//
+//    Body (HTML template in EmailJS):
+//    ──────────────────────────────────
+//    Dear {{to_name}},
+//
+//    Thank you for enrolling in the YLIM Practitioner Certification Programme.
+//    Your enrolment has been received and is being processed.
+//
+//    ENROLMENT SUMMARY
+//    Name: {{to_name}}
+//    Email: {{to_email}}
+//    Country: {{country}}
+//    Organisation: {{organisation}}
+//    Role: {{role}}
+//    Track: {{track}}
+//    Seats: {{seats}}
+//    Payment Method: {{payment_method}}
+//
+//    Next steps: You will receive a payment invoice within 2 working days.
+//    Course access is granted upon payment confirmation.
+//
+//    For questions: dataedgeinsights@gmail.com | WhatsApp: +233 531 667 123
+//    Website: https://www.dataedgeinsights.org
+//
+//    Warm regards,
+//    DataEdge Insights Ghana Team
+//    ──────────────────────────────────
+//
+// 4. Copy your PUBLIC KEY from EmailJS → Account → API Keys
+// 5. Copy your SERVICE ID and TEMPLATE ID
+// 6. Replace the three values below:
 // ══════════════════════════════════════════════════════
-const GFORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdZSp6vHCI3ggp9lNKwdY3sdvzEc82MU-kknKn0uTLPKnFFwg/formResponse';
-const GFORM = {
-  email:           'entry.676946465',
-  first_name:      'entry.572157850',
-  last_name:       'entry.2058673277',
-  org_name:        'entry.736767432',
-  country:         'entry.1957437460',
-  city:            'entry.810525639',
-  phone:           'entry.134474458',
-  whatsapp:        'entry.1220094649',
-  org_type:        'entry.718421526',
-  role:            'entry.1210556094',
-  experience:      'entry.1870747164',
-  prior_framework: 'entry.1640199122',
-  motivation:      'entry.673178746',
-  referral:        'entry.1903229678',
-  track:           'entry.110133012',
-  seats:           'entry.37430527',
-  payment_method:  'entry.1189488463',
-  billing_name:    'entry.1839702724',
-  billing_email:   'entry.1425518772',
-  trainer_addon:   'entry.1741077348',
-  custom_cohort:   'entry.808729904',
-  notes:           'entry.19061639',
-};
+
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // e.g. 'user_abc123xyz'
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. 'service_gmail'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_ylim_confirm'
+
+// Initialise EmailJS
+(function() {
+  try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch(e) {}
+})();
 
 // ══ STEP NAVIGATION ══
 function goStep(n) {
@@ -865,7 +880,6 @@ function collectData() {
     billing_email:  g('billing_email') || g('email'),
     trainer_addon:  document.getElementById('trainer_addon').checked ? 'Yes' : 'No',
     custom_cohort:  document.getElementById('custom_cohort').checked ? 'Yes' : 'No',
-    notes:          g('notes') || '',
     reply_to:       'dataedgeinsights@gmail.com',
     from_name:      'DataEdge Insights Ghana',
   };
@@ -884,43 +898,72 @@ document.getElementById('enrolForm').addEventListener('submit', async function(e
   submitBtn.textContent = 'Sending…';
   sendingMsg.style.display = 'block';
 
-  // ── POST to Google Form (feeds Sheet → triggers Apps Script auto-email) ──
+  // ── 1. Send to Google Sheet via Apps Script ──
+  const SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSu0zYCAnMLKtDtuC_SxswpqmS-CDhnc4vblDGmvAe0HjviKj8e-k9tP52pf1cSA/exec';
   try {
-    const fd = new FormData();
-    const nameParts = data.to_name.split(' ');
-    fd.append(GFORM.email,           data.to_email);
-    fd.append(GFORM.first_name,      nameParts[0] || '');
-    fd.append(GFORM.last_name,       nameParts.slice(1).join(' ') || '');
-    fd.append(GFORM.org_name,        data.organisation);
-    fd.append(GFORM.org_type,        data.org_type || '');
-    fd.append(GFORM.role,            data.role || '');
-    fd.append(GFORM.country,         data.country);
-    fd.append(GFORM.phone,           data.phone || '');
-    fd.append(GFORM.experience,      data.experience || '');
-    fd.append(GFORM.prior_framework, data.prior_framework || '');
-    fd.append(GFORM.motivation,      data.motivation || '');
-    fd.append(GFORM.track,           data.track);
-    fd.append(GFORM.seats,           data.seats);
-    fd.append(GFORM.payment_method,  data.payment_method);
-    fd.append(GFORM.billing_name,    data.billing_name || '');
-    fd.append(GFORM.billing_email,   data.billing_email || data.to_email);
-    fd.append(GFORM.notes,           data.notes || '');
-    if (data.referral && data.referral !== 'Not specified') {
-      fd.append(GFORM.referral, data.referral);
-    }
-    if (data.trainer_addon === 'Yes') {
-      fd.append(GFORM.trainer_addon, 'Yes — I wish to add the Trainer Licensing');
-    }
-    if (data.custom_cohort === 'Yes') {
-      fd.append(GFORM.custom_cohort, 'Yes-I am interested in a private/custom cohort for my organisation');
-    }
-
-    await fetch(GFORM_ACTION, { method: 'POST', mode: 'no-cors', body: fd });
+    await fetch(SHEET_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action:         'enrol',
+        timestamp:      new Date().toLocaleString(),
+        first_name:     data.to_name.split(' ')[0] || data.to_name,
+        last_name:      data.to_name.split(' ').slice(1).join(' ') || '',
+        email:          data.to_email,
+        organisation:   data.organisation,
+        job_title:      data.job_title,
+        country:        data.country,
+        track:          data.track,
+        seats:          data.seats,
+        payment_method: data.payment_method,
+        trainer_addon:  data.trainer_addon,
+        motivation:     data.motivation || '',
+      })
+    });
   } catch (err) {
-    console.info('Submitted to Google Form');
+    console.warn('Sheet write error:', err);
   }
 
-  showConfirmation(data, true);
+  // ── 2. Send to Formspree (admin notification to dataedgeinsights@gmail.com) ──
+  let formspreeOk = false;
+  try {
+    const formspreePayload = {
+      name:           data.to_name,
+      email:          data.to_email,
+      organisation:   data.organisation,
+      country:        data.country,
+      job_title:      data.job_title,
+      track:          data.track,
+      seats:          data.seats,
+      payment_method: data.payment_method,
+      billing_email:  data.billing_email,
+      motivation:     data.motivation || '',
+      _subject:       'New YLIM Enrolment — ' + data.to_name + ' (' + data.track + ')'
+    };
+    const res = await fetch('https://formspree.io/f/maqvjqlq', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(formspreePayload)
+    });
+    formspreeOk = res.ok;
+  } catch (err) {
+    console.warn('Formspree error:', err);
+  }
+
+  // ── 3. Try EmailJS for participant auto-email (if configured) ──
+  let emailSent = false;
+  if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, data);
+      emailSent = true;
+    } catch (err) {
+      console.warn('EmailJS error:', err);
+    }
+  }
+
+  // Show confirmation
+  showConfirmation(data, emailSent);
 });
 
 // ══ SHOW CONFIRMATION ══
@@ -958,7 +1001,10 @@ function showConfirmation(data, emailSent) {
 
   document.getElementById('email-preview-body').innerHTML = preview;
 
-  document.querySelector('.email-preview-label').textContent = 'Confirmation email sent to you by DataEdge Insights Ghana';
+  if (!emailSent) {
+    document.querySelector('.email-preview-label').textContent =
+      'Confirmation email content (configure EmailJS to send automatically — see code comments)';
+  }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
