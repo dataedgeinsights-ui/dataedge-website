@@ -1826,14 +1826,14 @@ const CONTENT = {
       <h3>Worked Example: Kofi's Score</h3>
       <p>Using Kofi's data with default weights:</p>
       <ul>
-        <li>Training Hours: 140 × 0.1 = <strong>14.0</strong></li>
+        <li>Training Hours: 140 × 0.10 = <strong>14.0</strong></li>
         <li>Mentoring Sessions: 30 × 0.05 = <strong>1.5</strong></li>
-        <li>Leadership Roles: 15 × 0.2 = <strong>3.0</strong></li>
+        <li>Leadership Roles: 15 × 0.20 = <strong>3.0</strong></li>
         <li>Communication: 15 × 0.15 = <strong>2.25</strong></li>
         <li>Decision-Making: 15 × 0.15 = <strong>2.25</strong></li>
         <li>Team Building: 15 × 0.15 = <strong>2.25</strong></li>
-        <li>Problem-Solving: 9 × 0.1 = <strong>0.9</strong></li>
-        <li>Strategic Thinking: 9 × 0.1 = <strong>0.9</strong></li>
+        <li>Problem-Solving: 9 × 0.10 = <strong>0.9</strong></li>
+        <li>Strategic Thinking: 9 × 0.10 = <strong>0.9</strong></li>
       </ul>
 
       <div class="callout callout-key">
@@ -1868,8 +1868,8 @@ const CONTENT = {
       {
         q: 'What is the weight assigned to Leadership Roles Taken in the default YLIM configuration?',
         opts: ['0.10', '0.20', '0.15', '0.05'],
-        correct: 2,
-        feedback: 'Correct! Leadership Roles Taken has a default weight of 0.15 (15%), tied with Communication, Decision-Making, and Team Building as the highest-weighted inputs.'
+        correct: 1,
+        feedback: 'Correct! Leadership Roles Taken has a default weight of 0.20 (20%), making it the highest-weighted input in the YLIM model — reflecting the central importance of leadership in institutional capacity.'
       },
       {
         q: 'Why is it important for weights to sum to 1.0 (100%)?',
@@ -2569,17 +2569,28 @@ function shuffleArray(arr) {
 }
 
 function prepareQuestions(questions, attemptNumber) {
-  // On attempt 2 and 3, shuffle both question order and option order
-  // Correct answer index is remapped after shuffle
-  if (attemptNumber <= 1) return questions.map(q => ({...q, opts: [...q.opts]}));
+  // Always preserve the original correct answer text
+  // On attempt 2 and 3: shuffle question order AND option order
+  // but ALWAYS remap correct index so the right answer stays right
+  if (attemptNumber <= 1) {
+    return questions.map(q => ({
+      ...q,
+      opts: [...q.opts],
+      _correctText: q.opts[q.correct] // store correct answer text
+    }));
+  }
 
   // Shuffle question order
   const shuffledQs = shuffleArray(questions.map(q => {
-    // Shuffle options and remap correct index
-    const correctText = q.opts[q.correct];
+    const correctText = q.opts[q.correct]; // identify correct answer by text
     const shuffledOpts = shuffleArray([...q.opts]);
-    const newCorrectIdx = shuffledOpts.indexOf(correctText);
-    return { ...q, opts: shuffledOpts, correct: newCorrectIdx };
+    const newCorrectIdx = shuffledOpts.indexOf(correctText); // remap index
+    return {
+      ...q,
+      opts: shuffledOpts,
+      correct: newCorrectIdx,
+      _correctText: correctText // always keep track of correct text
+    };
   }));
   return shuffledQs;
 }
