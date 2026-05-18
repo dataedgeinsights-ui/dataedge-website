@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Policy Briefs &amp; Articles — DataEdge Insights Ghana</title>
+<meta name="description" content="Expert policy briefs, research articles, and thought leadership by Dr. Efua Kwaambaa Turkson — covering youth employment, gender equity, governance, MEL, and evidence-based policy across Ghana and Africa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0A3D6B;--navy-deep:#061F38;--navy-mid:#123a60;
+  --green:#1A7F5E;--green-light:#E2F4ED;--green-mid:#2a9b74;
+  --amber:#C97D1A;--sand:#F7F4EE;--sand-mid:#EDE8DD;
+  --white:#FEFEFE;--dark:#14140F;--mid:#4A4A44;--muted:#8A8A82;--border:#DDD9CE;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--dark);line-height:1.6;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(254,254,254,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:64px;display:flex;align-items:center;padding:0 40px;justify-content:space-between;}
+.nav-brand{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--navy-deep);letter-spacing:0.01em;text-decoration:none;}
+.nav-brand span{color:var(--green);}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--mid);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all 0.2s;letter-spacing:0.01em;}
+.nav-links a:hover{background:var(--sand);color:var(--navy);}
+.nav-links a.active{background:var(--sand);color:var(--navy);}
+.nav-cta{background:var(--navy)!important;color:var(--white)!important;border-radius:6px;}
+.nav-cta:hover{background:var(--navy-deep)!important;}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;}
+
+/* ── HERO ── */
+.blog-hero{background:var(--navy-deep);padding:120px 40px 72px;position:relative;overflow:hidden;}
+.blog-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 50%,rgba(26,127,94,0.1) 0%,transparent 65%);pointer-events:none;}
+.blog-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.blog-kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#7FC9A8;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.blog-kicker::before{content:'';display:block;width:32px;height:1px;background:#7FC9A8;}
+.blog-hero h1{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:600;color:var(--white);line-height:1.08;letter-spacing:-0.5px;margin-bottom:20px;}
+.blog-hero h1 em{font-style:normal;color:#7FC9A8;}
+.blog-lead{font-size:16px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.8;max-width:600px;margin-bottom:40px;}
+.blog-stats{display:flex;gap:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.08);}
+.blog-stat-n{font-family:var(--serif);font-size:32px;font-weight:600;color:var(--white);line-height:1;}
+.blog-stat-l{font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.04em;margin-top:4px;}
+
+/* ── FILTER BAR ── */
+.filter-bar{background:var(--sand);border-bottom:1px solid var(--border);padding:0 40px;position:sticky;top:64px;z-index:90;}
+.filter-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:6px;overflow-x:auto;padding:14px 0;scrollbar-width:none;}
+.filter-inner::-webkit-scrollbar{display:none;}
+.filter-btn{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0;}
+.filter-btn:hover{border-color:var(--green);color:var(--green);}
+.filter-btn.active{background:var(--navy-deep);border-color:var(--navy-deep);color:var(--white);}
+.filter-count{font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:auto;flex-shrink:0;padding-left:16px;white-space:nowrap;}
+
+/* ── ARTICLES GRID ── */
+.articles-section{padding:64px 40px 96px;background:var(--white);}
+.articles-inner{max-width:1100px;margin:0 auto;}
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
+
+/* ── ARTICLE CARD ── */
+.article-card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all 0.2s;background:var(--white);text-decoration:none;}
+.article-card:hover{border-color:rgba(26,127,94,0.4);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.08);}
+.card-top{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.card-category{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;}
+.card-date{font-family:var(--mono);font-size:10px;color:var(--muted);}
+.card-body{padding:20px;flex:1;}
+.card-title{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--navy-deep);line-height:1.3;margin-bottom:10px;}
+.card-excerpt{font-size:13px;font-weight:300;color:var(--muted);line-height:1.65;margin-bottom:16px;}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.card-tag{font-size:10px;padding:3px 8px;border-radius:12px;font-weight:400;}
+.card-footer{padding:14px 20px;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--green);letter-spacing:0.04em;display:flex;align-items:center;gap:6px;transition:gap 0.2s;}
+.article-card:hover .card-footer{gap:10px;}
+
+/* colour themes per category */
+.cat-mel .card-top{background:var(--green-light);}
+.cat-mel .card-category{color:var(--green);}
+.cat-mel .card-tag{background:var(--green-light);border:1px solid rgba(26,127,94,0.25);color:var(--green);}
+
+.cat-gender .card-top{background:#FEF0F6;}
+.cat-gender .card-category{color:#9B3A6A;}
+.cat-gender .card-tag{background:#FEF0F6;border:1px solid rgba(155,58,106,0.25);color:#9B3A6A;}
+
+.cat-governance .card-top{background:#EDF3FB;}
+.cat-governance .card-category{color:var(--navy);}
+.cat-governance .card-tag{background:#EDF3FB;border:1px solid rgba(10,61,107,0.25);color:var(--navy);}
+
+.cat-youth .card-top{background:var(--green-light);}
+.cat-youth .card-category{color:var(--green);}
+.cat-youth .card-tag{background:var(--green-light);border:1px solid rgba(26,127,94,0.25);color:var(--green);}
+
+.cat-ai .card-top{background:#FDF4E7;}
+.cat-ai .card-category{color:var(--amber);}
+.cat-ai .card-tag{background:#FDF4E7;border:1px solid rgba(201,125,26,0.25);color:var(--amber);}
+
+.cat-workplace .card-top{background:#FDF4E7;}
+.cat-workplace .card-category{color:var(--amber);}
+.cat-workplace .card-tag{background:#FDF4E7;border:1px solid rgba(201,125,26,0.25);color:var(--amber);}
+
+/* ── NO RESULTS ── */
+.no-results{display:none;text-align:center;padding:80px 20px;grid-column:1/-1;}
+.no-results p{font-family:var(--serif);font-size:24px;color:var(--muted);}
+
+/* ── CTA BAND ── */
+.cta-band{background:var(--navy-deep);padding:80px 40px;text-align:center;}
+.cta-band h2{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--white);margin-bottom:16px;}
+.cta-band p{font-size:15px;font-weight:300;color:rgba(255,255,255,0.5);max-width:520px;margin:0 auto 32px;line-height:1.75;}
+.btn-green{background:var(--green);color:var(--white);font-size:13px;font-weight:600;padding:13px 28px;border-radius:6px;text-decoration:none;letter-spacing:0.04em;transition:background 0.2s,transform 0.15s;display:inline-block;}
+.btn-green:hover{background:var(--green-mid);transform:translateY(-1px);}
+.btn-outline{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);font-size:13px;font-weight:500;padding:13px 28px;border-radius:6px;text-decoration:none;transition:all 0.2s;display:inline-block;margin-left:12px;}
+.btn-outline:hover{background:rgba(255,255,255,0.08);}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:48px 40px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+.footer-brand{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--white);}
+.footer-brand span{color:#7FC9A8;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:rgba(255,255,255,0.8);}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);width:100%;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .nav-toggle{display:flex;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:16px 20px;z-index:99;gap:4px;}
+  .blog-hero{padding:100px 20px 56px;}
+  .filter-bar{padding:0 20px;}
+  .articles-section{padding:48px 20px 72px;}
+  .blog-stats{gap:24px;}
+  footer{padding:40px 20px;}
+  .footer-inner{flex-direction:column;align-items:flex-start;}
+  .btn-outline{margin-left:0;margin-top:12px;}
+}
+@media(max-width:600px){
+  .articles-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-brand">DataEdge <span>Insights</span> Ghana</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#rydel">RYDEL Lab</a></li>
+    <li><a href="index.html#ylim">YLIM</a></li>
+    <li><a href="index.html#dataedge">DataEdge</a></li>
+    <li><a href="index.html#resources" class="active">Resources</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="blog-hero">
+  <div class="blog-hero-inner">
+    <div class="blog-kicker">DataEdge Insights Ghana &nbsp;·&nbsp; Publications</div>
+    <h1>Policy Briefs<br>&amp; <em>Research Articles</em></h1>
+    <p class="blog-lead">Expert analysis at the intersection of data, policy, and development — grounded in peer-reviewed evidence, built for practitioners and policymakers across Ghana, Africa, and globally.</p>
+    <div class="blog-stats">
+      <div>
+        <div class="blog-stat-n">12</div>
+        <div class="blog-stat-l">Publications</div>
+      </div>
+      <div>
+        <div class="blog-stat-n">6</div>
+        <div class="blog-stat-l">Topic Areas</div>
+      </div>
+      <div>
+        <div class="blog-stat-n">2026</div>
+        <div class="blog-stat-l">Latest Release</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FILTER BAR ── -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" data-filter="all">All Articles</button>
+    <button class="filter-btn" data-filter="youth">Youth &amp; Employment</button>
+    <button class="filter-btn" data-filter="gender">Gender &amp; Climate</button>
+    <button class="filter-btn" data-filter="governance">Governance &amp; Data</button>
+    <button class="filter-btn" data-filter="mel">M&amp;E &amp; MERLA</button>
+    <button class="filter-btn" data-filter="ai">AI &amp; RBM</button>
+    <button class="filter-btn" data-filter="workplace">Workplace</button>
+    <span class="filter-count" id="filterCount">Showing 12 articles</span>
+  </div>
+</div>
+
+<!-- ── ARTICLES GRID ── -->
+<section class="articles-section">
+  <div class="articles-inner">
+    <div class="articles-grid" id="articlesGrid">
+
+      <!-- 01 -->
+      <a href="blog-01-africas-young-majority.html" class="article-card cat-youth" data-category="youth">
+        <div class="card-top">
+          <span class="card-category">Policy Brief · Youth Employment</span>
+          <span class="card-date">May 2026</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Africa's Young Majority, Structural Exclusion, and the Fight for Jobs</h2>
+          <p class="card-excerpt">532 million young Africans. 121 million NEET. The demographic dividend is not automatic — it demands structural investment, not short-term youth programmes.</p>
+          <div class="card-tags">
+            <span class="card-tag">#YouthEmployment</span>
+            <span class="card-tag">#Africa</span>
+            <span class="card-tag">#DemographicDividend</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 02 -->
+      <a href="blog-02-gender-data-gap-climate-resilience.html" class="article-card cat-gender" data-category="gender">
+        <div class="card-top">
+          <span class="card-category">Policy Brief · Gender &amp; Climate</span>
+          <span class="card-date">2026</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Bridging the Gender Data Gap for Climate-Resilient Futures in Sub-Saharan Africa</h2>
+          <p class="card-excerpt">Climate resilience built on gender-blind data is resilience built on blind spots. The case for gender-responsive MEL systems across Sub-Saharan Africa.</p>
+          <div class="card-tags">
+            <span class="card-tag">#GenderData</span>
+            <span class="card-tag">#ClimateResilience</span>
+            <span class="card-tag">#SDG5</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 03 -->
+      <a href="blog-03-co-creating-change-community-engagement.html" class="article-card cat-mel" data-category="mel">
+        <div class="card-top">
+          <span class="card-category">Research &amp; Policy</span>
+          <span class="card-date">Feb 2026</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Co-Creating Change: How Community Engagement Transforms Research and Policy</h2>
+          <p class="card-excerpt">Sustainable impact emerges when communities are co-creators, not passive sources of data. The participatory approach in Ghana and beyond.</p>
+          <div class="card-tags">
+            <span class="card-tag">#CommunityEngagement</span>
+            <span class="card-tag">#Ghana</span>
+            <span class="card-tag">#InclusiveDevelopment</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 04 -->
+      <a href="blog-04-constructive-criticism-work-environment.html" class="article-card cat-workplace" data-category="workplace">
+        <div class="card-top">
+          <span class="card-category">Workplace · Leadership</span>
+          <span class="card-date">DataEdge</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Constructive Criticism and the Work Environment</h2>
+          <p class="card-excerpt">Seven principles for delivering feedback that builds trust, sharpens performance, and creates cultures of continuous improvement in any organisation.</p>
+          <div class="card-tags">
+            <span class="card-tag">#Leadership</span>
+            <span class="card-tag">#FeedbackCulture</span>
+            <span class="card-tag">#OrgDevelopment</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 05 -->
+      <a href="blog-05-data-monitoring-toolkit.html" class="article-card cat-mel" data-category="mel">
+        <div class="card-top">
+          <span class="card-category">M&amp;E · Data Management</span>
+          <span class="card-date">DataEdge</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">The Data Monitoring Toolkit: A Valuable Asset for Any Programme or Project</h2>
+          <p class="card-excerpt">How to build a toolkit that bridges what you intend to achieve and what you can prove you have achieved — for any programme or project.</p>
+          <div class="card-tags">
+            <span class="card-tag">#MERLA</span>
+            <span class="card-tag">#DataMonitoring</span>
+            <span class="card-tag">#ImpactMeasurement</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 06 -->
+      <a href="blog-06-does-project-management-end-with-evaluation.html" class="article-card cat-mel" data-category="mel">
+        <div class="card-top">
+          <span class="card-category">Project Management · Evaluation</span>
+          <span class="card-date">DataEdge</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Does Project or Programme Management End with Evaluation?</h2>
+          <p class="card-excerpt">Evaluation is a milestone, not a finish line. What comes after — and why it matters for organisations that want to learn, adapt, and improve.</p>
+          <div class="card-tags">
+            <span class="card-tag">#MEL</span>
+            <span class="card-tag">#LearningOrganisation</span>
+            <span class="card-tag">#RBM</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 07 -->
+      <a href="blog-07-governance-gap-reforming-public-sector.html" class="article-card cat-governance" data-category="governance">
+        <div class="card-top">
+          <span class="card-category">Governance · Data Analytics</span>
+          <span class="card-date">Mar 2026</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">The Governance Gap: Reforming Public Services through Data Analytics</h2>
+          <p class="card-excerpt">Many governments still rely on outdated reporting while data analytics transforms every other sector. A five-pillar framework for closing the gap.</p>
+          <div class="card-tags">
+            <span class="card-tag">#GovernmentAnalytics</span>
+            <span class="card-tag">#PublicPolicy</span>
+            <span class="card-tag">#Ghana</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 08 -->
+      <a href="blog-08-leveraging-real-time-data-gbv.html" class="article-card cat-gender" data-category="gender">
+        <div class="card-top">
+          <span class="card-category">Gender · GBV · Real-Time Data</span>
+          <span class="card-date">DataEdge</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Leveraging Real-Time Data to Enhance MEL: Gender-Based Violence</h2>
+          <p class="card-excerpt">Seven innovative strategies for using real-time data to improve GBV prevention, response, and programme learning for practitioners and organisations.</p>
+          <div class="card-tags">
+            <span class="card-tag">#GBV</span>
+            <span class="card-tag">#RealTimeData</span>
+            <span class="card-tag">#GenderEquality</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 09 -->
+      <a href="blog-09-managing-urban-crises-ghana.html" class="article-card cat-governance" data-category="governance">
+        <div class="card-top">
+          <span class="card-category">Urban Development · Ghana</span>
+          <span class="card-date">Apr 2026</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">The City Breathes, But Who Feels Its Pulse: Managing Urban Crises in Ghana</h2>
+          <p class="card-excerpt">Ghana's cities are growing faster than their systems can adapt. The data, the infrastructure strain, and the PACE Model for inclusive urban governance.</p>
+          <div class="card-tags">
+            <span class="card-tag">#Accra</span>
+            <span class="card-tag">#Urbanisation</span>
+            <span class="card-tag">#PACEModel</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 10 -->
+      <a href="blog-10-revolutionising-rbm-impact-of-ai.html" class="article-card cat-ai" data-category="ai">
+        <div class="card-top">
+          <span class="card-category">AI · Results-Based Management</span>
+          <span class="card-date">DataEdge</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Revolutionising Result-Based Management: The Impact of AI</h2>
+          <p class="card-excerpt">How artificial intelligence is supercharging RBM — from goal-setting and progress tracking to risk prediction and organisational insight generation.</p>
+          <div class="card-tags">
+            <span class="card-tag">#AI</span>
+            <span class="card-tag">#RBM</span>
+            <span class="card-tag">#DataAnalytics</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 11 -->
+      <a href="blog-11-affirmative-action-act-2024.html" class="article-card cat-governance" data-category="governance">
+        <div class="card-top">
+          <span class="card-category">Governance · Gender Equity</span>
+          <span class="card-date">Aug 2025</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">The Affirmative Action Act, 2024 and Inclusive Governance in Ghana</h2>
+          <p class="card-excerpt">More than a legal milestone — a strategic enabler for gender equity and youth inclusion in Ghana's governance structures at every level.</p>
+          <div class="card-tags">
+            <span class="card-tag">#AffirmativeAction</span>
+            <span class="card-tag">#GenderEquity</span>
+            <span class="card-tag">#YouthInclusion</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <!-- 12 -->
+      <a href="blog-12-project-programme-management-evaluation.html" class="article-card cat-mel" data-category="mel">
+        <div class="card-top">
+          <span class="card-category">Project Management · M&amp;E</span>
+          <span class="card-date">DataEdge</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Project and Programme Management and Evaluation: A Complete Cycle</h2>
+          <p class="card-excerpt">From planning to learning — why effective project management is a cycle, not a line, and how to use every phase for lasting, measurable impact.</p>
+          <div class="card-tags">
+            <span class="card-tag">#MERLA</span>
+            <span class="card-tag">#Evaluation</span>
+            <span class="card-tag">#AdaptiveManagement</span>
+          </div>
+        </div>
+        <div class="card-footer">Read Article →</div>
+      </a>
+
+      <div class="no-results" id="noResults">
+        <p>No articles found for this filter.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ── -->
+<div class="cta-band">
+  <h2>Interested in evidence-based impact?</h2>
+  <p>Explore the YLIM Practitioner Certification — the first structured framework to measure how youth leadership investment translates into institutional capacity gains.</p>
+  <a href="index.html#ylim" class="btn-green">Learn about YLIM</a>
+  <a href="index.html#contact" class="btn-outline">Get in Touch</a>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Efua Kwaambaa <span>Turkson</span> (PhD)</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:4px;">DataEdge Insights Ghana · RYDEL Lab · YLIM</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#rydel">RYDEL Lab</a>
+      <a href="index.html#ylim">YLIM</a>
+      <a href="index.html#dataedge">DataEdge</a>
+      <a href="index.html#resources">Resources</a>
+      <a href="ylim-terms.html" target="_blank">Terms &amp; Conditions</a>
+    </div>
+    <div class="footer-copy">© 2026 DataEdge Insights Ghana. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('navToggle').addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.article-card');
+const countEl = document.getElementById('filterCount');
+const noResults = document.getElementById('noResults');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+
+    const filter = this.dataset.filter;
+    let visible = 0;
+
+    cards.forEach(card => {
+      const match = filter === 'all' || card.dataset.category === filter;
+      card.style.display = match ? 'flex' : 'none';
+      if (match) visible++;
+    });
+
+    countEl.textContent = `Showing ${visible} article${visible !== 1 ? 's' : ''}`;
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  });
+});
+</script>
+</body>
+</html>
