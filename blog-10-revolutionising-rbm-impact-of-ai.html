@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revolutionising Result-Based Management: The Impact of AI — DataEdge Insights Ghana</title>
+<meta name="description" content="Artificial intelligence is supercharging Result-Based Management. Discover how AI helps organisations set goals, measure progress, predict risk, and generate insights for better performance and accountability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0A3D6B;--navy-deep:#061F38;--navy-mid:#123a60;
+  --green:#1A7F5E;--green-light:#E2F4ED;--green-mid:#2a9b74;
+  --amber:#C97D1A;--sand:#F7F4EE;--sand-mid:#EDE8DD;
+  --white:#FEFEFE;--dark:#14140F;--mid:#4A4A44;--muted:#8A8A82;--border:#DDD9CE;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--dark);line-height:1.6;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(254,254,254,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:64px;display:flex;align-items:center;padding:0 40px;justify-content:space-between;}
+.nav-brand{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--navy-deep);letter-spacing:0.01em;text-decoration:none;}
+.nav-brand span{color:var(--green);}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--mid);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all 0.2s;letter-spacing:0.01em;}
+.nav-links a:hover{background:var(--sand);color:var(--navy);}
+.nav-cta{background:var(--navy)!important;color:var(--white)!important;border-radius:6px;}
+.nav-cta:hover{background:var(--navy-deep)!important;}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;}
+.article-hero{background:var(--navy-deep);padding:120px 40px 80px;position:relative;overflow:hidden;}
+.article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 90% 50%,rgba(26,127,94,0.1) 0%,transparent 65%);pointer-events:none;}
+.article-hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+.article-kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#7FC9A8;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.article-kicker::before{content:'';display:block;width:32px;height:1px;background:#7FC9A8;}
+.article-hero h1{font-family:var(--serif);font-size:clamp(30px,4.5vw,54px);font-weight:600;color:var(--white);line-height:1.12;letter-spacing:-0.3px;margin-bottom:24px;}
+.article-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);}
+.article-author{display:flex;align-items:center;gap:12px;}
+.author-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--green) 0%,var(--navy-mid) 100%);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;font-weight:600;color:var(--white);flex-shrink:0;}
+.author-info{display:flex;flex-direction:column;}
+.author-name{font-size:14px;font-weight:500;color:var(--white);}
+.author-role{font-size:12px;color:rgba(255,255,255,0.45);font-weight:300;}
+.article-date{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;}
+.article-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.tag-pill{font-size:11px;font-weight:500;letter-spacing:0.05em;padding:4px 10px;border:1px solid rgba(127,201,168,0.3);border-radius:20px;color:#7FC9A8;}
+.article-body{max-width:800px;margin:0 auto;padding:72px 40px 96px;}
+.article-body h2{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--navy-deep);line-height:1.25;margin:48px 0 16px;padding-top:48px;border-top:1px solid var(--border);}
+.article-body h2:first-of-type{margin-top:0;padding-top:0;border-top:none;}
+.article-body h3{font-size:11px;font-weight:600;color:var(--green);letter-spacing:0.14em;margin:28px 0 10px;text-transform:uppercase;}
+.article-body p{font-size:17px;font-weight:300;color:var(--mid);line-height:1.8;margin-bottom:20px;}
+.article-body ul{margin:0 0 24px 0;padding:0;list-style:none;}
+.article-body ul li{font-size:16px;font-weight:300;color:var(--mid);line-height:1.75;padding:8px 0 8px 24px;position:relative;border-bottom:1px solid var(--border);}
+.article-body ul li::before{content:'';position:absolute;left:0;top:18px;width:8px;height:1px;background:var(--green);}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:36px 0;}
+.stat-card{background:var(--sand);padding:28px 20px;text-align:center;}
+.stat-card .stat-value{font-family:var(--serif);font-size:40px;font-weight:600;color:var(--navy-deep);line-height:1;margin-bottom:8px;display:block;}
+.stat-card .stat-label{font-size:13px;font-weight:400;color:var(--mid);line-height:1.5;display:block;}
+.stat-card .stat-source{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.06em;display:block;margin-top:6px;}
+.highlight-box{background:var(--sand);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:28px 32px;margin:36px 0;}
+.highlight-box .hb-value{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--navy-deep);margin-bottom:8px;}
+.highlight-box .hb-text{font-size:15px;font-weight:300;color:var(--mid);line-height:1.7;}
+.pull-quote{border-top:2px solid var(--navy-deep);border-bottom:2px solid var(--navy-deep);padding:32px 0;margin:48px 0;}
+.pull-quote p{font-family:var(--serif);font-size:24px;font-weight:500;font-style:italic;color:var(--navy-deep);line-height:1.45;margin:0!important;}
+.article-tags-footer{border-top:1px solid var(--border);padding-top:32px;margin-top:64px;}
+.tags-label{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.tags-list{display:flex;flex-wrap:wrap;gap:8px;}
+.tags-list span{font-size:12px;font-weight:400;color:var(--green);background:var(--green-light);padding:4px 12px;border-radius:20px;}
+.cta-band{background:var(--navy-deep);padding:80px 40px;text-align:center;}
+.cta-band h2{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--white);margin-bottom:16px;}
+.cta-band p{font-size:15px;font-weight:300;color:rgba(255,255,255,0.55);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;}
+.btn-primary{background:var(--green);color:var(--white);font-size:13px;font-weight:600;padding:13px 28px;border-radius:6px;text-decoration:none;letter-spacing:0.04em;transition:background 0.2s,transform 0.15s;display:inline-block;}
+.btn-primary:hover{background:var(--green-mid);transform:translateY(-1px);}
+.btn-outline-light{border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.8);font-size:13px;font-weight:500;padding:13px 28px;border-radius:6px;text-decoration:none;letter-spacing:0.04em;transition:all 0.2s;display:inline-block;margin-left:12px;}
+.btn-outline-light:hover{background:rgba(255,255,255,0.08);}
+footer{background:var(--dark);padding:48px 40px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+.footer-brand-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--white);}
+.footer-brand-name span{color:#7FC9A8;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:rgba(255,255,255,0.8);}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);width:100%;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);text-decoration:none;margin-bottom:32px;transition:gap 0.2s;}
+.back-link:hover{gap:12px;}
+.back-link::before{content:'←';font-size:14px;}
+@media(max-width:768px){
+  nav{padding:0 20px;}.nav-links{display:none;}.nav-toggle{display:flex;}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:16px 20px;gap:4px;}
+  .article-hero{padding:100px 20px 60px;}.article-body{padding:48px 20px 72px;}
+  .stat-row{grid-template-columns:1fr;}
+  footer{padding:40px 20px;}.footer-inner{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">DataEdge <span>Insights</span> Ghana</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#rydel">RYDEL Lab</a></li>
+    <li><a href="index.html#ylim">YLIM</a></li>
+    <li><a href="index.html#dataedge">DataEdge</a></li>
+    <li><a href="index.html#resources" class="active">Resources</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-kicker">AI &nbsp;·&nbsp; Results-Based Management &nbsp;·&nbsp; DataEdge Insights Ghana</div>
+    <h1>Revolutionising Result-Based Management: The Impact of AI</h1>
+    <div class="article-meta">
+      <div class="article-author">
+        <div class="author-avatar">EKT</div>
+        <div class="author-info">
+          <span class="author-name">DataEdge Insights Ghana</span>
+          <span class="author-role">Intelligence. Insight. Impact. · MERLA</span>
+        </div>
+      </div>
+      <span class="article-date">DataEdge Insights Ghana</span>
+    </div>
+    <div class="article-tags" style="margin-top:20px;"><span class="tag-pill">AI</span><span class="tag-pill">Results-Based Management</span><span class="tag-pill">Data Analytics</span><span class="tag-pill">Organisational Performance</span></div>
+  </div>
+</section>
+<article class="article-body">
+  <a href="index.html#resources" class="back-link">Back to Resources</a>
+  
+<h2>Introduction</h2>
+<p>Artificial intelligence (AI) is rapidly changing how we live and work. In the management field, AI is being used to improve decision-making, automate tasks, and gain insights from data at a scale that was previously impossible. One area where AI is having a significant and growing impact is Result-Based Management (RBM).</p>
+<p>RBM is a management approach that focuses on setting clear goals, measuring progress, and taking corrective action as needed. It is a data-driven approach that helps organisations improve their performance — and AI is supercharging its effectiveness across sectors.</p>
+
+<h2>How AI Supports RBM</h2>
+
+<h3>1. Set goals</h3>
+<p>AI helps analyse data, identify trends, and set realistic and evidence-informed goals. For example, AI can analyse sales or programme data to determine what is working and what is not — then help set targeted improvement goals grounded in evidence rather than assumption.</p>
+
+<h3>2. Measure progress</h3>
+<p>AI can facilitate the real-time monitoring and tracking of performance data — sales, programme outputs, citizen satisfaction — to measure progress towards goals and identify areas needing adjustment before they become significant problems.</p>
+
+<h3>3. Take corrective action</h3>
+<p>AI aids in analysing data to identify which strategies or campaigns are underperforming, enabling organisations to pivot quickly, launch more effective approaches, and make evidence-based corrections in real time.</p>
+
+<h3>4. Identify and predict risk</h3>
+<p>AI helps analyse financial and operational data to identify potential risks — such as fraud, resource gaps, or service delivery failures — before they materialise, giving organisations time to mitigate them proactively rather than reactively.</p>
+
+<h3>5. Optimise processes</h3>
+<p>AI can analyse operational data to identify inefficiencies and suggest or implement changes that reduce costs and improve delivery across manufacturing, service provision, and programme implementation contexts.</p>
+
+<h3>6. Generate insights</h3>
+<p>AI can analyse large volumes of data to surface insights that support better decisions — such as identifying patterns in community feedback to design programmes that meet actual needs rather than assumed ones.</p>
+
+<div class="stat-row"><div class="stat-card"><span class="stat-value">Goals</span><span class="stat-label">AI analyses trends to set evidence-informed targets</span></div><div class="stat-card"><span class="stat-value">Progress</span><span class="stat-label">Real-time tracking of performance against outcomes</span></div><div class="stat-card"><span class="stat-value">Action</span><span class="stat-label">Predictive correction before problems escalate</span></div></div>
+
+<h2>Conclusion</h2>
+<p>Overall, AI is a powerful tool that enhances Result-Based Management. Using AI, organisations can set clear goals, measure progress, take corrective action, predict risk, optimise processes, and generate actionable insights. The result is organisations that achieve their goals with greater speed, accuracy, and accountability — in both the private sector and in development programming.</p>
+
+<div class="pull-quote"><p>&#8220;AI does not replace human judgement in results-based management — it amplifies it. The organisations that thrive will be those that combine data intelligence with human wisdom.&#8221;</p></div>
+  <div class="article-tags-footer"><div class="tags-label">Tags</div><div class="tags-list"><span>#ResultsBasedManagement</span><span>#RBM</span><span>#ArtificialIntelligence</span><span>#AI</span><span>#DataAnalytics</span><span>#OrganisationalPerformance</span><span>#MEL</span><span>#MERLA</span><span>#DataEdgeInsightsGhana</span><span>#DecisionMaking</span></div></div>
+</article>
+<div class="cta-band">
+  <h2>Interested in evidence-based impact?</h2>
+  <p>Explore the YLIM Practitioner Certification — the first framework to measure youth leadership's institutional value.</p>
+  <a href="index.html#ylim" class="btn-primary">Learn about YLIM</a>
+  <a href="index.html#contact" class="btn-outline-light">Get in Touch</a>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">Efua Kwaambaa <span>Turkson</span> (PhD)</div>
+      <div style="font-size:11px; color:rgba(255,255,255,0.25); margin-top:4px;">DataEdge Insights Ghana · RYDEL Lab · YLIM</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#rydel">RYDEL Lab</a>
+      <a href="index.html#ylim">YLIM</a>
+      <a href="index.html#dataedge">DataEdge</a>
+      <a href="index.html#resources">Resources</a>
+      <a href="ylim-terms.html" target="_blank">Terms &amp; Conditions</a>
+    </div>
+    <div class="footer-copy">© 2026 DataEdge Insights Ghana. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+document.getElementById('navToggle').addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+</body>
+</html>
