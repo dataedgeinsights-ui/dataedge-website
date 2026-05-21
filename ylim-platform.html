@@ -1215,7 +1215,7 @@ body {
   .ici-sliders, .dashboard-grid, .module-cards { grid-template-columns: 1fr; }
 }
 </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" async></script>
 </head>
 <body>
 
@@ -3126,7 +3126,6 @@ function saveExercise(lessonId, count) {
     }
     const markBtn = document.getElementById('mark-btn-' + lessonId);
     if (markBtn && !state.completed.has(lessonId)) { markBtn.style.opacity = '1'; markBtn.style.cursor = 'pointer'; }
-    }
   } else {
     if (savedEl) {
       savedEl.textContent = `⚠ Please complete all ${count} text areas before saving.`;
@@ -3311,7 +3310,12 @@ function generateCertId(name, track, email) {
 
 // ── Download certificate as PDF using jsPDF ──
 function downloadCertificate(name, track, dateStr, certId) {
-  const { jsPDF } = window.jspdf;
+  try {
+    if (!window.jspdf) {
+      alert('PDF library is loading. Please wait a moment and try again.');
+      return;
+    }
+    const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
   const W = 297, H = 210;
 
@@ -3444,6 +3448,10 @@ function downloadCertificate(name, track, dateStr, certId) {
 
   const safeName = name.replace(/[^a-zA-Z0-9]/g, '_');
   doc.save(`YLIM_Certificate_${safeName}_${certId}.pdf`);
+  } catch(err) {
+    alert('Could not generate PDF. Please try again or contact DataEdge on WhatsApp +233 531 667 123.');
+    console.error('PDF error:', err);
+  }
 }
 
 function renderCert() {
