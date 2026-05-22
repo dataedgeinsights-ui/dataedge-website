@@ -81,8 +81,8 @@ footer{background:#040F1C;padding:40px;border-top:1px solid rgba(255,255,255,.06
     <li><a href="index.html#dataedge">DataEdge</a></li>
     <li><a href="index.html#gallery">Gallery</a></li>
     <li><a href="index.html#resources">Resources</a></li>
+    <li><a href="wlgsm.html" style="background:var(--green);color:#fff !important;font-weight:600;">WLGSM</a></li>
     <li><a href="index.html#contact" class="nav-cta">Get In Touch</a></li>
-    <li><a href="wlgsm.html" class="wlgsm-active">WLGSM</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -128,7 +128,7 @@ footer{background:#040F1C;padding:40px;border-top:1px solid rgba(255,255,255,.06
       <a href="index.html#dataedge">DataEdge</a>
       <a href="wlgsm.html">WLGSM</a>
       <a href="index.html#resources">Resources</a>
-      <a href="ylim-terms.html" target="_blank">Terms &amp; Conditions</a>
+      <a href="wlgsm-terms.html" target="_blank">Terms &amp; Conditions</a>
     </div>
     <div class="footer-copy">&copy; 2026 DataEdge Insights Ghana. All rights reserved.</div>
   </div>
@@ -252,7 +252,8 @@ function renderBody(body){if(!body.includes("[DIAGRAM]"))return btoh(body);retur
 function btoh(text){return text.split("\n\n").map(para=>`<p style="font-size:14px;color:var(--mid);line-height:1.85;margin:0 0 12px;">${para.split("\n").map(l=>l.match(/^[-•1-9]/)? `<span style="display:block;padding-left:${l.startsWith("-")||l.startsWith("•")?"14px":"0"}">${l.replace(/^-\s/,"• ")}</span>`:l).join("<br>")}</p>`).join("");}
 function card(html,extra=""){return `<div class="plat-card" style="${extra}">${html}</div>`;}
 
-function renderRegister(){return `<div style="max-width:460px;margin:0 auto;padding:24px 0">${pb("&larr; Back","plat-btn-outline","showSection('landing')","margin-bottom:14px;font-size:12px;")}${card(`<div style="text-align:center;margin-bottom:20px"><img src="${LOGO_DATA}" style="height:44px;width:auto;margin-bottom:10px"><h2 style="font-family:var(--serif);font-size:22px;font-weight:600;color:var(--navy-deep);margin:0 0 4px">Create Your Account</h2><p style="color:var(--muted);font-size:13px;margin:0">Free certificate programme — no payment ever</p></div><div id="reg-err" style="display:none;background:#FFEBEE;border:1px solid #FFCDD2;color:#c62828;padding:9px 12px;border-radius:6px;font-size:13px;margin-bottom:12px"></div>${["Full Name|name|text|Your full name","Email Address|email|email|your@email.com","Password|password|password|Min 8 chars and 1 uppercase and 1 number","Confirm Password|confirm|password|Repeat your password"].map(row=>{const[l,id,t,ph]=row.split("|");return `<div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:500;color:var(--mid);margin-bottom:4px">${l}</label><input type="${t}" id="r-${id}" placeholder="${ph}" class="plat-input"><div id="r-${id}-err" class="plat-err"></div></div>`;}).join("")}<div style="margin-bottom:16px"><label style="display:block;font-size:12px;font-weight:500;color:var(--mid);margin-bottom:4px">Country</label><select id="r-country" class="plat-input"><option value="">Select your country</option>${COUNTRIES.map(c=>`<option>${c}</option>`).join("")}</select><div id="r-country-err" class="plat-err"></div></div>${pb("Register Free","btn-primary-site","doRegister()","width:100%;justify-content:center;padding:12px;font-size:14px;")}<p style="text-align:center;margin-top:12px;font-size:12px;color:var(--muted)">Already registered? <button style="background:none;border:none;color:var(--navy);cursor:pointer;font-weight:600;font-size:12px" onclick="showSection('login')">Sign In</button></p>`)}</div>`;}
+function renderRegister(){return `<div style="max-width:460px;margin:0 auto;padding:24px 0">${pb("&larr; Back","plat-btn-outline","showSection('landing')","margin-bottom:14px;font-size:12px;")}${card(`<div style="text-align:center;margin-bottom:20px"><img src="${LOGO_DATA}" style="height:44px;width:auto;margin-bottom:10px"><h2 style="font-family:var(--serif);font-size:22px;font-weight:600;color:var(--navy-deep);margin:0 0 4px">Create Your Account</h2><p style="color:var(--muted);font-size:13px;margin:0">Free certificate programme — no payment ever</p></div><div id="reg-err" style="display:none;background:#FFEBEE;border:1px solid #FFCDD2;color:#c62828;padding:9px 12px;border-radius:6px;font-size:13px;margin-bottom:12px"></div>${["Full Name|name|text|Your full name","Email Address|email|email|your@email.com","Password|password|password|Min 8 chars and 1 uppercase and 1 number","Confirm Password|confirm|password|Repeat your password"].map(row=>{const[l,id,t,ph]=row.split("|");return `<div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:500;color:var(--mid);margin-bottom:4px">${l}</label><input type="${t}" id="r-${id}" placeholder="${ph}" class="plat-input"><div id="r-${id}-err" class="plat-err"></div></div>`;}).join("")}<div style="margin-bottom:16px"><label style="display:block;font-size:12px;font-weight:500;color:var(--mid);margin-bottom:4px">Country</label><select id="r-country" class="plat-input"><option value="">Select your country</option>${COUNTRIES.map(c=>`<option>${c}</option>`).join("")}</select><div id="r-country-err" class="plat-err"></div></div>${pb("Register Free","btn-primary-site","doRegister()","width:100%;justify-content:center;padding:12px;font-size:14px;")}
+  <p style="text-align:center;margin-top:10px;font-size:11px;color:var(--muted)">By registering you agree to our <a href="wlgsm-terms.html" target="_blank" style="color:var(--green);text-decoration:none;font-weight:500">Terms and Conditions</a></p><p style="text-align:center;margin-top:12px;font-size:12px;color:var(--muted)">Already registered? <button style="background:none;border:none;color:var(--navy);cursor:pointer;font-weight:600;font-size:12px" onclick="showSection('login')">Sign In</button></p>`)}</div>`;}
 
 function doRegister(){const v={name:$("r-name").value.trim(),email:$("r-email").value.toLowerCase().trim(),country:$("r-country").value,password:$("r-password").value,confirm:$("r-confirm").value};let ok=true;const se=(id,msg)=>{const el=$(id);if(el)el.textContent=msg;if(msg)ok=false;};se("r-name-err",!v.name||v.name.length<2?"Full name required":"");se("r-email-err",!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)?"Valid email required":"");se("r-country-err",!v.country?"Please select your country":"");se("r-password-err",v.password.length<8?"Minimum 8 characters":/[A-Z]/.test(v.password)===false?"Must include an uppercase letter":/[0-9]/.test(v.password)===false?"Must include a number":"");se("r-confirm-err",v.password!==v.confirm?"Passwords do not match":"");if(!ok)return;if(state.users.find(u=>u.email===v.email)){$("reg-err").textContent="Email already registered";$("reg-err").style.display="block";return;}const nu={name:v.name,email:v.email,country:v.country,password:v.password,joined:new Date().toISOString()};state.users=[...state.users,nu];S.set("dei_u",state.users);state.user=nu;S.set("dei_cu",nu);saveProg(mkProg());notify("Welcome! Your account has been created.");showSection("dashboard");}
 
@@ -284,9 +285,9 @@ let timerInterval=null;
 function startTimer(mins,elId,onEnd){clearTimer();let secs=mins*60;timerInterval=setInterval(()=>{secs--;const el=$(elId);if(el)el.textContent=Math.floor(secs/60).toString().padStart(2,"0")+":"+(secs%60).toString().padStart(2,"0");if(secs<=0){clearTimer();onEnd();}},1000);}
 function clearTimer(){clearInterval(timerInterval);timerInterval=null;}
 
-function renderCertificate(){const p=state.prog;const u=state.user;if(!p.certId)return `<div style="max-width:520px;margin:48px auto;padding:0">${card(`<div style="text-align:center"><h2 style="font-family:var(--serif);font-size:22px;color:#c62828;margin:0 0 12px">Certificate Not Yet Available</h2><p style="color:var(--mid);font-size:13px;margin-bottom:20px">Pass the final assessment with 80%+ to receive your certificate.</p>${pb("Back to Dashboard","plat-btn-green","showSection('dashboard')")}</div>`)}</div>`;const date=new Date(p.certDate).toLocaleDateString("en-GB",{year:"numeric",month:"long",day:"numeric"});return `<div style="max-width:820px;margin:0 auto;padding:24px 0"><div style="display:flex;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">${pb("Back to Dashboard","plat-btn-outline","showSection('dashboard')")} <div style="display:flex;gap:8px">${pb("Download PDF","plat-btn-green","downloadCertPDF()")}${pb("Print","plat-btn-amber","window.print()")}</div></div><div style="background:#fff;border:8px solid var(--navy-deep);border-radius:4px;padding:48px 40px;font-family:Georgia,serif;position:relative;"><div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--amber)"></div><div style="position:absolute;bottom:0;left:0;right:0;height:5px;background:var(--amber)"></div><div style="border:2.5px solid var(--amber);padding:36px;border-radius:2px"><div style="display:flex;justify-content:center;margin-bottom:16px"><img src="${LOGO_DATA}" style="height:52px;width:auto;object-fit:contain" alt="DataEdge Insights Ghana"></div><div style="text-align:center"><div style="font-size:10px;letter-spacing:4px;color:var(--navy-deep);margin-bottom:6px;font-family:var(--mono)">${CONTACT.name.toUpperCase()}</div><div style="font-size:10px;letter-spacing:3px;color:var(--muted);margin-bottom:20px;font-family:var(--mono)">CERTIFICATE OF COMPLETION</div><div style="font-size:13px;color:var(--mid);margin-bottom:8px;font-family:var(--sans)">This is to certify that</div><div style="font-family:var(--serif);font-size:30px;font-weight:600;color:var(--navy-deep);margin:6px 0 14px;border-bottom:2px solid var(--amber);padding-bottom:12px">${u.name}</div><div style="font-size:13px;color:var(--mid);margin:12px 0 6px;font-family:var(--sans)">has successfully completed</div><div style="font-family:var(--serif);font-size:17px;font-weight:600;color:var(--navy-deep);margin:6px 0 6px;line-height:1.4">${PROG_TITLE}</div><div style="font-size:13px;color:var(--muted);margin-bottom:6px;font-family:var(--sans)">A Free 4-Week Online Certificate Programme</div><div style="font-size:13px;color:var(--mid);margin-bottom:28px;font-family:var(--sans)">Final Assessment Score: <strong style="color:var(--green)">${p.finalScore}%</strong></div><div style="display:flex;justify-content:center;margin-bottom:20px"><div style="text-align:center;width:220px"><div style="height:40px;display:flex;align-items:flex-end;justify-content:center"><img src="${SIG_DATA}" style="height:34px;width:auto;max-width:200px;object-fit:contain;display:block" alt="Signature of Efua K. Turkson"></div><div style="border-top:1.5px solid var(--navy-deep);width:180px;margin:0 auto 6px"></div><div style="font-size:13px;color:var(--navy-deep);font-weight:700;font-family:var(--sans)">Efua K. Turkson (PhD)</div><div style="font-size:12px;color:var(--mid);font-family:var(--sans)">Managing Director</div><div style="font-size:12px;color:var(--mid);font-family:var(--sans)">${CONTACT.name}</div></div></div><div style="display:flex;justify-content:center;gap:18px;font-size:10px;color:var(--muted);flex-wrap:wrap;margin-bottom:10px;font-family:var(--sans)"><div><strong style="color:var(--navy-deep)">Issue Date:</strong> ${date}</div><div><strong style="color:var(--navy-deep)">Certificate ID:</strong> ${p.certId}</div><div><strong style="color:var(--navy-deep)">Verify at:</strong> www.dataedgeinsights.org</div></div><div style="font-size:8px;color:var(--muted);line-height:1.5;font-family:var(--sans)">The Women in Leadership, Good Governance and Sustainable Development Goal 5 Model and all course content are the exclusive intellectual property of DataEdge Insights Ghana, protected under the Ghana Copyright Act 2005 (Act 690) and international copyright law.<br>&copy; ${CONTACT.year} ${CONTACT.name}. All rights reserved.</div></div></div></div></div>`;}
+function renderCertificate(){const p=state.prog;const u=state.user;if(!p.certId)return `<div style="max-width:520px;margin:48px auto;padding:0">${card(`<div style="text-align:center"><h2 style="font-family:var(--serif);font-size:22px;color:#c62828;margin:0 0 12px">Certificate Not Yet Available</h2><p style="color:var(--mid);font-size:13px;margin-bottom:20px">Pass the final assessment with 80%+ to receive your certificate.</p>${pb("Back to Dashboard","plat-btn-green","showSection('dashboard')")}</div>`)}</div>`;const date=new Date(p.certDate).toLocaleDateString("en-GB",{year:"numeric",month:"long",day:"numeric"});return `<div style="max-width:820px;margin:0 auto;padding:24px 0"><div style="display:flex;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">${pb("Back to Dashboard","plat-btn-outline","showSection('dashboard')")} <div style="display:flex;gap:8px">${pb("Download PDF","plat-btn-green","downloadCertPDF()")}${pb("Print","plat-btn-amber","window.print()")}</div></div><div style="background:#fff;border:8px solid var(--navy-deep);border-radius:4px;padding:48px 40px;font-family:Georgia,serif;position:relative;"><div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--amber)"></div><div style="position:absolute;bottom:0;left:0;right:0;height:5px;background:var(--amber)"></div><div style="border:2.5px solid var(--amber);padding:36px;border-radius:2px"><div style="display:flex;justify-content:center;margin-bottom:16px"><img src="${LOGO_DATA}" style="height:52px;width:auto;object-fit:contain" alt="DataEdge Insights Ghana"></div><div style="text-align:center"><div style="font-size:10px;letter-spacing:4px;color:var(--navy-deep);margin-bottom:6px;font-family:var(--mono)">${CONTACT.name.toUpperCase()}</div><div style="font-size:10px;letter-spacing:3px;color:var(--muted);margin-bottom:20px;font-family:var(--mono)">CERTIFICATE OF COMPLETION</div><div style="font-size:13px;color:var(--mid);margin-bottom:8px;font-family:var(--sans)">This is to certify that</div><div style="font-family:var(--serif);font-size:30px;font-weight:600;color:var(--navy-deep);margin:6px 0 14px;border-bottom:2px solid var(--amber);padding-bottom:12px">${u.name}</div><div style="font-size:13px;color:var(--mid);margin:12px 0 6px;font-family:var(--sans)">has successfully completed</div><div style="font-family:var(--serif);font-size:17px;font-weight:600;color:var(--navy-deep);margin:6px 0 6px;line-height:1.4">${PROG_TITLE}</div><div style="font-size:13px;color:var(--muted);margin-bottom:6px;font-family:var(--sans)">A Free 4-Week Online Certificate Programme</div><div style="font-size:13px;color:var(--mid);margin-bottom:28px;font-family:var(--sans)">Final Assessment Score: <strong style="color:var(--green)">${p.finalScore}%</strong></div><div style="display:flex;justify-content:center;margin-bottom:20px"><div style="text-align:center;width:220px"><div style="height:40px;display:flex;align-items:flex-end;justify-content:center"><img src="${SIG_DATA}" style="height:18px;width:auto;max-width:140px;object-fit:contain;display:block" alt="Signature of Efua K. Turkson"></div><div style="border-top:1.5px solid var(--navy-deep);width:180px;margin:0 auto 6px"></div><div style="font-size:13px;color:var(--navy-deep);font-weight:700;font-family:var(--sans)">Efua K. Turkson (PhD)</div><div style="font-size:12px;color:var(--mid);font-family:var(--sans)">Managing Director</div><div style="font-size:12px;color:var(--mid);font-family:var(--sans)">${CONTACT.name}</div></div></div><div style="display:flex;justify-content:center;gap:18px;font-size:10px;color:var(--muted);flex-wrap:wrap;margin-bottom:10px;font-family:var(--sans)"><div><strong style="color:var(--navy-deep)">Issue Date:</strong> ${date}</div><div><strong style="color:var(--navy-deep)">Certificate ID:</strong> ${p.certId}</div><div><strong style="color:var(--navy-deep)">Verify at:</strong> www.dataedgeinsights.org</div></div><div style="font-size:8px;color:var(--muted);line-height:1.5;font-family:var(--sans)">The Women in Leadership, Good Governance and Sustainable Development Goal 5 Model and all course content are the exclusive intellectual property of DataEdge Insights Ghana, protected under the Ghana Copyright Act 2005 (Act 690) and international copyright law.<br>&copy; ${CONTACT.year} ${CONTACT.name}. All rights reserved.</div></div></div></div></div>`;}
 
-async function downloadCertPDF(){try{const{jsPDF}=window.jspdf;if(!jsPDF){notify("PDF library still loading, please try again.","error");return;}const p=state.prog;const u=state.user;const date=new Date(p.certDate).toLocaleDateString("en-GB",{year:"numeric",month:"long",day:"numeric"});const doc=new jsPDF({orientation:"landscape",unit:"mm",format:"a4"});const W=297,H=210;doc.setDrawColor(6,31,56);doc.setLineWidth(5);doc.rect(8,8,W-16,H-16);doc.setDrawColor(201,125,26);doc.setLineWidth(1.2);doc.rect(14,14,W-28,H-28);doc.setFillColor(201,125,26);doc.rect(14,14,W-28,3,"F");doc.rect(14,H-17,W-28,3,"F");doc.addImage(LOGO_DATA,"JPEG",W/2-18,19,36,9);doc.setFont("helvetica","bold");doc.setFontSize(8);doc.setTextColor(6,31,56);doc.text(CONTACT.name.toUpperCase(),W/2,33,{align:"center",charSpace:2});doc.setFont("helvetica","normal");doc.setFontSize(7.5);doc.setTextColor(120,120,120);doc.text("CERTIFICATE OF COMPLETION",W/2,39,{align:"center",charSpace:1.5});doc.setDrawColor(201,125,26);doc.setLineWidth(0.4);doc.line(80,42,W-80,42);doc.setFont("helvetica","normal");doc.setFontSize(10);doc.setTextColor(100,100,100);doc.text("This is to certify that",W/2,51,{align:"center"});doc.setFont("helvetica","bold");doc.setFontSize(24);doc.setTextColor(6,31,56);doc.text(u.name,W/2,64,{align:"center"});doc.setDrawColor(201,125,26);doc.setLineWidth(0.7);doc.line(W/2-50,67,W/2+50,67);doc.setFont("helvetica","normal");doc.setFontSize(10);doc.setTextColor(100,100,100);doc.text("has successfully completed",W/2,76,{align:"center"});doc.setFont("helvetica","bold");doc.setFontSize(12);doc.setTextColor(6,31,56);const tl=doc.splitTextToSize(PROG_TITLE,220);doc.text(tl,W/2,85,{align:"center"});const yA=85+(tl.length-1)*6;doc.setFont("helvetica","normal");doc.setFontSize(9);doc.setTextColor(120,120,120);doc.text("A Free 4-Week Online Certificate Programme",W/2,yA+7,{align:"center"});doc.setFont("helvetica","bold");doc.setFontSize(10);doc.setTextColor(46,125,50);doc.text("Final Assessment Score: "+p.finalScore+"%",W/2,yA+14,{align:"center"});const lineY=yA+32;const sigH=11;const sigW=sigH*SIG_ASPECT;doc.addImage(SIG_DATA,"JPEG",W/2-sigW/2,lineY-sigH,sigW,sigH);doc.setDrawColor(6,31,56);doc.setLineWidth(0.4);doc.line(W/2-20,lineY,W/2+20,lineY);doc.setFont("helvetica","bold");doc.setFontSize(11);doc.setTextColor(6,31,56);doc.text("Efua K. Turkson (PhD)",W/2,lineY+5,{align:"center"});doc.setFont("helvetica","normal");doc.setFontSize(9.5);doc.setTextColor(80,80,80);doc.text("Managing Director",W/2,lineY+10,{align:"center"});doc.text(CONTACT.name,W/2,lineY+15,{align:"center"});const dY=lineY+22;doc.setFontSize(7.5);doc.setTextColor(120,120,120);doc.text("Issue Date: "+date+"   |   Certificate ID: "+p.certId+"   |   Verify at: www.dataedgeinsights.org",W/2,dY,{align:"center"});const copy="The Women in Leadership, Good Governance and Sustainable Development Goal 5 Model and all course content are the exclusive intellectual property of DataEdge Insights Ghana, protected under the Ghana Copyright Act 2005 (Act 690) and international copyright law.";doc.setFontSize(6.5);doc.setTextColor(150,150,150);const cL=doc.splitTextToSize(copy,250);doc.text(cL,W/2,dY+7,{align:"center"});doc.text("(c) "+CONTACT.year+" "+CONTACT.name+". All rights reserved.",W/2,dY+13,{align:"center"});doc.save("WLGSM_Certificate_"+u.name.replace(/\s+/g,"_")+".pdf");notify("Certificate downloaded!");}catch(err){notify("PDF error: "+err.message,"error");}}
+async function downloadCertPDF(){try{const{jsPDF}=window.jspdf;if(!jsPDF){notify("PDF library still loading, please try again.","error");return;}const p=state.prog;const u=state.user;const date=new Date(p.certDate).toLocaleDateString("en-GB",{year:"numeric",month:"long",day:"numeric"});const doc=new jsPDF({orientation:"landscape",unit:"mm",format:"a4"});const W=297,H=210;doc.setDrawColor(6,31,56);doc.setLineWidth(5);doc.rect(8,8,W-16,H-16);doc.setDrawColor(201,125,26);doc.setLineWidth(1.2);doc.rect(14,14,W-28,H-28);doc.setFillColor(201,125,26);doc.rect(14,14,W-28,3,"F");doc.rect(14,H-17,W-28,3,"F");doc.addImage(LOGO_DATA,"JPEG",W/2-18,19,36,9);doc.setFont("helvetica","bold");doc.setFontSize(8);doc.setTextColor(6,31,56);doc.text(CONTACT.name.toUpperCase(),W/2,33,{align:"center",charSpace:2});doc.setFont("helvetica","normal");doc.setFontSize(7.5);doc.setTextColor(120,120,120);doc.text("CERTIFICATE OF COMPLETION",W/2,39,{align:"center",charSpace:1.5});doc.setDrawColor(201,125,26);doc.setLineWidth(0.4);doc.line(80,42,W-80,42);doc.setFont("helvetica","normal");doc.setFontSize(10);doc.setTextColor(100,100,100);doc.text("This is to certify that",W/2,51,{align:"center"});doc.setFont("helvetica","bold");doc.setFontSize(24);doc.setTextColor(6,31,56);doc.text(u.name,W/2,64,{align:"center"});doc.setDrawColor(201,125,26);doc.setLineWidth(0.7);doc.line(W/2-50,67,W/2+50,67);doc.setFont("helvetica","normal");doc.setFontSize(10);doc.setTextColor(100,100,100);doc.text("has successfully completed",W/2,76,{align:"center"});doc.setFont("helvetica","bold");doc.setFontSize(12);doc.setTextColor(6,31,56);const tl=doc.splitTextToSize(PROG_TITLE,220);doc.text(tl,W/2,85,{align:"center"});const yA=85+(tl.length-1)*6;doc.setFont("helvetica","normal");doc.setFontSize(9);doc.setTextColor(120,120,120);doc.text("A Free 4-Week Online Certificate Programme",W/2,yA+7,{align:"center"});doc.setFont("helvetica","bold");doc.setFontSize(10);doc.setTextColor(46,125,50);doc.text("Final Assessment Score: "+p.finalScore+"%",W/2,yA+14,{align:"center"});const lineY=yA+32;const sigH=6;const sigW=sigH*SIG_ASPECT;doc.addImage(SIG_DATA,"JPEG",W/2-sigW/2,lineY-sigH,sigW,sigH);doc.setDrawColor(6,31,56);doc.setLineWidth(0.4);doc.line(W/2-20,lineY,W/2+20,lineY);doc.setFont("helvetica","bold");doc.setFontSize(11);doc.setTextColor(6,31,56);doc.text("Efua K. Turkson (PhD)",W/2,lineY+5,{align:"center"});doc.setFont("helvetica","normal");doc.setFontSize(9.5);doc.setTextColor(80,80,80);doc.text("Managing Director",W/2,lineY+10,{align:"center"});doc.text(CONTACT.name,W/2,lineY+15,{align:"center"});const dY=lineY+22;doc.setFontSize(7.5);doc.setTextColor(120,120,120);doc.text("Issue Date: "+date+"   |   Certificate ID: "+p.certId+"   |   Verify at: www.dataedgeinsights.org",W/2,dY,{align:"center"});const copy="The Women in Leadership, Good Governance and Sustainable Development Goal 5 Model and all course content are the exclusive intellectual property of DataEdge Insights Ghana, protected under the Ghana Copyright Act 2005 (Act 690) and international copyright law.";doc.setFontSize(6.5);doc.setTextColor(150,150,150);const cL=doc.splitTextToSize(copy,250);doc.text(cL,W/2,dY+7,{align:"center"});doc.text("(c) "+CONTACT.year+" "+CONTACT.name+". All rights reserved.",W/2,dY+13,{align:"center"});doc.save("WLGSM_Certificate_"+u.name.replace(/\s+/g,"_")+".pdf");notify("Certificate downloaded!");}catch(err){notify("PDF error: "+err.message,"error");}}
 
 function renderAdmin(){const all=state.users.map(u=>({user:u,prog:S.get("dei_p_"+u.email)||mkProg()}));const tc=all.filter(u=>u.prog.certId).length;const tp=all.filter(u=>u.prog.finalScore>=80).length;const avg=all.length?Math.round(all.reduce((a,u)=>a+totalPct(u.prog),0)/all.length):0;const tab=state.adminTab;return `<div style="max-width:980px;margin:0 auto;padding:24px 0"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:8px"><h1 style="font-family:var(--serif);font-size:28px;font-weight:600;color:var(--navy-deep);margin:0">Admin Dashboard — WLGSM</h1>${pb("Log Out","plat-btn-outline","doLogout()","font-size:12px;")}</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px">${[["Learners",state.users.length,"var(--navy-deep)"],["Avg Progress",avg+"%","var(--navy)"],["Passed Final",tp,"var(--green)"],["Certificates",tc,"var(--amber)"]].map(([l,v,c])=>`<div style="background:#fff;border-radius:8px;border:1px solid var(--border);padding:14px 16px"><div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase">${l}</div><div style="font-size:22px;font-weight:600;color:${c};font-family:var(--serif)">${v}</div></div>`).join("")}</div><div style="display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap">${["overview","learners","quiz-results","certificates"].map(t=>`<button class="plat-btn" style="background:${tab===t?"var(--navy)":"#fff"};color:${tab===t?"#fff":"var(--mid)"};border:1px solid var(--border);font-size:12px;padding:7px 14px" onclick="state.adminTab='${t}';render()">${t.replace("-"," ").replace(/\b\w/g,c=>c.toUpperCase())}</button>`).join("")}</div>${tab==="overview"?`<h3 style="font-family:var(--serif);font-size:18px;font-weight:600;color:var(--navy-deep);margin:0 0 12px">Course Statistics</h3>${WEEKS.map(w=>{const wp=all.filter(u=>(u.prog.qScores[w.quiz.id]||[]).some(s=>s>=80)).length;const wc=all.filter(u=>w.lessons.every(l=>u.prog.lessons[l.id])).length;const wr=all.filter(u=>u.prog.reflections&&u.prog.reflections["w"+w.id]).length;return `<div style="background:#fff;border-radius:8px;border:1px solid var(--border);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px"><div style="display:flex;gap:10px;align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:${w.color};color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;font-family:var(--mono)">W${w.id}</div><div><div style="font-weight:600;font-size:13px;color:var(--navy-deep)">${w.title}</div><div style="font-size:11px;color:var(--muted)">${w.sub}</div></div></div><div style="display:flex;gap:14px;font-size:13px;flex-wrap:wrap"><div>Lessons: <strong>${wc}/${state.users.length}</strong></div><div>Reflections: <strong style="color:var(--amber)">${wr}/${state.users.length}</strong></div><div>Quiz passed: <strong style="color:var(--green)">${wp}/${state.users.length}</strong></div></div></div>`;}).join("")}`:""}${tab==="learners"?`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--border)"><thead><tr style="background:var(--navy-deep);color:#fff">${["Name","Email","Country","Progress","Joined"].map(h=>`<th style="padding:10px 14px;text-align:left;font-size:12px">${h}</th>`).join("")}</tr></thead><tbody>${all.map(({user:u,prog:pr},i)=>`<tr style="background:${i%2===0?"#fff":"var(--sand)"}"><td style="padding:9px 14px;font-size:13px;font-weight:500">${u.name}</td><td style="padding:9px 14px;font-size:12px;color:var(--muted)">${u.email}</td><td style="padding:9px 14px;font-size:12px;color:var(--muted)">${u.country}</td><td style="padding:9px 14px;min-width:120px"><div style="display:flex;gap:7px;align-items:center"><div style="flex:1">${pbar(totalPct(pr),"var(--navy)",5)}</div><span style="font-size:12px;min-width:30px">${totalPct(pr)}%</span></div></td><td style="padding:9px 14px;font-size:11px;color:var(--muted)">${new Date(u.joined).toLocaleDateString()}</td></tr>`).join("")}${all.length===0?'<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--muted);font-size:13px">No learners registered yet</td></tr>':""}</tbody></table></div>`:""}${tab==="quiz-results"?`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:#fff;border-radius:10px;border:1px solid var(--border)"><thead><tr style="background:var(--navy-deep);color:#fff">${["Name","W1","W2","W3","W4","Final","Status"].map(h=>`<th style="padding:10px 14px;text-align:left;font-size:12px">${h}</th>`).join("")}</tr></thead><tbody>${all.map(({user:u,prog:pr},i)=>{const sc=WEEKS.map(w=>{const s=pr.qScores[w.quiz.id]||[];return s.length?Math.max(...s):null;});return `<tr style="background:${i%2===0?"#fff":"var(--sand)"}"><td style="padding:9px 14px;font-size:13px;font-weight:500">${u.name}</td>${sc.map(s=>`<td style="padding:9px 14px;font-size:12px;color:${s===null?"var(--muted)":s>=80?"var(--green)":"#c62828"};font-weight:${s!==null?600:400}">${s!==null?s+"%":"—"}</td>`).join("")}<td style="padding:9px 14px;font-size:12px;color:${pr.finalScore===null?"var(--muted)":pr.finalScore>=80?"var(--green)":"#c62828"};font-weight:${pr.finalScore!==null?600:400}">${pr.finalScore!==null?pr.finalScore+"%":"—"}</td><td style="padding:9px 14px"><span class="plat-badge ${pr.certId?"plat-badge-green":""}" style="${!pr.certId?"background:var(--sand);color:var(--muted)":""}">${pr.certId?"Certified":"In Progress"}</span></td></tr>`;}).join("")}${all.length===0?'<tr><td colspan="7" style="padding:24px;text-align:center;color:var(--muted)">No data</td></tr>':""}</tbody></table></div>`:""}${tab==="certificates"?all.filter(u=>u.prog.certId).length===0?`<div style="background:#fff;border-radius:10px;border:1px solid var(--border);padding:40px;text-align:center;color:var(--muted);font-size:13px">No certificates issued yet</div>`:all.filter(u=>u.prog.certId).map(({user:u,prog:pr})=>`<div style="background:#fff;border-radius:8px;border:1px solid var(--border);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px"><div><div style="font-weight:600;font-size:14px">${u.name}</div><div style="font-size:12px;color:var(--muted)">${u.email} — Score: ${pr.finalScore}%</div><div style="font-size:11px;color:var(--muted);margin-top:2px">ID: ${pr.certId} — Issued: ${new Date(pr.certDate).toLocaleDateString()}</div></div><span class="plat-badge plat-badge-green">Certified</span></div>`).join(""):""}  </div>`;}
 
@@ -294,6 +295,224 @@ function render(){const area=$("app-area");if(!area)return;const hero=$("wlgsm-h
 
 document.getElementById("navToggle").addEventListener("click",function(){document.getElementById("navLinks").classList.toggle("open");});
 if(state.user){showSection("dashboard");}else if(state.isAdmin){showSection("admin");}else{const hero=$("wlgsm-hero-section");if(hero)hero.style.display="block";}
+
+</script>
+<script>
+
+// ── OVERRIDES: lesson gate, reflection gate, quiz gate, registration ──────────
+
+// Quiz pass check for a specific week
+function weekQuizPassed(wid, p) {
+  const w = WEEKS.find(x => x.id === wid);
+  return (p.qScores[w.quiz.id] || []).some(s => s >= 80);
+}
+
+// Is a week's lesson unlocked? Week 1 always open; week N requires week N-1 quiz passed
+function weekUnlocked(wid, p) {
+  if (wid === 1) return true;
+  return weekQuizPassed(wid - 1, p);
+}
+
+// Override renderDashboard: lock week cards when prior quiz not passed
+const _origRenderDashboard = renderDashboard;
+renderDashboard = function() {
+  const p = state.prog;
+  const tot = totalPct(p);
+  const doneL = Object.values(p.lessons).filter(Boolean).length;
+  const totalL = WEEKS.reduce((a, w) => a + w.lessons.length, 0);
+  const passedQ = WEEKS.filter(w => (p.qScores[w.quiz.id] || []).some(s => s >= 80)).length;
+  const canCert = p.finalScore !== null && p.finalScore >= 80;
+  const allQP = allQuizzesPassed(p);
+
+  return `<div style="max-width:1040px;margin:0 auto;padding:24px 0">
+  <div style="margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px">
+    <div><h1 style="font-family:var(--serif);font-size:28px;font-weight:600;color:var(--navy-deep);margin:0 0 2px">Welcome back, ${state.user.name.split(' ')[0]}</h1><p style="color:var(--muted);font-size:13px;margin:0">${PROG_TITLE}</p></div>
+    ${pb('Log Out','plat-btn-outline','doLogout()','font-size:12px;')}
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px">
+    ${[['Progress',tot+'%','var(--navy-deep)'],['Lessons',doneL+'/'+totalL,'var(--navy)'],['Quizzes',passedQ+'/4','var(--green)'],['Certificate',canCert?'Ready!':p.finalScore!==null?p.finalScore+'%':'Pending',canCert?'var(--amber)':'var(--muted)']].map(([l,v,c])=>`<div style="background:#fff;border-radius:8px;border:1px solid var(--border);padding:14px 16px"><div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase">${l}</div><div style="font-size:22px;font-weight:600;color:${c};font-family:var(--serif)">${v}</div></div>`).join('')}
+  </div>
+  <div style="margin-bottom:6px;display:flex;justify-content:space-between"><span style="font-size:13px;color:var(--navy-deep);font-weight:500">Course Progress</span><span style="font-size:12px;color:var(--muted)">${tot}%</span></div>
+  ${pbar(tot,'var(--navy)',8)}
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(370px,1fr));gap:12px;margin-top:20px">
+    ${WEEKS.map(w => {
+      const unlocked = weekUnlocked(w.id, p);
+      const wpct = weekPct(w.id, p);
+      const qs = p.qScores[w.quiz.id] || [];
+      const qp = qs.some(s => s >= 80);
+      const qb = qs.length ? Math.max(...qs) : null;
+      const refDone = !!(p.reflections && p.reflections['w'+w.id]);
+      return `<div style="background:#fff;border-radius:10px;border:1px solid ${unlocked?'var(--border)':'var(--border)'};overflow:hidden;opacity:${unlocked?1:0.55}">
+        <div style="background:${w.color};padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.6);margin-bottom:2px">WEEK ${w.id}</div><div style="font-family:var(--serif);font-size:15px;font-weight:600;color:#fff">${w.title}</div></div>
+          <div style="display:flex;gap:6px;align-items:center">
+            ${!unlocked ? `<span style="font-size:10px;color:rgba(255,255,255,.7);background:rgba(0,0,0,.25);padding:3px 8px;border-radius:20px">Pass W${w.id-1} quiz first</span>` : `<div style="background:rgba(255,255,255,.2);padding:4px 10px;border-radius:20px;font-size:12px;color:#fff;font-weight:600">${wpct}%</div>`}
+          </div>
+        </div>
+        <div style="padding:12px 16px">${pbar(wpct,'var(--green)',5)}<div style="margin-top:10px">
+          ${w.lessons.map(l => `<div onclick="${unlocked?`showSection('lesson',{week:${w.id},lesson:'${l.id}'})`:''})" style="display:flex;align-items:center;gap:8px;padding:6px 0;cursor:${unlocked?'pointer':'not-allowed'};border-bottom:1px solid var(--sand)"><div style="width:16px;height:16px;border-radius:50%;background:${p.lessons[l.id]?'var(--green)':'var(--border)'};display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;flex-shrink:0">${p.lessons[l.id]?'v':''}</div><div style="flex:1;font-size:12px;color:var(--mid)">${l.title}</div><div style="font-size:10px;color:var(--muted)">${l.dur}</div></div>`).join('')}
+          <div onclick="${unlocked?`showSection('reflection',{week:${w.id}})`:''})" style="display:flex;align-items:center;gap:8px;padding:6px 0;cursor:${unlocked?'pointer':'not-allowed'};border-bottom:1px solid var(--sand)"><div style="width:16px;height:16px;border-radius:50%;background:${refDone?'var(--amber)':'var(--border)'};display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;flex-shrink:0">${refDone?'v':''}</div><div style="flex:1;font-size:12px;color:var(--mid);font-style:italic">Module Reflection</div><div style="font-size:10px;color:${refDone?'var(--amber)':'var(--muted)'}">${refDone?'Done':'Required'}</div></div>
+          <div onclick="${unlocked?`showSection('quiz',{week:${w.id}})`:''})" style="display:flex;align-items:center;gap:8px;padding:7px 0;cursor:${unlocked?'pointer':'not-allowed'}"><div style="width:16px;height:16px;border-radius:50%;background:${qp?'var(--green)':'var(--border)'};display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;flex-shrink:0">*</div><div style="flex:1;font-size:12px;color:var(--mid);font-weight:600">Week ${w.id} Quiz</div><div style="font-size:11px;color:${qp?'var(--green)':'var(--muted)'};font-weight:${qp?600:400}">${qb!==null?'Best: '+qb+'%':'Not attempted'}</div></div>
+        </div></div>
+      </div>`;
+    }).join('')}
+  </div>
+  <div style="margin-top:12px;background:#fff;border-radius:10px;border:${allQP?'2px solid var(--green)':'1px solid var(--border)'};padding:18px 20px">
+    ${!allQP ? `<div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap"><div style="flex:1"><h3 style="font-family:var(--serif);color:var(--muted);font-size:16px;margin:0 0 4px">Final Assessment</h3><p style="color:var(--muted);font-size:13px;margin:0 0 8px">Pass all 4 weekly quizzes (80%+) to unlock.</p><div style="display:flex;gap:8px;flex-wrap:wrap">${WEEKS.map(w=>{const qp=(p.qScores[w.quiz.id]||[]).some(s=>s>=80);return `<span class="plat-badge" style="background:${qp?'var(--green-light)':'#FFEBEE'};color:${qp?'#1B5E20':'#c62828'}">W${w.id} ${qp?'Passed':'Not passed'}</span>`;}).join('')}</div></div>${pb('Final Assessment Locked','plat-btn-outline','','opacity:.4;',true)}</div>` : `<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px"><div><h3 style="font-family:var(--serif);color:var(--green);font-size:16px;margin:0 0 4px">Final Assessment Unlocked</h3><p style="color:var(--muted);font-size:13px;margin:0">All quizzes passed.</p>${p.finalScore!==null?`<div style="margin-top:6px;font-size:13px;color:${p.finalScore>=80?'var(--green)':'#c62828'};font-weight:600">Best: ${p.finalScore}% ${p.finalScore>=80?'— PASSED':''}</div>`:''}</div><div style="display:flex;gap:8px;flex-wrap:wrap">${pb(p.finalScore!==null?'Retake':'Start Final Assessment','plat-btn-green',"showSection('final')",'font-size:13px;')}${canCert?pb('Get Certificate','plat-btn-amber',"showSection('certificate')",'font-size:13px;'):''}</div></div>`}
+  </div>
+  ${canCert ? `<div style="margin-top:10px;background:var(--green-light);border:1px solid var(--green);border-radius:8px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><div style="font-size:13px;color:#1B5E20;font-weight:600">Your certificate is ready and permanently available.</div>${pb('View &amp; Download Certificate','plat-btn-amber',"showSection('certificate')")}</div>` : ''}
+  </div>`;
+};
+
+// Override renderLesson: Next button disabled until lesson marked read
+const _origRenderLesson = renderLesson;
+renderLesson = function() {
+  const w = WEEKS.find(x => x.id === state.activeWeek);
+  const li = w.lessons.findIndex(l => l.id === state.activeLesson);
+  const lesson = w.lessons[li];
+  const p = state.prog;
+  const isDone = !!p.lessons[lesson.id];
+  const isLast = li === w.lessons.length - 1;
+
+  return `<div style="max-width:1040px;margin:0 auto;padding:24px 0;display:flex;gap:20px;align-items:flex-start">
+  <div style="width:190px;flex-shrink:0;background:#fff;border-radius:10px;border:1px solid var(--border);padding:14px 12px;position:sticky;top:80px">
+    <div style="font-family:var(--mono);font-size:9px;font-weight:500;color:var(--green);letter-spacing:.16em;margin-bottom:10px">WEEK ${w.id} — ${w.title.toUpperCase()}</div>
+    ${w.lessons.map((l, i) => {
+      const done = p.lessons[l.id];
+      const act = l.id === state.activeLesson;
+      return `<div onclick="showSection('lesson',{week:${w.id},lesson:'${l.id}'})" style="padding:6px 8px;border-radius:6px;margin-bottom:3px;cursor:pointer;background:${act?'var(--green-light)':'transparent'};border:1.5px solid ${act?'var(--green)':'transparent'}"><div style="display:flex;gap:6px;align-items:center"><div style="width:13px;height:13px;border-radius:50%;background:${done?'var(--green)':'var(--border)'};display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;flex-shrink:0">${done?'v':i+1}</div><div style="font-size:11px;color:${act?'var(--navy)':'var(--mid)'};font-weight:${act?600:400};line-height:1.3">${l.title}</div></div></div>`;
+    }).join('')}
+    <div onclick="showSection('reflection',{week:${w.id}})" style="padding:6px 8px;border-radius:6px;cursor:pointer;background:${(p.reflections&&p.reflections['w'+w.id])?'#FFF8E1':'var(--sand)'};margin-top:4px"><div style="display:flex;gap:6px;align-items:center"><div style="width:13px;height:13px;border-radius:50%;background:${(p.reflections&&p.reflections['w'+w.id])?'var(--amber)':'var(--border)'};display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff">R</div><div style="font-size:11px;color:var(--mid)">Module Reflection</div></div></div>
+    <div onclick="showSection('quiz',{week:${w.id}})" style="padding:6px 8px;border-radius:6px;cursor:pointer;background:var(--sand);margin-top:4px"><div style="display:flex;gap:6px;align-items:center"><div style="width:13px;height:13px;border-radius:50%;background:${(p.qScores[w.quiz.id]||[]).some(s=>s>=80)?'var(--green)':'var(--border)'};display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff">*</div><div style="font-size:11px;color:var(--mid)">Week ${w.id} Quiz</div></div></div>
+  </div>
+  <div style="flex:1;min-width:0">
+    <div style="font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.12em;margin-bottom:6px">LESSON ${li+1} OF ${w.lessons.length}</div>
+    <h1 style="font-family:var(--serif);font-size:26px;font-weight:600;color:var(--navy-deep);margin:0 0 4px;line-height:1.3">${lesson.title}</h1>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:18px;font-family:var(--mono)">Duration: ${lesson.dur}</div>
+    <div style="background:#fff;border-radius:10px;border:1px solid var(--border);padding:24px 28px;margin-bottom:18px">${renderBody(lesson.body)}</div>
+    ${!isDone ? `<div style="background:#FFF8E1;border:1.5px solid var(--amber);border-radius:8px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--amber);flex:1">Mark this lesson as complete before proceeding.</span>
+      ${pb('Mark as Complete','plat-btn-amber',`doMarkLesson('${lesson.id}')`,"font-size:13px;")}
+    </div>` : `<div style="background:var(--green-light);border:1.5px solid var(--green);border-radius:8px;padding:10px 16px;margin-bottom:14px;font-size:13px;color:#1B5E20;font-weight:600">Lesson completed.</div>`}
+    <div style="display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap">
+      ${pb('&larr; Previous','plat-btn-outline',`showSection('lesson',{week:${w.id},lesson:'${li>0?w.lessons[li-1].id:""}'})`,'font-size:12px;',li===0)}
+      ${pb(isLast?'Go to Reflection':'Next Lesson &rarr;','btn-primary-site',isLast?`showSection('reflection',{week:${w.id}})`:`showSection('lesson',{week:${w.id},lesson:'${w.lessons[li+1]?w.lessons[li+1].id:""}'})`,'',!isDone)}
+    </div>
+  </div>
+  </div>`;
+};
+
+// Override renderReflection: textarea must have text + "Mark Complete" button to save
+const _origRenderReflection = renderReflection;
+renderReflection = function() {
+  const w = WEEKS.find(x => x.id === state.activeWeek);
+  const p = state.prog;
+  const saved = p.reflections && p.reflections['w'+w.id] || '';
+  const allLessonsDone = w.lessons.every(l => p.lessons[l.id]);
+
+  return `<div style="max-width:720px;margin:0 auto;padding:24px 0">
+  <h2 style="font-family:var(--serif);font-size:26px;font-weight:600;color:var(--navy-deep);margin:0 0 6px">Module ${w.id} Reflection</h2>
+  <p style="font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6">This reflection is <strong>compulsory</strong> and must be completed before you can attempt the quiz. Maximum 200 words.</p>
+  ${!allLessonsDone ? `<div style="background:#FFF3E0;border:1.5px solid var(--amber);border-radius:8px;padding:12px 16px;margin-bottom:18px;font-size:13px;color:var(--amber)">Please complete all lessons in Week ${w.id} before writing your reflection.</div>` : ''}
+  <div style="background:#fff;border-radius:10px;border:2px solid ${saved?'var(--green)':'var(--border)'};padding:22px 26px;margin-bottom:18px">
+    <h3 style="font-family:var(--serif);font-size:18px;font-weight:600;color:var(--navy-deep);margin:0 0 10px">Reflection Prompt</h3>
+    <p style="font-size:13px;color:var(--mid);line-height:1.7;margin:0 0 16px">${w.reflection}</p>
+    <textarea id="refl-area" rows="8" maxlength="1500" placeholder="Write your reflection here (maximum 200 words). You must enter your reflection and click Mark as Complete before you can take the quiz." onkeyup="updateReflCount()" class="plat-input" style="border:1.5px solid ${saved?'var(--green)':'var(--border)'};font-size:13px;line-height:1.6">${saved}</textarea>
+    <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--muted)">
+      <span id="refl-wc">${saved.trim().split(/\s+/).filter(Boolean).length} / 200 words</span>
+      <span id="refl-msg" style="color:${saved?'var(--green)':'var(--muted)'};font-weight:${saved?600:400}">${saved?'Reflection saved and marked complete':'Type your reflection, then click Mark as Complete'}</span>
+    </div>
+  </div>
+  ${saved ? `<div style="background:var(--green-light);border:1px solid var(--green);border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13px;color:#1B5E20;font-weight:600">Reflection saved. You may now proceed to the quiz.</div>` : ''}
+  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+    ${pb('&larr; Back to Lessons','plat-btn-outline',`showSection('lesson',{week:${w.id},lesson:'${w.lessons[w.lessons.length-1].id}'})`)}
+    <button id="save-refl-btn" class="plat-btn" style="background:var(--muted);color:#fff;opacity:.5;" onclick="saveReflection(${w.id})" disabled>Mark as Complete</button>
+    ${saved ? pb('Proceed to Quiz &rarr;','plat-btn-green',`showSection('quiz',{week:${w.id}})`) : ''}
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-top:10px">You must type your reflection and click <strong>Mark as Complete</strong> before the quiz unlocks.</p>
+  </div>`;
+};
+
+// updateReflCount: enable save button when words >= 10 and <= 200
+updateReflCount = function() {
+  const t = document.getElementById('refl-area');
+  if (!t) return;
+  const words = t.value.trim().split(/\s+/).filter(Boolean).length;
+  const wc = document.getElementById('refl-wc');
+  if (wc) wc.textContent = words + ' / 200 words';
+  const btn2 = document.getElementById('save-refl-btn');
+  const msg = document.getElementById('refl-msg');
+  if (words >= 10 && words <= 200) {
+    if (btn2) { btn2.disabled = false; btn2.style.background = 'var(--green)'; btn2.style.opacity = '1'; }
+    if (msg) { msg.textContent = 'Ready — click Mark as Complete'; msg.style.color = 'var(--green)'; msg.style.fontWeight = '600'; }
+  } else if (words > 200) {
+    if (btn2) { btn2.disabled = true; btn2.style.background = 'var(--muted)'; btn2.style.opacity = '.5'; }
+    if (msg) { msg.textContent = 'Over 200 words — please shorten'; msg.style.color = '#c62828'; }
+  } else {
+    if (btn2) { btn2.disabled = true; btn2.style.background = 'var(--muted)'; btn2.style.opacity = '.5'; }
+    if (msg) { msg.textContent = `${words < 10 ? 'Write at least 10 words to save' : 'Type your reflection'}`; msg.style.color = 'var(--muted)'; msg.style.fontWeight = '400'; }
+  }
+};
+
+// saveReflection: require minimum 10 words
+saveReflection = function(wid) {
+  const t = document.getElementById('refl-area');
+  if (!t) return;
+  const words = t.value.trim().split(/\s+/).filter(Boolean).length;
+  if (words < 10) { notify('Please write at least 10 words for your reflection.', 'error'); return; }
+  if (words > 200) { notify('Your reflection is over 200 words. Please shorten it.', 'error'); return; }
+  saveProg({...state.prog, reflections: {...(state.prog.reflections || {}), ['w'+wid]: t.value.trim()}});
+  notify('Reflection marked as complete! You can now take the quiz.');
+  render();
+};
+
+// Override doRegister: send data to Formspree
+doRegister = function() {
+  const v = {
+    name: document.getElementById('r-name').value.trim(),
+    email: document.getElementById('r-email').value.toLowerCase().trim(),
+    country: document.getElementById('r-country').value,
+    password: document.getElementById('r-password').value,
+    confirm: document.getElementById('r-confirm').value
+  };
+  let ok = true;
+  const se = (id, msg) => { const el = document.getElementById(id); if (el) el.textContent = msg; if (msg) ok = false; };
+  se('r-name-err', !v.name || v.name.length < 2 ? 'Full name required' : '');
+  se('r-email-err', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email) ? 'Valid email required' : '');
+  se('r-country-err', !v.country ? 'Please select your country' : '');
+  se('r-password-err', v.password.length < 8 ? 'Minimum 8 characters' : /[A-Z]/.test(v.password) === false ? 'Must include an uppercase letter' : /[0-9]/.test(v.password) === false ? 'Must include a number' : '');
+  se('r-confirm-err', v.password !== v.confirm ? 'Passwords do not match' : '');
+  if (!ok) return;
+  if (state.users.find(u => u.email === v.email)) {
+    document.getElementById('reg-err').textContent = 'Email already registered. Please sign in.';
+    document.getElementById('reg-err').style.display = 'block';
+    return;
+  }
+  // Disable button and show loading
+  const btn = document.querySelector('#app-area button.btn-primary-site');
+  if (btn) { btn.disabled = true; btn.textContent = 'Registering…'; }
+  // Send to Formspree
+  fetch('https://formspree.io/f/maqvjqlq', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      _subject: 'New WLGSM Enrolment — ' + v.name,
+      name: v.name,
+      email: v.email,
+      country: v.country,
+      programme: 'WLGSM — Women in Leadership, Good Governance and SDG 5 Model'
+    })
+  }).catch(() => {}); // fire-and-forget, don't block registration
+  // Save locally and proceed
+  const nu = { name: v.name, email: v.email, country: v.country, password: v.password, joined: new Date().toISOString() };
+  state.users = [...state.users, nu];
+  S.set('dei_u', state.users);
+  state.user = nu;
+  S.set('dei_cu', nu);
+  saveProg(mkProg());
+  notify('Welcome, ' + v.name.split(' ')[0] + '! Your enrolment is confirmed.');
+  showSection('dashboard');
+};
 
 </script>
 </body>
