@@ -81,8 +81,8 @@ footer{background:#040F1C;padding:40px;border-top:1px solid rgba(255,255,255,.06
     <li><a href="index.html#dataedge">DataEdge</a></li>
     <li><a href="index.html#gallery">Gallery</a></li>
     <li><a href="index.html#resources">Resources</a></li>
+    <li><a href="wlgsm.html" style="background:var(--green);color:#fff;font-weight:600;">WLGSM</a></li>
     <li><a href="index.html#contact" class="nav-cta">Get In Touch</a></li>
-    <li><a href="wlgsm.html" class="wlgsm-active">WLGSM</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -415,7 +415,7 @@ function doLogin(){
   var errEl=$("login-err");
   if((email==="dataedgeinsights@gmail.com"||email==="admin@dataedgeinsights.com")&&pw==="Admin@2024"){ state.isAdmin=true; showSection("admin"); return; }
   var u=state.users.find(function(u){ return u.email===email&&u.password===pw; });
-  if(!u){ errEl.textContent="Invalid email or password"; errEl.style.display="block"; return; }
+  if(!u){ errEl.innerHTML="Email or password not recognised. If you registered on a previous version of this platform, please <button style=\"background:none;border:none;color:var(--navy);cursor:pointer;font-weight:600;font-size:13px;padding:0;\" onclick=\"showSection('register')\">register a new account</button> — your previous data was stored in a different browser session."; errEl.style.display="block"; return; }
   state.user=u; S.set("dei_cu",u); state.prog=S.get("dei_p_"+u.email)||mkProg();
   notify("Welcome back, "+u.name.split(" ")[0]+"!"); showSection("dashboard");
 }
@@ -1117,7 +1117,7 @@ function renderAbout(){
 
   // Section 1: Executive Introduction
   h+=sec("01","Executive Introduction & Institutional Partnership",
-    p("DataEdge Insights Ghana is pleased to introduce the "+bold("Women in Leadership, Good Governance and Achieving SDG 5 Learning Programme")+" — a comprehensive four-week capacity-building initiative designed for institutions, organisations, public agencies, civil society actors, researchers, development partners, and private sector leaders committed to advancing gender equality and inclusive governance.")
+    p("DataEdge Insights Ghana is pleased to introduce the "+bold("Women in Leadership, Good Governance and Achieving SDG 5 Learning Programme")+", a comprehensive four-week capacity-building initiative designed for institutions, organisations, public agencies, civil society actors, researchers, development partners, and private sector leaders committed to advancing gender equality and inclusive governance.")
     +p("The major argument of this framework is straightforward but powerful: when women and young women occupy leadership positions, governance outcomes change. Governance shifts become more inclusive, accountable, participatory, and long-term in orientation. These changes directly contribute to the achievement of Sustainable Development Goal 5 (SDG 5) while simultaneously generating measurable social and economic returns."+ref(1))
     +p("The model argues that gender-responsive governance is the shared mechanism through which SDG progress and financial gains are achieved. These outcomes are not separate policy objectives — they are interconnected results emerging from the same governance transformation process.")
     +p("This free programme provides participants with practical and evidence-based learning on how women's leadership across formal and informal sectors contributes to key strategic pillars:")
@@ -1131,7 +1131,7 @@ function renderAbout(){
     +'<div style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:8px">The Theory of Change Framework</div>'
     +'<p style="font-size:14px;color:var(--navy-deep);line-height:1.85;margin:0;font-weight:500">At the core of the model is a simple proposition: representation changes who makes decisions, who makes decisions changes, and what gets decided.'+ref(2)+' When women and young women hold leadership positions across government, corporate institutions, the judiciary, local governance systems, civil society, and the informal economy, the nature of decision-making changes measurably.</p>'
     +"</div>"
-    +p("Governance becomes more responsive to long-term social outcomes because women often experience the consequences of policy failures more directly — through economic vulnerability, unpaid care burdens, reproductive responsibilities, and community welfare roles. As representation broadens, governance systems also become more participatory because previously excluded constituencies gain visibility within policy processes. Research across multiple contexts demonstrates that increased female representation in leadership is associated with lower levels of institutional corruption, stronger accountability systems, and higher public trust."+ref(3))
+    +p("Governance becomes more responsive to long-term social outcomes because women often experience the consequences of policy failures more directly through economic vulnerability, unpaid care burdens, reproductive responsibilities, and community welfare roles. As representation broadens, governance systems also become more participatory because previously excluded constituencies gain visibility within policy processes. Research across multiple contexts demonstrates that increased female representation in leadership is associated with lower levels of institutional corruption, stronger accountability systems, and higher public trust."+ref(3))
   );
 
   // Section 3: Governance Mechanism
