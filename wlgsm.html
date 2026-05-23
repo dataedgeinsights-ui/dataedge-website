@@ -220,10 +220,8 @@ function showSection(sec,opts){
   if(opts.week) state.activeWeek=opts.week;
   if(opts.lesson) state.activeLesson=opts.lesson;
   if(sec==="quiz"||sec==="final"){ state.qPage="intro"; state.qAnswers={}; state.qScore=null; }
-  var hero=$("wlgsm-hero-section");
-  if(hero) hero.style.display=(state.user||state.isAdmin)?"none":"block";
   render();
-  if(window.scrollTo) window.scrollTo(0,64);
+  if(window.scrollTo) window.scrollTo(0,0);
 }
 function doLogout(){ state.user=null; state.isAdmin=false; state.prog=null; S.del("dei_cu"); showSection("landing"); }
 
@@ -1069,7 +1067,8 @@ function render(){
   var area=$("app-area"); if(!area) return;
   var hero=$("wlgsm-hero-section");
   var loggedIn=state.user||state.isAdmin;
-  if(hero) hero.style.display=loggedIn?"none":"block";
+  var authPage=state.section==="login"||state.section==="register";
+  if(hero) hero.style.display=(loggedIn||authPage)?"none":"block";
   area.style.background=loggedIn?"var(--sand)":"transparent";
   area.style.padding=loggedIn?"32px 20px":"0";
   switch(state.section){
