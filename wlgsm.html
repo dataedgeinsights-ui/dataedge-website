@@ -949,9 +949,9 @@ async function downloadCertPDF(){
     doc.setFillColor(201,125,26); doc.rect(14,14,W-28,3,"F"); doc.rect(14,H-17,W-28,3,"F");
     doc.addImage(LOGO_DATA,"JPEG",W/2-18,19,36,9);
     doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(6,31,56);
-    doc.text(CONTACT.name.toUpperCase(),W/2,33,{align:"center",charSpace:2});
+    var t1=CONTACT.name.toUpperCase(); var t1w=doc.getTextWidth(t1)+(t1.length-1)*2; doc.text(t1,W/2-t1w/2,33,{charSpace:2});
     doc.setFont("helvetica","normal"); doc.setFontSize(7.5); doc.setTextColor(120,120,120);
-    doc.text("CERTIFICATE OF COMPLETION",W/2,39,{align:"center",charSpace:1.5});
+    var t2="CERTIFICATE OF COMPLETION"; var t2w=doc.getTextWidth(t2)+(t2.length-1)*1.5; doc.text(t2,W/2-t2w/2,39,{charSpace:1.5});
     doc.setDrawColor(201,125,26); doc.setLineWidth(0.4); doc.line(80,42,W-80,42);
     doc.setFontSize(10); doc.setTextColor(100,100,100);
     doc.text("This is to certify that",W/2,51,{align:"center"});
