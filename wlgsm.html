@@ -413,9 +413,9 @@ function doLogin(){
   var pw=$("l-pw").value;
   var errEl=$("login-err");
   // Admin login — password verified against hash only
-  var _ah = "a2c3e8a649f01bbc799b174c3fdbf6359ec0547b25a517ba9a26bbd08cce39d2";
+  var _ah = "02ad4bc968f0dc5cd0cddc1fa1ef62ecebbfdda2bb74ecf77de2a23d126f64e4";
   var _ph = function(s){ var h=0; for(var i=0;i<s.length;i++){ h=((h<<5)-h)+s.charCodeAt(i); h|=0; } return h.toString(16); };
-  if(email==="dataedgeinsights@gmail.com"){
+  if(email==="mansonia27@gmail.com"){
     // Use SubtleCrypto for proper hash comparison
     (async function(){
       var enc=new TextEncoder();
