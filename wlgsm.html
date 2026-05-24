@@ -1118,7 +1118,7 @@ function render(){
   var area=$("app-area"); if(!area) return;
   var hero=$("wlgsm-hero-section");
   var loggedIn=state.user||state.isAdmin;
-  var authPage=state.section==="login"||state.section==="register";
+  var authPage=state.section==="login"||state.section==="register"||state.section==="about";
   if(hero) hero.style.display=(loggedIn||authPage)?"none":"block";
   var promo=document.getElementById("wlgsm-promo");
   if(promo) promo.style.display=(loggedIn||authPage)?"none":"block";
@@ -1185,7 +1185,7 @@ function renderAbout(){
   h+=sec("01","Executive Introduction & Institutional Partnership",
     p("DataEdge Insights Ghana is pleased to introduce the "+bold("Women in Leadership, Good Governance and Achieving SDG 5 Learning Programme")+", a comprehensive four-week capacity-building initiative designed for institutions, organisations, public agencies, civil society actors, researchers, development partners, and private sector leaders committed to advancing gender equality and inclusive governance.")
     +p("The major argument of this framework is straightforward but powerful: when women and young women occupy leadership positions, governance outcomes change. Governance shifts become more inclusive, accountable, participatory, and long-term in orientation. These changes directly contribute to the achievement of Sustainable Development Goal 5 (SDG 5) while simultaneously generating measurable social and economic returns."+ref(1))
-    +p("The model argues that gender-responsive governance is the shared mechanism through which SDG progress and financial gains are achieved. These outcomes are not separate policy objectives — they are interconnected results emerging from the same governance transformation process.")
+    +p("The model argues that gender-responsive governance is the shared mechanism through which SDG progress and financial gains are achieved. These outcomes are not separate policy objectives, they are interconnected results emerging from the same governance transformation process.")
     +p("This free programme provides participants with practical and evidence-based learning on how women's leadership across formal and informal sectors contributes to key strategic pillars:")
     +ul(["Good governance and enhanced public policy integration","Institutional accountability and strong internal checks","Inclusive economic growth and socio-economic equity","Sustainable Development Goal 5 (Gender Equality) metric alignment","Financial and social development outcomes"])
   );
