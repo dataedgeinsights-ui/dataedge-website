@@ -1352,10 +1352,10 @@ const COURSE = {
       id: 'm3',
       title: 'Building & Interpreting the Model',
       lessons: [
-        { id: 'm3l1', title: 'Excel model setup', type: 'read' },
-        { id: 'm3l2', title: 'Understanding weights', type: 'read' },
-        { id: 'm3l3', title: 'Reading the ICI score', type: 'read' },
-        { id: 'm3l4', title: 'Interactive ICI Calculator', type: 'tool' },
+        { id: 'm3l1', title: 'Understanding weights', type: 'read' },
+        { id: 'm3l2', title: 'Reading the ICI score', type: 'read' },
+        { id: 'm3l3', title: 'Interactive ICI Calculator', type: 'tool' },
+        { id: 'm3l4', title: 'Excel model setup', type: 'read' },
         { id: 'm3l5', title: 'Knowledge check', type: 'quiz' }
       ]
     },
@@ -1600,10 +1600,10 @@ const CONTENT = {
           <tr><th>Outcome</th><th>Key driving skills</th></tr>
         </thead>
         <tbody>
-          <tr><td>Institutional Productivity</td><td>Training Hours, Decision-Making, Problem-Solving</td></tr>
-          <tr><td>Employee Retention</td><td>Mentoring Sessions, Communication Skills, Leadership Roles Taken</td></tr>
-          <tr><td>Innovation Rate</td><td>Training Hours, Strategic Thinking, Problem-Solving</td></tr>
-          <tr><td>Team Performance</td><td>Communication Skills, Team Building & Collaboration, Leadership Roles</td></tr>
+          <tr><td>Institutional Productivity (IP)</td><td>Training Hours, Decision-Making, Problem-Solving</td></tr>
+          <tr><td>Employee Retention (ER)</td><td>Mentoring Sessions, Communication Skills, Leadership Roles Taken</td></tr>
+          <tr><td>Innovation Rate (IR)</td><td>Training Hours, Strategic Thinking, Problem-Solving</td></tr>
+          <tr><td>Team Performance (TP)</td><td>Communication Skills, Team Building & Collaboration, Leadership Roles</td></tr>
         </tbody>
       </table>
 
@@ -1702,7 +1702,7 @@ const CONTENT = {
     ]
   },
 
-  m3l1: {
+  m3l4: {
     module: 'Module 3 — Building & Interpreting the Model',
     title: 'Excel Model Setup',
     duration: '12 min read',
@@ -1772,6 +1772,10 @@ const CONTENT = {
             <td style="padding:8px 10px; border:1px solid #1a5a9a; text-align:center; font-weight:700;">H</td>
             <td style="padding:8px 10px; border:1px solid #1a5a9a; text-align:center; font-weight:700;">I</td>
             <td style="padding:8px 10px; border:1px solid #1a5a9a; text-align:center; font-weight:700;">J</td>
+            <td style="padding:8px 10px; border:1px solid #1a5a9a; text-align:center; font-weight:700;">K</td>
+            <td style="padding:8px 10px; border:1px solid #1a5a9a; text-align:center; font-weight:700;">L</td>
+            <td style="padding:8px 10px; border:1px solid #1a5a9a; text-align:center; font-weight:700;">M</td>
+            <td style="padding:8px 10px; border:1px solid #1a5a9a; text-align:center; font-weight:700;">N</td>
           </tr>
 
           <!-- Row 2 — Headers -->
@@ -1786,7 +1790,11 @@ const CONTENT = {
             <td style="padding:8px 10px; border:1px solid #2a9b74; white-space:nowrap;">Team Building</td>
             <td style="padding:8px 10px; border:1px solid #2a9b74; white-space:nowrap;">Problem-Solving</td>
             <td style="padding:8px 10px; border:1px solid #2a9b74; white-space:nowrap;">Strategic Thinking</td>
-            <td style="padding:8px 10px; border:1px solid #2a9b74; white-space:nowrap; background:#C97D1A;">ICI Score</td>
+            <td style="padding:8px 10px; border:1px solid #2a9b74; white-space:nowrap; background:#4a6fa5;">IP Score</td>
+            <td style="padding:8px 10px; border:1px solid #2a9b74; white-space:nowrap; background:#4a6fa5;">ERR Score</td>
+            <td style="padding:8px 10px; border:1px solid #2a9b74; white-space:nowrap; background:#4a6fa5;">IR Score</td>
+            <td style="padding:8px 10px; border:1px solid #2a9b74; white-space:nowrap; background:#4a6fa5;">TP Score</td>
+            <td style="padding:8px 10px; border:1px solid #2a9b74; white-space:nowrap; background:#C97D1A;">Total ICI Score</td>
           </tr>
 
           <!-- Weight row -->
@@ -1801,6 +1809,10 @@ const CONTENT = {
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-weight:700; color:#0A3D6B;">0.15</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-weight:700; color:#0A3D6B;">0.10</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-weight:700; color:#0A3D6B;">0.10</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-style:italic; color:#4a6fa5;">calc</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-style:italic; color:#4a6fa5;">calc</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-style:italic; color:#4a6fa5;">calc</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-style:italic; color:#4a6fa5;">calc</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-weight:600; color:#C97D1A;">= 1.00</td>
           </tr>
 
@@ -1816,6 +1828,10 @@ const CONTENT = {
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">15</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">9</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">9</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">18.50</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">15.00</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">24.75</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">38.50</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-weight:700; background:#fff8e8; color:#C97D1A;">27.05</td>
           </tr>
           <tr style="background:#f9f9f9;">
@@ -1829,6 +1845,10 @@ const CONTENT = {
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">20</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">12</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">12</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">21.60</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">19.20</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">28.50</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">45.40</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-weight:700; background:#e8f8f0; color:#1A7F5E;">32.70</td>
           </tr>
           <tr style="background:#fff;">
@@ -1842,6 +1862,10 @@ const CONTENT = {
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">8</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">5</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">5</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">9.50</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">5.00</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">13.25</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">19.50</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-weight:700; background:#fff8e8; color:#C97D1A;">14.10</td>
           </tr>
           <tr style="background:#f9f9f9;">
@@ -1855,19 +1879,34 @@ const CONTENT = {
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">24</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">20</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center;">20</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">26.40</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">22.40</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">35.00</td>
+            <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; color:#4a6fa5;">55.60</td>
             <td style="padding:7px 10px; border:1px solid #ddd; text-align:center; font-weight:700; background:#e8f8f0; color:#1A7F5E;">41.20</td>
           </tr>
 
           <!-- ICI Formula row -->
           <tr style="background:#f0f4f8;">
             <td style="padding:7px 10px; border:1px solid #ddd; font-weight:600; color:#0A3D6B; font-size:11px;">Formula in J3:</td>
-            <td colspan="9" style="padding:7px 10px; border:1px solid #ddd; font-family:monospace; font-size:12px; color:#1A7F5E; font-weight:600;">
-              =B3*0.10 + C3*0.05 + D3*0.20 + E3*0.15 + F3*0.15 + G3*0.15 + H3*0.10 + I3*0.10
+            <td colspan="13" style="padding:7px 10px; border:1px solid #ddd; font-family:monospace; font-size:12px; color:#1A7F5E; font-weight:600;">
+              =B3*0.10 + C3*0.05 + D3*0.20 + E3*0.15 + F3*0.15 + G3*0.15 + H3*0.10 + I3*0.10 &nbsp;|&nbsp; IP=B3*0.1+C3*0.05+D3*0.2 &nbsp;|&nbsp; ERR=C3*0.3+D3*0.4 &nbsp;|&nbsp; IR=B3*0.15+D3*0.25 &nbsp;|&nbsp; TP=B3*0.2+C3*0.2+D3*0.3
             </td>
             <td style="padding:7px 10px; border:1px solid #ddd;"></td>
           </tr>
 
         </table>
+      </div>
+
+      <div class="callout callout-note">
+        <div class="callout-title">Outcome Score Columns (J–M)</div>
+        <ul style="margin:8px 0 0; padding-left:20px;">
+          <li><strong>IP (Institutional Productivity)</strong> — =B*0.1 + C*0.05 + D*0.2</li>
+          <li><strong>ERR (Employee Retention Rate)</strong> — =C*0.3 + D*0.4</li>
+          <li><strong>IR (Innovation Rate)</strong> — =B*0.15 + D*0.25</li>
+          <li><strong>TP (Team Performance)</strong> — =B*0.2 + C*0.2 + D*0.3</li>
+        </ul>
+        <p style="margin-top:10px; font-size:13px;">These four scores are calculated first and feed into the Total ICI Score (column N), giving you a breakdown of how each institutional outcome area is performing for each participant.</p>
       </div>
 
       <div class="callout callout-key">
@@ -1888,7 +1927,7 @@ const CONTENT = {
     `
   },
 
-  m3l2: {
+  m3l1: {
     module: 'Module 3 — Building & Interpreting the Model',
     title: 'Understanding and Adjusting Weights',
     duration: '10 min read',
@@ -1938,7 +1977,7 @@ const CONTENT = {
     `
   },
 
-  m3l3: {
+  m3l2: {
     module: 'Module 3 — Building & Interpreting the Model',
     title: 'Reading the Institutional Capacity Index',
     duration: '8 min read',
@@ -1981,7 +2020,7 @@ const CONTENT = {
     `
   },
 
-  m3l4: {
+  m3l3: {
     module: 'Module 3 — Building & Interpreting the Model',
     title: 'Interactive ICI Calculator',
     duration: 'Interactive tool',
@@ -2693,7 +2732,7 @@ function renderLesson(id) {
   `;
 
   // init interactive tool if needed
-  if (data.type === 'tool' || id === 'm3l4') initICICalc();
+  if (data.type === 'tool' || id === 'm3l3') initICICalc();
 }
 
 // ══════════════════════════════════════
