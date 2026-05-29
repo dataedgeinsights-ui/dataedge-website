@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We Are Investing in Young Leaders and Women. But Are We Actually Measuring the Change? — DataEdge Insights Ghana</title>
+<meta name="description" content="A national reflection on why Ghana needs YLIM and WLGSM, and why the time to act is now. Every year, institutions spend millions on youth leadership programmes — but the question of what that investment actually changed goes unanswered.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0A3D6B;--navy-deep:#061F38;--navy-mid:#123a60;
+  --green:#1A7F5E;--green-light:#E2F4ED;--green-mid:#2a9b74;
+  --amber:#C97D1A;--sand:#F7F4EE;--sand-mid:#EDE8DD;
+  --white:#FEFEFE;--dark:#14140F;--mid:#4A4A44;--muted:#8A8A82;--border:#DDD9CE;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--dark);line-height:1.6;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(254,254,254,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:64px;display:flex;align-items:center;padding:0 40px;justify-content:space-between;}
+.nav-brand{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--navy-deep);letter-spacing:0.01em;text-decoration:none;}
+.nav-brand span{color:var(--green);}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--mid);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all 0.2s;letter-spacing:0.01em;}
+.nav-links a:hover{background:var(--sand);color:var(--navy);}
+.nav-cta{background:var(--navy)!important;color:var(--white)!important;border-radius:6px;}
+.nav-cta:hover{background:var(--navy-deep)!important;}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;}
+.article-hero{background:var(--navy-deep);padding:120px 40px 80px;position:relative;overflow:hidden;}
+.article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 90% 50%,rgba(26,127,94,0.1) 0%,transparent 65%);pointer-events:none;}
+.article-hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+.article-kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#7FC9A8;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.article-kicker::before{content:'';display:block;width:32px;height:1px;background:#7FC9A8;}
+.article-hero h1{font-family:var(--serif);font-size:clamp(30px,4.5vw,54px);font-weight:600;color:var(--white);line-height:1.12;letter-spacing:-0.3px;margin-bottom:12px;}
+.article-hero .hero-sub{font-family:var(--serif);font-size:clamp(16px,2vw,22px);font-style:italic;color:rgba(255,255,255,0.6);margin-bottom:24px;line-height:1.4;}
+.article-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);}
+.article-author{display:flex;align-items:center;gap:12px;}
+.author-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--green) 0%,var(--navy-mid) 100%);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;font-weight:600;color:var(--white);flex-shrink:0;}
+.author-info{display:flex;flex-direction:column;}
+.author-name{font-size:14px;font-weight:500;color:var(--white);}
+.author-role{font-size:12px;color:rgba(255,255,255,0.45);font-weight:300;}
+.article-date{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;}
+.article-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.tag-pill{font-size:11px;font-weight:500;letter-spacing:0.05em;padding:4px 10px;border:1px solid rgba(127,201,168,0.3);border-radius:20px;color:#7FC9A8;}
+.article-body{max-width:800px;margin:0 auto;padding:72px 40px 96px;}
+.article-body h2{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--navy-deep);line-height:1.25;margin:48px 0 16px;padding-top:48px;border-top:1px solid var(--border);}
+.article-body h2:first-of-type{margin-top:0;padding-top:0;border-top:none;}
+.article-body h3{font-size:11px;font-weight:600;color:var(--green);letter-spacing:0.14em;margin:28px 0 10px;text-transform:uppercase;}
+.article-body p{font-size:17px;font-weight:300;color:var(--mid);line-height:1.8;margin-bottom:20px;}
+.article-body p strong{font-weight:600;color:var(--dark);}
+.article-body p em{font-style:italic;}
+.article-body ul{margin:0 0 24px 0;padding:0;list-style:none;}
+.article-body ul li{font-size:16px;font-weight:300;color:var(--mid);line-height:1.75;padding:8px 0 8px 24px;position:relative;border-bottom:1px solid var(--border);}
+.article-body ul li::before{content:'';position:absolute;left:0;top:18px;width:8px;height:1px;background:var(--green);}
+.stat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:36px 0;}
+.stat-card{background:var(--sand);padding:28px 20px;text-align:center;}
+.stat-card .stat-value{font-family:var(--serif);font-size:40px;font-weight:600;color:var(--navy-deep);line-height:1;margin-bottom:8px;display:block;}
+.stat-card .stat-label{font-size:13px;font-weight:400;color:var(--mid);line-height:1.5;display:block;}
+.highlight-box{background:var(--sand);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:28px 32px;margin:36px 0;}
+.highlight-box .hb-value{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--navy-deep);margin-bottom:8px;line-height:1.2;}
+.highlight-box .hb-text{font-size:15px;font-weight:300;color:var(--mid);line-height:1.7;}
+.pull-quote{border-top:2px solid var(--navy-deep);border-bottom:2px solid var(--navy-deep);padding:32px 0;margin:48px 0;}
+.pull-quote p{font-family:var(--serif);font-size:24px;font-weight:500;font-style:italic;color:var(--navy-deep);line-height:1.45;margin:0!important;}
+.pull-quote .attribution{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--muted);margin-top:16px;display:block;}
+.programme-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:36px 0;}
+.programme-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.programme-card-header{padding:20px 24px 16px;background:var(--navy-deep);}
+.programme-card-header .pc-label{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#7FC9A8;margin-bottom:6px;}
+.programme-card-header .pc-title{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--white);line-height:1.2;}
+.programme-card-header .pc-sub{font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;}
+.programme-card-body{background:var(--sand);padding:20px 24px;}
+.programme-card-body ul{margin:0;padding:0;list-style:none;}
+.programme-card-body ul li{font-size:13px;font-weight:400;color:var(--mid);padding:6px 0 6px 18px;position:relative;border-bottom:1px solid var(--border);}
+.programme-card-body ul li:last-of-type{border-bottom:none;}
+.programme-card-body ul li::before{content:'';position:absolute;left:0;top:14px;width:6px;height:1px;background:var(--green);}
+.programme-card-body .pc-link{display:inline-block;margin-top:14px;font-size:12px;font-weight:600;color:var(--green);text-decoration:none;letter-spacing:0.04em;}
+.programme-card-body .pc-link:hover{text-decoration:underline;}
+.pricing-band{background:var(--navy-deep);border-radius:8px;padding:28px 32px;margin:36px 0;text-align:center;}
+.pricing-band .pb-label{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#7FC9A8;margin-bottom:12px;}
+.pricing-band .pb-tiers{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px;margin-bottom:8px;}
+.pricing-band .pb-tier{font-size:14px;font-weight:500;color:var(--white);}
+.pricing-band .pb-tier span{color:#7FC9A8;font-weight:600;}
+.closing-box{background:var(--sand);border:1px solid var(--border);border-radius:8px;padding:36px 40px;margin:48px 0;font-family:var(--serif);font-size:19px;font-weight:400;color:var(--navy-deep);line-height:1.7;}
+.closing-box strong{font-weight:600;}
+.cta-inline{display:flex;gap:12px;flex-wrap:wrap;margin:32px 0;}
+.btn-cta-green{background:var(--green);color:var(--white);font-size:13px;font-weight:600;padding:13px 28px;border-radius:6px;text-decoration:none;letter-spacing:0.04em;transition:background 0.2s,transform 0.15s;display:inline-block;}
+.btn-cta-green:hover{background:var(--green-mid);transform:translateY(-1px);}
+.btn-cta-outline{border:1px solid var(--navy);color:var(--navy);font-size:13px;font-weight:500;padding:13px 28px;border-radius:6px;text-decoration:none;letter-spacing:0.04em;transition:all 0.2s;display:inline-block;}
+.btn-cta-outline:hover{background:var(--navy);color:var(--white);}
+.article-tags-footer{border-top:1px solid var(--border);padding-top:32px;margin-top:64px;}
+.tags-label{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.tags-list{display:flex;flex-wrap:wrap;gap:8px;}
+.tags-list span{font-size:12px;font-weight:400;color:var(--green);background:var(--green-light);padding:4px 12px;border-radius:20px;}
+.cta-band{background:var(--navy-deep);padding:80px 40px;text-align:center;}
+.cta-band h2{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--white);margin-bottom:16px;}
+.cta-band p{font-size:15px;font-weight:300;color:rgba(255,255,255,0.55);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;}
+.btn-primary{background:var(--green);color:var(--white);font-size:13px;font-weight:600;padding:13px 28px;border-radius:6px;text-decoration:none;letter-spacing:0.04em;transition:background 0.2s,transform 0.15s;display:inline-block;}
+.btn-primary:hover{background:var(--green-mid);transform:translateY(-1px);}
+.btn-outline-light{border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.8);font-size:13px;font-weight:500;padding:13px 28px;border-radius:6px;text-decoration:none;letter-spacing:0.04em;transition:all 0.2s;display:inline-block;margin-left:12px;}
+.btn-outline-light:hover{background:rgba(255,255,255,0.08);}
+footer{background:var(--dark);padding:48px 40px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+.footer-brand-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--white);}
+.footer-brand-name span{color:#7FC9A8;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:rgba(255,255,255,0.8);}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);width:100%;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);text-decoration:none;margin-bottom:32px;transition:gap 0.2s;}
+.back-link:hover{gap:12px;}
+.back-link::before{content:'←';font-size:14px;}
+.section-number{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.18em;color:var(--muted);text-transform:uppercase;margin-bottom:6px;display:block;}
+@media(max-width:768px){
+  nav{padding:0 20px;}.nav-links{display:none;}.nav-toggle{display:flex;}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:16px 20px;gap:4px;}
+  .article-hero{padding:100px 20px 60px;}.article-body{padding:48px 20px 72px;}
+  .stat-row{grid-template-columns:1fr;}
+  .programme-grid{grid-template-columns:1fr;}
+  .pricing-band .pb-tiers{flex-direction:column;align-items:center;}
+  footer{padding:40px 20px;}.footer-inner{flex-direction:column;align-items:flex-start;}
+  .cta-inline{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">DataEdge <span>Insights</span> Ghana</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#rydel">RYDEL Lab</a></li>
+    <li><a href="index.html#ylim">YLIM</a></li>
+    <li><a href="index.html#dataedge">DataEdge</a></li>
+    <li><a href="index.html#resources" class="active">Resources</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-kicker">Youth Leadership &nbsp;·&nbsp; Gender Equity &nbsp;·&nbsp; DataEdge Insights Ghana &nbsp;·&nbsp; May 2026</div>
+    <h1>We Are Investing in Young Leaders and Women.</h1>
+    <p class="hero-sub">But Are We Actually Measuring the Change?</p>
+    <div class="article-meta">
+      <div class="article-author">
+        <div class="author-avatar">EKT</div>
+        <div class="author-info">
+          <span class="author-name">DataEdge Insights Ghana</span>
+          <span class="author-role">Intelligence. Insight. Impact.</span>
+        </div>
+      </div>
+      <span class="article-date">May 2026</span>
+    </div>
+    <div class="article-tags" style="margin-top:20px;">
+      <span class="tag-pill">YLIM</span>
+      <span class="tag-pill">WLGSM</span>
+      <span class="tag-pill">Youth Leadership</span>
+      <span class="tag-pill">Gender Equity</span>
+      <span class="tag-pill">SDG 5</span>
+      <span class="tag-pill">Measurement</span>
+    </div>
+  </div>
+</section>
+
+<article class="article-body">
+  <a href="index.html#resources" class="back-link">Back to Resources</a>
+
+  <h2>Youth Leadership Impact Model</h2>
+  <p>Every year, across Ghana and across the African continent, institutions spend millions on youth leadership programmes. Governments fund them. NGOs run them. Development partners back them. Corporations brand them. Universities host them. And every year, the same question goes unanswered in boardrooms, donor reports, and planning meetings.</p>
+
+  <div class="pull-quote">
+    <p>&#8220;What did this investment actually change?&#8221;</p>
+  </div>
+
+  <p>Not what happened. We know what happened. We are very good at documenting activities. What needs to be done is to enhance capacity to document the <strong>transformation</strong>. That gap is not a minor reporting inconvenience. It is a national development problem.</p>
+
+  <h2>The Invisible Return on Our Most Important Investment</h2>
+  <span class="section-number">01</span>
+
+  <p>Ghana is a young country. The median age is under 21 (GSS, 2021). Our greatest strategic asset is not oil, not cocoa, not gold. It is the generation coming of age now, and what we do with their leadership potential in the next decade will determine the quality of our institutions for the next fifty years.</p>
+
+  <p>We know this. So we invest. And to be fair, efforts are being made. Stakeholders across government, civil society, and the development sector are working to build the next generation of leaders.</p>
+
+  <p>But good intentions and rigorous evidence are not the same thing. Across most of these investments, a critical gap remains: we can document what happened, but we struggle to prove what <em>changed</em>. The training weekend ran. The bootcamp graduated its cohort. The fellowship placed its fellows. What we cannot say, with precision and in the language that funders, boards, and finance committees actually speak, is the institutional worth.</p>
+
+  <p>That is not a failure of effort. <strong>It is a gap in the infrastructure of measurement</strong>, and it is exactly the gap that <strong>YLIM</strong> is built to close.</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <span class="stat-value">1,900%</span>
+      <span class="stat-label">Default YLIM Return on Investment</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value">$20</span>
+      <span class="stat-label">Returned in institutional benefit for every $1 invested in a YLIM-aligned youth leadership programme, from productivity gains, staff retention, and innovation uplift</span>
+    </div>
+  </div>
+
+  <p>That figure will surprise people. It should not. What should surprise us is that we have been making this investment for decades without ever calculating it.</p>
+
+  <h2>Women in Leadership, Good Governance and Achieving SDG 5</h2>
+  <span class="section-number">02</span>
+  <h3 style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--navy-mid);letter-spacing:0;text-transform:none;margin:16px 0 16px;">The Women We Keep Leaving Out of the Equation</h3>
+
+  <p>Ghana has ratified CEDAW. We have committed to SDG 5. We quote the evidence regularly: that companies with women in leadership outperform those without, that legislatures with female representation pass better social policy, that communities led by women recover faster from economic shocks.</p>
+
+  <p>We know all of this. But women remain systematically underrepresented in formal governance structures, corporate boardrooms, and senior public sector positions across Ghana. Not because of a shortage of capable women. Our universities, our civil society, and our communities are full of well-learned and professional women. But because the institutional infrastructure to identify, develop, measure, and advance women's leadership has never been built at scale.</p>
+
+  <p>The <strong>Women in Leadership, Good Governance and Achieving SDG 5 (WLGSM)</strong> programme addresses this directly. And it does so in a way that removes the most common barrier: <strong>it is entirely free.</strong></p>
+
+  <p>But WLGSM is not simply a gender programme. It is a governance programme. Inclusive leadership is not a social justice preference, it is an institutional performance strategy. Organisations that close their gender leadership gap do not just become fairer. <em>They become more effective.</em></p>
+
+  <div class="programme-grid">
+    <div class="programme-card">
+      <div class="programme-card-header">
+        <div class="pc-label">YLIM Certification</div>
+        <div class="pc-title">Youth Leadership Impact Model</div>
+        <div class="pc-sub">Intelligence. Insight. Impact.</div>
+      </div>
+      <div class="programme-card-body">
+        <ul>
+          <li>4 modules &nbsp;·&nbsp; 20 lessons &nbsp;·&nbsp; 17+ hours &nbsp;·&nbsp; Self-paced</li>
+          <li>Institutional Capacity Index (0–100)</li>
+          <li>Full ROI calculation &amp; reporting</li>
+          <li>Excel model + interactive digital tool</li>
+          <li>3 certification tracks available</li>
+          <li>Founding cohort from GHS 200 per person</li>
+        </ul>
+        <a href="https://www.dataedgeinsights.org/#ylim" target="_blank" class="pc-link">Enrol in YLIM →</a>
+      </div>
+    </div>
+    <div class="programme-card">
+      <div class="programme-card-header">
+        <div class="pc-label">WLGSM Programme</div>
+        <div class="pc-title">Women in Leadership &amp; SDG 5</div>
+        <div class="pc-sub">4 weeks &nbsp;·&nbsp; Online &nbsp;·&nbsp; Entirely FREE</div>
+      </div>
+      <div class="programme-card-body">
+        <ul>
+          <li>Gender-responsive governance frameworks</li>
+          <li>Grassroots &amp; informal sector leadership</li>
+          <li>Male engagement &amp; coalition building</li>
+          <li>SDG 5 measurement &amp; advocacy</li>
+          <li>Multi-sector institutional cohorts</li>
+        </ul>
+        <a href="https://www.dataedgeinsights.org/wlgsm.html" target="_blank" class="pc-link">Join WLGSM (Free) →</a>
+        <a href="https://www.dataedgeinsights.org/wlgsm.html" target="_blank" class="pc-link" style="margin-top:6px;">Learn more about WLGSM →</a>
+      </div>
+    </div>
+  </div>
+
+  <h2>Two Programmes. One Argument.</h2>
+  <span class="section-number">03</span>
+
+  <p>YLIM and WLGSM are different in their focus, but they make the same fundamental argument.</p>
+
+  <div class="pull-quote">
+    <p>&#8220;Ghana cannot afford to keep investing in people without measuring the return, and it cannot keep measuring leadership without counting half of the population it has been leaving out.&#8221;</p>
+    <span class="attribution">DataEdge Insights Ghana &nbsp;·&nbsp; May 2026</span>
+  </div>
+
+  <div class="highlight-box">
+    <div class="hb-value">YLIM answers: What does investing in youth leadership actually produce for our institutions?</div>
+    <div class="hb-text">With an ICI score and a defensible ROI figure, YLIM converts leadership investment into institutional evidence.</div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="hb-value">WLGSM answers: What does inclusive women's leadership deliver for our governance and our economy?</div>
+    <div class="hb-text">WLGSM builds the institutional capacity to answer this question, and to act on it.</div>
+  </div>
+
+  <p>A country that can answer both questions consistently, rigorously, and with evidence is a country that can make smarter development decisions. It can write better donor proposals. It can justify budget lines with data. It can hold programmes accountable not just to activity, but to outcomes. It can tell the story of transformation in the language that moves resources.</p>
+
+  <h2>What We Are Really Asking For</h2>
+  <span class="section-number">04</span>
+
+  <p>We are not asking for another conversation about the importance of youth leadership or gender equality. Those conversations have happened. The arguments have been made. The commitment, in principle, exists.</p>
+
+  <p>What Ghana and the world needs is the institutional courage to move from <em>knowing</em> to <em>measuring.</em></p>
+
+  <p>To certify your programme officers in YLIM so that the next leadership cohort you run produces an ICI score, not just a graduation photo. To nominate your staff and emerging leaders to WLGSM so that your organisation builds real, structured capacity to implement gender-responsive strategies, not just gender-sensitive rhetoric. To become the kind of institution that does not just invest in people, <strong>but can prove what that investment produced.</strong></p>
+
+  <div class="closing-box">
+    Somewhere in Ghana right now, a young woman is completing a leadership workshop that will change how she leads her team, how she engages her community, how she holds power accountable. Somewhere, a young man is finishing a mentoring programme that will make him a more strategic, more accountable public servant. We will not measure either of them. We will not aggregate their growth into an index. And in five years, when the funder asks for evidence of impact, we will write a narrative report about the things we <em>believe</em> happened. <strong>That cycle has to end.</strong>
+    <br><br>
+    YLIM and WLGSM are not grand theories. They are practical tools, the infrastructure of accountability that our leadership investments have always deserved but never had. <em>Ghana is ready for this. The only question is whether our institutions are ready to ask for it.</em>
+  </div>
+
+  <div class="pricing-band">
+    <div class="pb-label">Founding Cohort Pricing</div>
+    <div class="pb-tiers">
+      <span class="pb-tier">Individual &nbsp;<span>GHS 200</span></span>
+      <span class="pb-tier">3–5 seats &nbsp;<span>GHS 150 each</span></span>
+      <span class="pb-tier">6–10 seats &nbsp;<span>GHS 120 each</span></span>
+      <span class="pb-tier">WLGSM &nbsp;<span>FREE</span></span>
+    </div>
+  </div>
+
+  <h3>Enrol. Certify. Measure. Lead.</h3>
+  <p>Join the founding cohort. Partner with us on WLGSM. Build the evidence infrastructure your programmes deserve.</p>
+  <div class="cta-inline">
+    <a href="https://www.dataedgeinsights.org/#ylim" target="_blank" class="btn-cta-green">Enrol in YLIM →</a>
+    <a href="https://www.dataedgeinsights.org/wlgsm.html" target="_blank" class="btn-cta-outline">Join WLGSM (Free) →</a>
+  </div>
+
+  <div class="article-tags-footer">
+    <div class="tags-label">Tags</div>
+    <div class="tags-list">
+      <span>#YLIM</span>
+      <span>#WLGSM</span>
+      <span>#YouthLeadership</span>
+      <span>#GenderEquity</span>
+      <span>#SDG5</span>
+      <span>#InclusiveGovernance</span>
+      <span>#ResultsBasedManagement</span>
+      <span>#DataEdgeInsightsGhana</span>
+      <span>#ImpactMeasurement</span>
+      <span>#WomenInLeadership</span>
+      <span>#Ghana</span>
+    </div>
+  </div>
+</article>
+
+<div class="cta-band">
+  <h2>Interested in evidence-based impact?</h2>
+  <p>Explore the YLIM Practitioner Certification, the first framework to measure youth leadership's institutional value.</p>
+  <a href="index.html#ylim" class="btn-primary">Learn about YLIM</a>
+  <a href="index.html#contact" class="btn-outline-light">Get in Touch</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">Efua Kwaambaa <span>Turkson</span> (PhD)</div>
+      <div style="font-size:11px; color:rgba(255,255,255,0.25); margin-top:4px;">DataEdge Insights Ghana · RYDEL Lab · YLIM</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#rydel">RYDEL Lab</a>
+      <a href="index.html#ylim">YLIM</a>
+      <a href="index.html#dataedge">DataEdge</a>
+      <a href="index.html#resources">Resources</a>
+      <a href="ylim-terms.html" target="_blank">Terms &amp; Conditions</a>
+    </div>
+    <div class="footer-copy">© 2026 DataEdge Insights Ghana. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('navToggle').addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+</body>
+</html>
