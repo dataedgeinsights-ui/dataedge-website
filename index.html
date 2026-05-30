@@ -2534,6 +2534,124 @@ footer {
   </div>
 </section>
 
+
+<!-- ══ SDG ALIGNMENT ══ -->
+<section id="sdg-alignment" style="background:var(--white); padding:80px 40px;">
+<section style="max-width:860px;margin:0 auto;padding:1rem 1.5rem;font-family:'DM Sans',sans-serif;">
+
+  <style>
+    .dei-sdg-eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#64748B;margin-bottom:.4rem;}
+    .dei-sdg-heading{font-size:22px;font-weight:600;color:#0D2240;margin-bottom:.4rem;line-height:1.3;}
+    .dei-sdg-subhead{font-size:14px;color:#64748B;line-height:1.7;margin-bottom:1.75rem;max-width:680px;}
+    .dei-sdg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:10px;margin-bottom:1.25rem;}
+    .dei-sdg-badge{border-radius:12px;padding:.85rem .5rem .75rem;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;border:2.5px solid transparent;transition:border-color .15s,transform .15s;text-decoration:none;}
+    .dei-sdg-badge:hover{transform:translateY(-2px);}
+    .dei-sdg-badge.active{border-color:rgba(255,255,255,.6);box-shadow:0 0 0 3px rgba(0,0,0,.13);}
+    .dei-sdg-num{font-size:20px;font-weight:600;color:#fff;line-height:1;}
+    .dei-sdg-lbl{font-size:9.5px;font-weight:500;text-align:center;line-height:1.3;color:rgba(255,255,255,.9);}
+    .dei-sdg-ico{font-size:20px;}
+    .dei-det{border-radius:12px;border:1px solid #E2E8F0;background:#fff;overflow:hidden;transition:border-color .2s;}
+    .dei-det-top{padding:1rem 1.25rem .75rem;border-bottom:1px solid #E2E8F0;display:flex;align-items:flex-start;gap:12px;}
+    .dei-det-pill{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+    .dei-det-title{font-size:15px;font-weight:600;color:#0D2240;line-height:1.3;}
+    .dei-det-body{padding:.85rem 1.25rem;font-size:13.5px;color:#475569;line-height:1.7;}
+    .dei-det-work{padding:0 1.25rem 1rem;}
+    .dei-det-wlbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#94A3B8;margin-bottom:6px;}
+    .dei-det-tags{display:flex;gap:6px;flex-wrap:wrap;}
+    .dei-det-tag{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;background:#F8FAFC;color:#64748B;border:1px solid #E2E8F0;}
+    .dei-sdg-footer{font-size:11.5px;color:#94A3B8;border-top:1px solid #E2E8F0;padding-top:.85rem;margin-top:1rem;line-height:1.7;}
+  </style>
+
+  <p class="dei-sdg-eyebrow">Global framework alignment</p>
+  <h2 class="dei-sdg-heading">Our work contributes to 7 Sustainable Development Goals</h2>
+  <p class="dei-sdg-subhead">Across research, analytics, policy, leadership development, gender equity, governance, and M&E, our work is measurable against the UN SDG framework. Click any goal to see how.</p>
+
+  <div class="dei-sdg-grid">
+    <div class="dei-sdg-badge active" onclick="deiSDG(this,'3')" style="background:#4C9F38;">
+      <span class="dei-sdg-ico" style="color:#fff;">♥</span>
+      <span class="dei-sdg-num">3</span>
+      <span class="dei-sdg-lbl">Good Health &amp; Well-being</span>
+    </div>
+    <div class="dei-sdg-badge" onclick="deiSDG(this,'4')" style="background:#C5192D;">
+      <span class="dei-sdg-ico" style="color:#fff;">🎓</span>
+      <span class="dei-sdg-num">4</span>
+      <span class="dei-sdg-lbl">Quality Education</span>
+    </div>
+    <div class="dei-sdg-badge" onclick="deiSDG(this,'5')" style="background:#FF3A21;">
+      <span class="dei-sdg-ico" style="color:#fff;">♀</span>
+      <span class="dei-sdg-num">5</span>
+      <span class="dei-sdg-lbl">Gender Equality</span>
+    </div>
+    <div class="dei-sdg-badge" onclick="deiSDG(this,'8')" style="background:#A21942;">
+      <span class="dei-sdg-ico" style="color:#fff;">💼</span>
+      <span class="dei-sdg-num">8</span>
+      <span class="dei-sdg-lbl">Decent Work &amp; Economic Growth</span>
+    </div>
+    <div class="dei-sdg-badge" onclick="deiSDG(this,'10')" style="background:#DD1367;">
+      <span class="dei-sdg-ico" style="color:#fff;">⚖</span>
+      <span class="dei-sdg-num">10</span>
+      <span class="dei-sdg-lbl">Reduced Inequalities</span>
+    </div>
+    <div class="dei-sdg-badge" onclick="deiSDG(this,'11')" style="background:#FD9D24;">
+      <span class="dei-sdg-ico" style="color:#fff;">🏙</span>
+      <span class="dei-sdg-num">11</span>
+      <span class="dei-sdg-lbl">Sustainable Cities &amp; Communities</span>
+    </div>
+    <div class="dei-sdg-badge" onclick="deiSDG(this,'16')" style="background:#00689D;">
+      <span class="dei-sdg-ico" style="color:#fff;">⚖</span>
+      <span class="dei-sdg-num">16</span>
+      <span class="dei-sdg-lbl">Peace, Justice &amp; Strong Institutions</span>
+    </div>
+  </div>
+
+  <div class="dei-det" id="dei-det-panel" style="border-color:#4C9F3855;">
+    <div class="dei-det-top">
+      <span class="dei-det-pill" id="dei-pill" style="background:#e8f5e4;color:#2e7d1e;">SDG 3</span>
+      <span class="dei-det-title" id="dei-title">Good Health &amp; Well-being</span>
+    </div>
+    <div class="dei-det-body" id="dei-body">Our institutional capacity and leadership development work tracks how stronger governance and leadership directly improves workforce wellbeing, reduces occupational burnout, and builds organisational resilience. This contributes to healthier and more sustainable institutions across Ghana and Africa.</div>
+    <div class="dei-det-work">
+      <p class="dei-det-wlbl">Relevant areas of work</p>
+      <div class="dei-det-tags" id="dei-tags">
+        <span class="dei-det-tag">Leadership development</span>
+        <span class="dei-det-tag">Institutional capacity</span>
+        <span class="dei-det-tag">M&amp;E &amp; MERLA</span>
+        <span class="dei-det-tag">Organisational health</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="dei-sdg-footer">DataEdge Insights Ghana operates at national and international levels across research, data analytics, monitoring, evaluation, learning and accountability (MERLA), gender equity, governance, policy advisory, youth leadership, and capacity building. Our work is aligned with the UN 2030 Agenda for Sustainable Development.</p>
+
+</section>
+
+<script>
+var deiData = {
+  '3':{title:'Good Health &amp; Well-being',pill:'SDG 3',bg:'#e8f5e4',tc:'#2e7d1e',border:'#4C9F38',body:'Our institutional capacity and leadership development work tracks how stronger governance and leadership directly improves workforce wellbeing, reduces occupational burnout, and builds organisational resilience. This contributes to healthier and more sustainable institutions across Ghana and Africa.',tags:['Leadership development','Institutional capacity','M&E & MERLA','Organisational health']},
+  '4':{title:'Quality Education',pill:'SDG 4',bg:'#fde8ea',tc:'#9e0f1a',border:'#C5192D',body:'Our certified learning programmes, capacity building initiatives, and practitioner training create structured, evidence-based pathways for lifelong learning. We equip individuals and institutions with analytical and leadership skills that go beyond certificates to build real competency.',tags:['Practitioner certification','Capacity building','Evidence-based learning','Youth leadership','Policy education']},
+  '5':{title:'Gender Equality',pill:'SDG 5',bg:'#fff0ee',tc:'#c42a14',border:'#FF3A21',body:"Gender equity is central to our work. From dedicated women's leadership programming to gender-responsive governance frameworks, grassroots leadership research, male engagement strategies, and institutional gender analysis tools, we embed gender across our advisory and analytical services.",tags:['Women in leadership','Gender-responsive governance','Policy advisory','Research & demography','Capacity building']},
+  '8':{title:'Decent Work &amp; Economic Growth',pill:'SDG 8',bg:'#fce8ef',tc:'#7a1031',border:'#A21942',body:'We help organisations measure and communicate the economic value of their human capital investments through impact analytics, productivity analysis, staff retention modelling, and institutional capacity frameworks. Our data-driven approach connects leadership, governance, and workforce development to measurable economic returns that support sustained and inclusive growth.',tags:['Impact analytics','ROI frameworks','Data analytics','Institutional capacity','MERLA','Youth leadership']},
+  '10':{title:'Reduced Inequalities',pill:'SDG 10',bg:'#fde8f2',tc:'#a80d4e',border:'#DD1367',body:'Our research, demography, and policy advisory work identifies and addresses structural inequalities across gender, age, geography, and sector. We build evidence and tools that help institutions make inclusion measurable rather than merely aspirational.',tags:['Demography & research','Policy advisory','Gender equity','Inclusive governance','Data analytics']},
+  '11':{title:'Sustainable Cities &amp; Communities',pill:'SDG 11',bg:'#fff4e5',tc:'#a05e00',border:'#FD9D24',body:'We work with local governments, urban planners, civil society, and community institutions to generate the evidence needed for inclusive, resilient, and sustainable settlements. Through demographic research, community needs assessments, governance analytics, and policy advisory, we help decision-makers design cities and communities that leave no one behind.',tags:['Demographic research','Community needs assessment','Local governance','Policy advisory','Urban data analytics','Civil society capacity']},
+  '16':{title:'Peace, Justice &amp; Strong Institutions',pill:'SDG 16',bg:'#e5f3fb',tc:'#004f78',border:'#00689D',body:'Strengthening institutions is at the core of everything we do. Our analytics, MERLA frameworks, governance advisory, and capacity indices give institutions measurable and defensible evidence of their accountability and leadership strength. This supports transparency, justice, and inclusive governance at every level.',tags:['Governance advisory','MERLA','Institutional capacity index','Policy & accountability','Leadership analytics']}
+};
+
+function deiSDG(el, id) {
+  document.querySelectorAll('.dei-sdg-badge').forEach(function(b){b.classList.remove('active');});
+  el.classList.add('active');
+  var d = deiData[id];
+  var pill = document.getElementById('dei-pill');
+  pill.innerHTML = d.pill;
+  pill.style.background = d.bg;
+  pill.style.color = d.tc;
+  document.getElementById('dei-title').innerHTML = d.title;
+  document.getElementById('dei-body').textContent = d.body;
+  document.getElementById('dei-tags').innerHTML = d.tags.map(function(t){return '<span class="dei-det-tag">'+t+'</span>';}).join('');
+  document.getElementById('dei-det-panel').style.borderColor = d.border+'55';
+}
+</script>
+</section>
+
 <!-- ══ RESOURCES ══ -->
 <section id="resources" style="background:var(--navy-deep); padding:96px 40px;">
   <div class="section-inner">
