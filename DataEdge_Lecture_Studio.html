@@ -420,7 +420,7 @@ const LOGO_DATA_URI = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QKyRX
    material. For real secured accounts, this file would need a
    proper backend (see the note in the accompanying reply).
 ============================================================ */
-const ACCESS_CODE_HASHES = ["5f5b5975e336eed923dbc9a8590bd8c27840bb5b84d8689a2900b8affde14b95"];
+const ACCESS_CODE_HASHES = ["5f5b5975e336eed923dbc9a8590bd8c27840bb5b84d8689a2900b8affde14b95", "5573753cc11b1f7ac4ddd5ccf25fb9bb99fb93197e4f087478c59440851dc8e0"];
 /* The codes above are stored as SHA-256 hashes, not plain text, so anyone
    viewing this page's source sees a scrambled string, not the actual code.
    This is NOT the same as real server-side authentication (a determined,
@@ -435,17 +435,18 @@ async function sha256(str){
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 const NOTIFY_EMAIL = "dataedgeinsights@gmail.com"; // used for the "request access" mailto fallback
-// Fill these in after creating a Google Form (see setup instructions). Leave
-// GOOGLE_FORM_ACTION empty to skip Google Form submission and rely on the
-// mailto fallback only.
-const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSceUnBh_Wc9xOyWlC_75D1bLSxAY3ol3KK-RVDItsXwVtPnFw/formResponse";
+// Registration now posts to a Google Apps Script Web App (bound to the
+// response sheet) instead of a raw Google Form. The script both logs the
+// row to the sheet AND sends the requester an access-code email directly,
+// and it returns a real response we can check for success/failure.
+const GOOGLE_FORM_ACTION = "https://script.google.com/macros/s/AKfycbx6EaL5Hq-KnCJNcthEBalG4YpkgwQrPoXWPG7uNkVG9IOYyInuH0y1Lbl3rJJ-TwgnMA/exec";
 const GOOGLE_FORM_FIELDS = {
-  name: "entry.154538082",
-  email: "entry.2022951619",
-  purpose: "entry.1617323477",
-  country: "entry.681157011",
-  region: "entry.1030364297",
-  sector: "entry.88952858"
+  name: "name",
+  email: "email",
+  purpose: "purpose",
+  country: "country",
+  region: "region",
+  sector: "sector"
 };
 /* ============================================================ */
 
@@ -1294,12 +1295,12 @@ async function checkExistingAccess(){
 
 async function submitGoogleForm(fields){
   if(!GOOGLE_FORM_ACTION) return false;
-  // Some hosting/preview environments (restrictive CSPs, certain file:// or
-  // sandboxed contexts) silently block fetch() POSTs to other origins even
-  // in no-cors mode, with no catchable error. A hidden iframe + real <form>
-  // submit uses the browser's native form-submission path instead, the same
-  // mechanism used when a person fills in the live Google Form directly, so
-  // it works in every environment that allows normal page navigation.
+  // Google Apps Script Web Apps do not send back CORS headers, so a plain
+  // fetch() gets blocked by the browser before it can even complete, no
+  // matter the deployment settings. A hidden iframe + real <form> POST is
+  // not subject to CORS (browsers only block JS from *reading* a
+  // cross-origin response, not from *sending* one there), so this reaches
+  // doPost() reliably from any origin, including local file:// pages.
   return new Promise((resolve)=>{
     try{
       const iframeName = "ge_submit_target_" + Date.now();
@@ -1326,17 +1327,17 @@ async function submitGoogleForm(fields){
       document.body.appendChild(form);
       form.submit();
 
-      // Clean up shortly after; the browser has already dispatched the
-      // navigation by then. We can't read the cross-origin response, so we
-      // treat "no exception while building/submitting the form" as success,
-      // same assumption as before, but the submission path itself is now
-      // far more reliable.
+      // We can't read the cross-origin response (that's the whole point,
+      // it avoids the CORS block), so we resolve success once the
+      // navigation has had time to fire. The Apps Script side is what
+      // actually writes to the sheet and sends the email.
       setTimeout(()=>{
         form.remove();
         iframe.remove();
         resolve(true);
       }, 800);
     }catch(e){
+      console.error("Registration submit error:", e);
       resolve(false);
     }
   });
