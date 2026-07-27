@@ -1294,16 +1294,52 @@ async function checkExistingAccess(){
 
 async function submitGoogleForm(fields){
   if(!GOOGLE_FORM_ACTION) return false;
-  try{
-    const body = new URLSearchParams();
-    Object.keys(GOOGLE_FORM_FIELDS).forEach(k=>{
-      if(GOOGLE_FORM_FIELDS[k]) body.append(GOOGLE_FORM_FIELDS[k], fields[k] || "");
-    });
-    await fetch(GOOGLE_FORM_ACTION, {method:"POST", mode:"no-cors", body});
-    return true; // no-cors gives no readable response; treat the fetch not throwing as success
-  }catch(e){
-    return false;
-  }
+  // Some hosting/preview environments (restrictive CSPs, certain file:// or
+  // sandboxed contexts) silently block fetch() POSTs to other origins even
+  // in no-cors mode, with no catchable error. A hidden iframe + real <form>
+  // submit uses the browser's native form-submission path instead, the same
+  // mechanism used when a person fills in the live Google Form directly, so
+  // it works in every environment that allows normal page navigation.
+  return new Promise((resolve)=>{
+    try{
+      const iframeName = "ge_submit_target_" + Date.now();
+      const iframe = document.createElement('iframe');
+      iframe.name = iframeName;
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      const form = document.createElement('form');
+      form.action = GOOGLE_FORM_ACTION;
+      form.method = 'POST';
+      form.target = iframeName;
+      form.style.display = 'none';
+
+      Object.keys(GOOGLE_FORM_FIELDS).forEach(k=>{
+        if(!GOOGLE_FORM_FIELDS[k]) return;
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = GOOGLE_FORM_FIELDS[k];
+        input.value = fields[k] || "";
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+
+      // Clean up shortly after; the browser has already dispatched the
+      // navigation by then. We can't read the cross-origin response, so we
+      // treat "no exception while building/submitting the form" as success,
+      // same assumption as before, but the submission path itself is now
+      // far more reliable.
+      setTimeout(()=>{
+        form.remove();
+        iframe.remove();
+        resolve(true);
+      }, 800);
+    }catch(e){
+      resolve(false);
+    }
+  });
 }
 
 function buildMailtoFallback(fields){
