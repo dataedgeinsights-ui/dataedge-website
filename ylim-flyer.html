@@ -222,6 +222,12 @@
     line-height: 1.45;
   }
 
+  .learn-item span {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
   .dot {
     width: 6px;
     height: 6px;
@@ -234,12 +240,14 @@
   /* ── PRICING STRIP ── */
   .pricing {
     background: #F4F1EB;
-    padding: 20px 52px;
+    padding: 22px 52px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    justify-content: flex-start;
+    gap: 32px;
   }
+
+  .pricing .enrol-btn { margin-left: auto; }
 
   .price-block {
     text-align: center;
@@ -269,8 +277,42 @@
 
   .price-divider {
     width: 1px;
-    height: 44px;
+    height: 58px;
     background: #ddd;
+  }
+
+  .price-main { text-align: left; }
+
+  .price-hero {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .price-hero .amt {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: #0A3D6B;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .price-hero .per {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  .price-main .price-sub {
+    max-width: 260px;
+    margin-top: 6px;
+    line-height: 1.5;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
   }
 
   .enrol-btn {
@@ -332,7 +374,7 @@
     <div class="hero-label">Online Certification Programme</div>
     <div class="ylim-big">YL<span>I</span>M</div>
     <div class="hero-sub">Youth Leadership Impact Model<br>Practitioner Certification</div>
-    <div class="cert-badge">Enrol Anytime — Start Immediately</div>
+    <div class="cert-badge">Enrol anytime · Cancel anytime</div>
   </div>
 
   <!-- STATS -->
@@ -415,43 +457,19 @@
 
   <!-- PRICING STRIP -->
   <div class="pricing">
-    <div class="price-block">
-      <div class="price-label">Individual</div>
-      <div class="price-val">GHS 200</div>
-      <div class="price-sub">1 seat · any track</div>
-    </div>
-    <div class="price-divider"></div>
-    <div class="price-block">
-      <div class="price-label">2 seats</div>
-      <div class="price-val">GHS 180</div>
-      <div class="price-sub">Per person</div>
-    </div>
-    <div class="price-divider"></div>
-    <div class="price-block">
-      <div class="price-label">3–5 seats</div>
-      <div class="price-val">GHS 150</div>
-      <div class="price-sub">Per person</div>
-    </div>
-    <div class="price-divider"></div>
-    <div class="price-block">
-      <div class="price-label">6–10 seats</div>
-      <div class="price-val">GHS 120</div>
-      <div class="price-sub">Per person</div>
-    </div>
-    <div class="price-divider"></div>
-    <div class="price-block">
-      <div class="price-label">11+ seats</div>
-      <div class="price-val">Negotiated</div>
-      <div class="price-sub">Custom cohort available</div>
+    <div class="price-main">
+      <div class="price-label">Subscription</div>
+      <div class="price-hero"><span class="amt">US$25</span><span class="per">per month</span></div>
+      <div class="price-sub">All 4 modules, all 20 lessons, the Excel workbook and the interactive model. Cancel anytime.</div>
     </div>
     <div class="price-divider"></div>
     <div class="price-block">
       <div class="price-label">Trainer Licence</div>
-      <div class="price-val" style="font-size:18px;">GHS 2,000</div>
-      <div class="price-sub">Per year · Facilitator track</div>
+      <div class="price-val">US$175</div>
+      <div class="price-sub">Per year. Facilitator track only.</div>
     </div>
     <div class="price-divider"></div>
-    <a class="enrol-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdZSp6vHCI3ggp9lNKwdY3sdvzEc82MU-kknKn0uTLPKnFFwg/viewform" target="_blank">Enrol Now</a>
+    <a class="enrol-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdZSp6vHCI3ggp9lNKwdY3sdvzEc82MU-kknKn0uTLPKnFFwg/viewform" target="_blank">Start Subscription</a>
   </div>
 
   <!-- FOOTER -->
