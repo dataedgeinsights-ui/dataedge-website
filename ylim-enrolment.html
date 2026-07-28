@@ -96,7 +96,12 @@
     font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 4px;
   }
 
-  .section-sub { font-size: 12px; color: var(--light); margin-bottom: 24px; line-height: 1.5; }
+  .section-sub {
+    font-size: 12px; color: var(--light); margin-bottom: 24px; line-height: 1.5;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
 
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; }
   .field { display: flex; flex-direction: column; gap: 6px; }
@@ -156,6 +161,11 @@
 
   /* ── CHECKBOXES ── */
   .checkbox-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .checkbox-row span {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
   .checkbox-row input[type="checkbox"] {
     width: 16px; height: 16px; accent-color: var(--navy);
     flex-shrink: 0; margin-top: 2px; cursor: pointer;
@@ -170,6 +180,9 @@
     background: var(--sand); border-left: 3px solid var(--navy);
     padding: 16px 18px; font-size: 12px; color: var(--mid);
     line-height: 1.6; margin-bottom: 24px;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
   }
 
   /* ── SUBMIT ── */
@@ -227,6 +240,9 @@
   .confirm-body {
     font-size: 14px; color: var(--mid); line-height: 1.6;
     max-width: 460px; margin: 0 auto;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
   }
 
   .confirm-body a { color: var(--green); text-decoration: none; font-weight: 600; }
@@ -234,8 +250,10 @@
   .email-preview {
     background: var(--sand); border: 1px solid var(--border);
     border-radius: 4px; padding: 20px 24px; margin: 24px auto 0;
-    text-align: left; max-width: 460px; font-size: 13px;
+    text-align: justify; max-width: 460px; font-size: 13px;
     color: var(--mid); line-height: 1.7;
+    -webkit-hyphens: auto;
+    hyphens: auto;
   }
 
   .email-preview-label {
@@ -303,11 +321,6 @@
           <input type="email" id="email" name="email" placeholder="you@example.com" required>
           <div class="hint">Your confirmation email will be sent here</div>
           <div class="field-error" id="err-email">Please enter a valid email address.</div>
-        </div>
-        <div class="field">
-          <label>Phone / WhatsApp <span class="req">✦</span></label>
-          <input type="tel" id="phone" name="phone" placeholder="+233 __ ___ ____" required>
-          <div class="field-error" id="err-phone">Please enter your phone number.</div>
         </div>
         <div class="field">
           <label>Country <span class="req">✦</span></label>
@@ -511,15 +524,10 @@
           </select>
           <div class="field-error" id="err-country">Please select your country.</div>
         </div>
-        <div class="field">
+        <div class="field span-2">
           <label>Preferred Name (for certificate)</label>
           <input type="text" id="cert_name" name="cert_name" placeholder="Leave blank to use First + Last name">
           <div class="hint">Name that will appear on your certificate</div>
-        </div>
-        <div class="field span-2">
-          <label>LinkedIn Profile URL</label>
-          <input type="text" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
-          <div class="hint">Optional — we share certified practitioners on our channels</div>
         </div>
       </div>
 
@@ -535,15 +543,10 @@
 
       <div class="form-grid">
         <div class="field">
-          <label>Organisation Name <span class="req">✦</span></label>
-          <input type="text" id="org_name" name="org_name" placeholder="e.g. Ghana Youth Foundation" required>
-          <div class="field-error" id="err-org_name">Please enter your organisation name.</div>
-        </div>
-        <div class="field">
           <label>Organisation Type <span class="req">✦</span></label>
           <select id="org_type" name="org_type" required>
             <option value="" disabled selected>Select type</option>
-            <option>NGO / Non-profit</option>
+            <option>NGO/Non Profit</option>
             <option>Government / Public sector</option>
             <option>Corporate / Private sector</option>
             <option>International development / Donor</option>
@@ -558,22 +561,22 @@
           <input type="text" id="role" name="role" placeholder="e.g. Programme Manager" required>
           <div class="field-error" id="err-role">Please enter your role or job title.</div>
         </div>
-        <div class="field">
+        <div class="field span-2">
           <label>Years in Youth Development</label>
           <select id="experience" name="experience">
             <option value="" disabled selected>Select range</option>
-            <option>Less than 1 year</option>
-            <option>1–3 years</option>
-            <option>3–5 years</option>
-            <option>5–10 years</option>
-            <option>10+ years</option>
+            <option>Less than 1</option>
+            <option>1-2</option>
+            <option>3-5</option>
+            <option>6-10</option>
+            <option>11+</option>
           </select>
         </div>
         <div class="field span-2">
           <label>Have you used any M&amp;E frameworks for youth leadership before?</label>
           <select id="prior_framework" name="prior_framework">
             <option value="" disabled selected>Select one</option>
-            <option>No — this will be my first</option>
+            <option>No-this will be my first time</option>
             <option>Yes — internal/custom frameworks</option>
             <option>Yes — donor-mandated frameworks (e.g. logframes)</option>
             <option>Yes — other published models</option>
@@ -588,12 +591,12 @@
           <label>How did you hear about this programme?</label>
           <select id="referral" name="referral">
             <option value="" disabled selected>Select one</option>
-            <option>DataEdge website</option>
+            <option>DataEdge Website</option>
             <option>LinkedIn</option>
-            <option>WhatsApp / Social media</option>
-            <option>Colleague or peer referral</option>
-            <option>Conference or event</option>
-            <option>Email newsletter</option>
+            <option>WhatsApp/Social Media</option>
+            <option>Colleague/Peer Referrals</option>
+            <option>Conference/Event</option>
+            <option>Email/Newsletter</option>
             <option>Other</option>
           </select>
         </div>
@@ -615,21 +618,21 @@
       </label>
       <div class="track-grid">
         <label class="track-option">
-          <input type="radio" name="track" value="Institutional Track">
+          <input type="radio" name="track" value="Institutional (For organisations embedding YLIM into M&amp;E Systems)">
           <div class="track-card">
             <div class="track-name">Institutional</div>
             <div class="track-for">For organisations embedding YLIM into M&amp;E systems</div>
           </div>
         </label>
         <label class="track-option green">
-          <input type="radio" name="track" value="Facilitator Track">
+          <input type="radio" name="track" value="Facilitator (For trainers delivering YLIM content to others)">
           <div class="track-card">
             <div class="track-name">Facilitator</div>
             <div class="track-for">For trainers delivering YLIM content to others</div>
           </div>
         </label>
         <label class="track-option purple">
-          <input type="radio" name="track" value="Programme Manager Track">
+          <input type="radio" name="track" value="Programme Manager (For M&amp;E Officers and Programme Leads)">
           <div class="track-card">
             <div class="track-name">Programme Manager</div>
             <div class="track-for">For M&amp;E officers &amp; programme leads</div>
@@ -641,27 +644,15 @@
 
       <div class="form-divider"></div>
 
-      <div class="section-heading" style="font-size:15px; margin-bottom:4px;">Number of Seats</div>
-      <div class="section-sub" style="margin-bottom:16px;">Enrolling colleagues from the same organisation? Group pricing applies.</div>
+      <div class="section-heading" style="font-size:15px; margin-bottom:4px;">Your Subscription</div>
+      <div class="section-sub" style="margin-bottom:16px;">Access to the YLIM Certification Platform is billed as a monthly subscription of <strong>US$25</strong>. You keep full access to all four modules for as long as your subscription is active, and you can cancel at any time.</div>
 
       <div class="form-grid" style="margin-bottom:8px;">
-        <div class="field">
-          <label>Number of seats <span class="req">✦</span></label>
-          <select id="seats" name="seats" required>
-            <option value="" disabled selected>Select</option>
-            <option value="1 seat — GHS 200 per person">1 seat — GHS 200 per person</option>
-            <option value="2 seats — GHS 180 per person">2 seats — GHS 180 per person</option>
-            <option value="3–5 seats — GHS 150 per person">3–5 seats — GHS 150 per person</option>
-            <option value="6–10 seats — GHS 120 per person">6–10 seats — GHS 120 per person</option>
-            <option value="11+ seats — Negotiated, contact DataEdge for a tailored quote">11+ seats — Negotiated, contact DataEdge for a tailored quote</option>
-          </select>
-          <div class="field-error" id="err-seats">Please select the number of seats.</div>
-        </div>
         <div class="field">
           <label>Payment Method <span class="req">✦</span></label>
           <select id="payment_method" name="payment_method" required>
             <option value="" disabled selected>Select</option>
-            <option>Mobile Money (MTN / Vodafone / AirtelTigo)</option>
+            <option>Mobile Money (MTN/Telecel/AirtelTigo)</option>
             <option>Bank Transfer (Ghana)</option>
             <option>Bank Transfer (International)</option>
             <option>Institutional Purchase Order</option>
@@ -669,8 +660,8 @@
           <div class="field-error" id="err-payment_method">Please select a payment method.</div>
         </div>
         <div class="field">
-          <label>Billing Name / Organisation</label>
-          <input type="text" id="billing_name" name="billing_name" placeholder="Name or org for invoice">
+          <label>Billing Name</label>
+          <input type="text" id="billing_name" name="billing_name" placeholder="Name for the invoice">
         </div>
         <div class="field">
           <label>Billing Email</label>
@@ -683,7 +674,7 @@
 
       <div class="checkbox-row">
         <input type="checkbox" id="trainer_addon" name="trainer_addon">
-        <span><strong>Add Trainer Licensing (GHS 2,000/yr)</strong> — Facilitator track only. Grants you the right to deliver YLIM under DataEdge licence. Billed annually after certification.</span>
+        <span><strong>Add Trainer Licensing (US$175 per year)</strong>, Facilitator track only. Grants you the right to deliver YLIM under DataEdge licence. Billed annually after certification, separately from your monthly subscription.</span>
       </div>
       <div class="checkbox-row">
         <input type="checkbox" id="custom_cohort" name="custom_cohort">
@@ -692,8 +683,17 @@
 
       <div class="form-divider"></div>
 
+      <div class="form-grid" style="margin-bottom:24px;">
+        <div class="field span-2">
+          <label>Any questions or notes for DataEdge?</label>
+          <textarea id="notes" name="notes" placeholder="Optional. Anything you would like us to know before you start."></textarea>
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
       <div class="declaration">
-        By submitting this form I confirm that the information provided is accurate and I agree to the DataEdge Insights Ghana Certification Programme terms and conditions. I understand that enrolment is confirmed only upon receipt of full payment, and that a place cannot be guaranteed until payment is made. I consent to DataEdge Insights Ghana contacting me regarding this programme and related professional development opportunities.
+        By submitting this form I confirm that the information provided is accurate and I agree to the DataEdge Insights Ghana Certification Programme terms and conditions. I understand that enrolment is confirmed only upon receipt of my first monthly subscription payment, that the subscription renews monthly until I cancel, and that access cannot be granted until the first payment is made. I consent to DataEdge Insights Ghana contacting me regarding this programme and related professional development opportunities.
       </div>
 
       <div class="sending-msg" id="sending-msg">
@@ -702,7 +702,7 @@
 
       <div class="form-footer">
         <div class="submit-note">
-          A confirmation email will be sent to you immediately. A payment invoice will follow within 2 working days.
+          A confirmation email will be sent to you immediately. Your first monthly invoice will follow within 2 working days.
         </div>
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
           <button type="button" class="submit-btn" style="background:#888;" onclick="goStep(2)">← Back</button>
@@ -724,7 +724,7 @@
     <div class="confirm-body">
       Thank you, <strong id="confirm-name"></strong>! Your enrolment for the YLIM Practitioner Certification has been received.<br><br>
       A confirmation email has been sent to <strong id="confirm-email"></strong>. Please check your inbox — including your spam folder — within a few minutes.<br><br>
-      A payment invoice will follow within 2 working days. Once payment is confirmed, your course access details will be sent to you.<br><br>
+      Your first monthly invoice will follow within 2 working days. Once that payment is confirmed, your course access details will be sent to you.<br><br>
       Questions? Email us at <a href="mailto:dataedgeinsights@gmail.com">dataedgeinsights@gmail.com</a>, WhatsApp us on <a href="https://wa.me/233531667123" target="_blank">+233 531 667 123</a>, or visit <a href="https://www.dataedgeinsights.org" target="_blank">www.dataedgeinsights.org</a>.
     </div>
 
@@ -776,14 +776,16 @@
 //    Name: {{to_name}}
 //    Email: {{to_email}}
 //    Country: {{country}}
-//    Organisation: {{organisation}}
+//    Organisation Type: {{org_type}}
 //    Role: {{role}}
 //    Track: {{track}}
-//    Seats: {{seats}}
+//    Plan: {{plan}}
 //    Payment Method: {{payment_method}}
+//    Notes: {{notes}}
 //
-//    Next steps: You will receive a payment invoice within 2 working days.
-//    Course access is granted upon payment confirmation.
+//    Next steps: You will receive your first monthly invoice within 2 working days.
+//    Course access is granted upon confirmation of the first payment.
+//    The subscription renews monthly until cancelled.
 //
 //    For questions: dataedgeinsights@gmail.com | WhatsApp: +233 531 667 123
 //    Website: https://www.dataedgeinsights.org
@@ -824,9 +826,9 @@ function goStep(n) {
 
 // ══ VALIDATION ══
 const REQUIRED = {
-  1: ['first_name','last_name','email','phone','country'],
-  2: ['org_name','org_type','role','motivation'],
-  3: ['seats','payment_method']
+  1: ['first_name','last_name','email','country'],
+  2: ['org_type','role','motivation'],
+  3: ['payment_method']
 };
 
 function validateStep(step) {
@@ -855,6 +857,62 @@ function validateStep(step) {
   return ok;
 }
 
+// ══ GOOGLE FORM FIELD MAP ══
+// Entry IDs for the live YLIM enrolment Google Form. Keep this map and the
+// option values in the fields above in sync with the Google Form: for multiple
+// choice questions the strings must match exactly or the answer is discarded.
+const GFORM_ID = '1FAIpQLSdZSp6vHCI3ggp9lNKwdY3sdvzEc82MU-kknKn0uTLPKnFFwg';
+const GFORM_ENTRY = {
+  first_name:      'entry.676946465',
+  last_name:       'entry.572157850',
+  email:           'entry.2058673277',
+  country:         'entry.1957437460',
+  cert_name:       'entry.810525639',
+  org_type:        'entry.718421526',
+  role:            'entry.1210556094',
+  experience:      'entry.1870747164',
+  prior_framework: 'entry.1640199122',
+  motivation:      'entry.673178746',
+  referral:        'entry.1903229678',
+  track:           'entry.110133012',
+  payment_method:  'entry.1189488463',
+  billing_name:    'entry.1839702724',
+  billing_email:   'entry.1425518772',
+  trainer_addon:   'entry.1741077348',
+  custom_cohort:   'entry.808729904',
+  notes:           'entry.19061639'
+};
+
+// Builds a prefilled Google Form URL from the data collected on this page.
+function buildPrefillUrl(d) {
+  const src = {
+    first_name: (d.to_name || '').split(' ')[0] || '',
+    last_name:  (d.to_name || '').split(' ').slice(1).join(' '),
+    email:      d.to_email,
+    country:    d.country,
+    cert_name:  d.cert_name,
+    org_type:   d.org_type,
+    role:       d.role,
+    experience: d.experience,
+    prior_framework: d.prior_framework,
+    motivation: d.motivation,
+    referral:   d.referral,
+    track:      d.track,
+    payment_method: d.payment_method,
+    billing_name:   d.billing_name === '\u2014' ? '' : d.billing_name,
+    billing_email:  d.billing_email,
+    trainer_addon:  d.trainer_addon,
+    custom_cohort:  d.custom_cohort,
+    notes:          d.notes
+  };
+  const parts = ['usp=pp_url'];
+  Object.keys(GFORM_ENTRY).forEach(k => {
+    const v = src[k];
+    if (v) parts.push(GFORM_ENTRY[k] + '=' + encodeURIComponent(v));
+  });
+  return 'https://docs.google.com/forms/d/e/' + GFORM_ID + '/viewform?' + parts.join('&');
+}
+
 // ══ COLLECT FORM DATA ══
 function collectData() {
   const g = id => (document.getElementById(id) || {}).value || '';
@@ -862,11 +920,8 @@ function collectData() {
   return {
     to_name:        `${g('first_name')} ${g('last_name')}`.trim(),
     to_email:       g('email'),
-    phone:          g('phone'),
     country:        g('country'),
     cert_name:      g('cert_name') || `${g('first_name')} ${g('last_name')}`.trim(),
-    linkedin:       g('linkedin') || '—',
-    organisation:   g('org_name'),
     org_type:       g('org_type'),
     role:           g('role'),
     experience:     g('experience') || 'Not specified',
@@ -874,12 +929,15 @@ function collectData() {
     motivation:     g('motivation'),
     referral:       g('referral') || 'Not specified',
     track:          trackEl ? trackEl.value : '—',
-    seats:          g('seats'),
+    plan:           'Monthly subscription, US$25 per month',
     payment_method: g('payment_method'),
     billing_name:   g('billing_name') || '—',
     billing_email:  g('billing_email') || g('email'),
-    trainer_addon:  document.getElementById('trainer_addon').checked ? 'Yes' : 'No',
-    custom_cohort:  document.getElementById('custom_cohort').checked ? 'Yes' : 'No',
+    trainer_addon:  document.getElementById('trainer_addon').checked
+                      ? 'Yes \u2014 I wish to add the Trainer Licensing' : 'No',
+    custom_cohort:  document.getElementById('custom_cohort').checked
+                      ? 'Yes-I am interested in a private/custom cohort for my organisation' : 'No',
+    notes:          g('notes') || 'None',
     reply_to:       'dataedgeinsights@gmail.com',
     from_name:      'DataEdge Insights Ghana',
   };
@@ -911,14 +969,17 @@ document.getElementById('enrolForm').addEventListener('submit', async function(e
         first_name:     data.to_name.split(' ')[0] || data.to_name,
         last_name:      data.to_name.split(' ').slice(1).join(' ') || '',
         email:          data.to_email,
-        organisation:   data.organisation,
-        job_title:      data.job_title,
+        org_type:       data.org_type,
+        job_title:      data.role,
         country:        data.country,
         track:          data.track,
-        seats:          data.seats,
+        plan:           data.plan,
         payment_method: data.payment_method,
         trainer_addon:  data.trainer_addon,
         motivation:     data.motivation || '',
+        notes:          data.notes,
+        billing_name:   data.billing_name,
+        billing_email:  data.billing_email,
       })
     });
   } catch (err) {
@@ -931,14 +992,15 @@ document.getElementById('enrolForm').addEventListener('submit', async function(e
     const formspreePayload = {
       name:           data.to_name,
       email:          data.to_email,
-      organisation:   data.organisation,
+      org_type:       data.org_type,
       country:        data.country,
-      job_title:      data.job_title,
+      job_title:      data.role,
       track:          data.track,
-      seats:          data.seats,
+      plan:           data.plan,
       payment_method: data.payment_method,
       billing_email:  data.billing_email,
       motivation:     data.motivation || '',
+      notes:          data.notes,
       _subject:       'New YLIM Enrolment — ' + data.to_name + ' (' + data.track + ')'
     };
     const res = await fetch('https://formspree.io/f/maqvjqlq', {
@@ -991,18 +1053,20 @@ function showConfirmation(data, emailSent) {
 
     <strong>Your Enrolment Summary</strong><br>
     Name: ${data.to_name}<br>
-    Organisation: ${data.organisation}<br>
+    Organisation Type: ${data.org_type}<br>
     Country: ${data.country}<br>
     Track: ${data.track}<br>
-    Seats: ${data.seats}<br>
-    Payment Method: ${data.payment_method}<br><br>
+    Plan: ${data.plan}<br>
+    Payment Method: ${data.payment_method}<br>
+    Notes: ${data.notes}<br><br>
 
     <strong>Important — What Happens Next</strong><br>
-    <strong>1. Complete your payment</strong> using your selected payment method. Send proof of payment to <strong>dataedgeinsights@gmail.com</strong> or WhatsApp <strong>+233 531 667 123</strong>.<br><br>
-    <strong>2. Payment verification</strong> — DataEdge Insights Ghana will verify your payment within <strong>24–48 hours</strong> of receiving proof.<br><br>
-    <strong>3. Platform access</strong> — Once payment is confirmed, you will receive a separate email with your personal login credentials to access the YLIM Certification Platform. Your login is personal and non-transferable.<br><br>
+    <strong>1. Complete your first payment</strong> of <strong>US$25</strong> using your selected payment method. Send proof of payment to <strong>dataedgeinsights@gmail.com</strong> or WhatsApp <strong>+233 531 667 123</strong>.<br><br>
+    <strong>2. Payment verification.</strong> DataEdge Insights Ghana will verify your payment within <strong>24 to 48 hours</strong> of receiving proof.<br><br>
+    <strong>3. Platform access.</strong> Once the first payment is confirmed, you will receive a separate email with your personal login credentials to access the YLIM Certification Platform. Your login is personal and non-transferable.<br><br>
+    <strong>4. Monthly renewal.</strong> Your subscription renews on the same date each month at US$25. You may cancel at any time by emailing us before your next billing date, and your access will continue to the end of the month you have paid for.<br><br>
 
-    Please note that <strong>access to the certification platform is granted only after full payment has been confirmed</strong>. A place on the programme cannot be guaranteed until payment is received.<br><br>
+    Please note that <strong>access to the certification platform is granted only after the first payment has been confirmed</strong>.<br><br>
 
     If you have any questions in the meantime, please do not hesitate to contact us:<br>
     📧 <strong>dataedgeinsights@gmail.com</strong><br>
