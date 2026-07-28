@@ -1251,9 +1251,9 @@ body {
         <input type="text" id="login-name" value="" placeholder="Your full name as it will appear on your certificate">
       </div>
       <div class="lfield">
-        <label>Track <span style="color:#c0392b;">*</span></label>
+        <label>Track</label>
         <select id="login-track">
-          <option value="" disabled selected>— Select your track —</option>
+          <option value="" disabled selected>— Confirmed when you sign in —</option>
           <option value="Facilitator">Facilitator Track</option>
           <option value="Institutional">Institutional Track</option>
           <option value="Programme Manager">Programme Manager Track</option>
@@ -1270,7 +1270,7 @@ body {
       </div>
       <div id="login-error" style="display:none; color:#c0392b; font-size:12px; margin-bottom:10px; line-height:1.6;"></div>
       <button class="login-btn" onclick="enterApp()">Enter Platform →</button>
-      <div class="login-note">Self-paced — learn at your own speed, on any device.<br>Progress is saved automatically.</div>
+      <div class="login-note">Self-paced. Learn at your own speed, on any device.<br>Progress is saved to your account and syncs across devices.</div>
     </div>
   </div>
 </div>
@@ -1296,6 +1296,7 @@ body {
         </div>
         <div class="header-progress-pct" id="global-progress-pct">0%</div>
       </div>
+      <div id="access-banner" style="display:none;font-family:'Outfit',sans-serif;font-size:10px;color:rgba(255,255,255,0.5);margin-right:14px;letter-spacing:0.04em;white-space:nowrap;"></div>
       <button onclick="logOff()" style="background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.65);font-size:11px;font-family:'Outfit',sans-serif;padding:5px 14px;border-radius:4px;cursor:pointer;margin-right:10px;letter-spacing:0.05em;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='transparent'">Log Off</button>
       <div class="header-avatar" id="header-avatar">A</div>
     </div>
@@ -1442,7 +1443,7 @@ const CONTENT = {
       </div>
 
       <h3>The Institutional Case</h3>
-      <p>When you can show a funder or board that a GHS 50,000 investment in youth leadership produced a measurable improvement in institutional productivity, retention, and innovation — expressed as a return on investment — the conversation changes entirely.</p>
+      <p>When you can show a funder or board that a US$50,000 investment in youth leadership produced a measurable improvement in institutional productivity, retention, and innovation — expressed as a return on investment — the conversation changes entirely.</p>
       <p>YLIM gives programme managers the language and the numbers to make this case.</p>
 
       <div class="callout callout-example">
@@ -2270,32 +2271,111 @@ const CONTENT = {
 // STATE
 // ══════════════════════════════════════
 // ══════════════════════════════════════
-// PERSISTENCE — localStorage
+// SERVER TRANSPORT
+// ══════════════════════════════════════
+// Apps Script endpoint. Credentials go in the POST body rather than the
+// query string so they do not end up in execution logs or browser history.
+// text/plain is deliberate: it keeps the request "simple" under CORS and
+// avoids a preflight that Apps Script cannot answer.
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSu0zYCAnMLKtDtuC_SxswpqmS-CDhnc4vblDGmvAe0HjviKj8e-k9tP52pf1cSA/exec';
+
+function apiCall(payload) {
+  return fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  }).then(function(r) { return r.json(); });
+}
+
+// ══════════════════════════════════════
+// PERSISTENCE — localStorage plus server sync
 // ══════════════════════════════════════
 const SAVE_KEY = 'ylim_progress_v1';
 
+// Chooses whichever snapshot is further along, so moving between devices
+// never silently discards work.
+function pickNewerProgress(local, remote) {
+  if (!local)  return remote;
+  if (!remote) return local;
+  const lt = local.savedAt  || 0;
+  const rt = remote.savedAt || 0;
+  if (lt !== rt) return lt > rt ? local : remote;
+  const lc = (local.completed  || []).length;
+  const rc = (remote.completed || []).length;
+  return rc > lc ? remote : local;
+}
+
+function applyProgress(snap) {
+  state.completed           = new Set(snap.completed || []);
+  state.exerciseAnswers     = snap.exerciseAnswers  || {};
+  state.exerciseUploads     = snap.exerciseUploads  || {};
+  state.quizAnswers         = snap.quizAnswers      || {};
+  state.quizAttempts        = snap.quizAttempts     || {};
+  state.quizLockout         = snap.quizLockout      || {};
+  state.openModules         = new Set(snap.openModules || ['m1']);
+  state.currentLesson       = snap.currentLesson    || 'home';
+  state.certId              = snap.certId           || null;
+  state.completionDate      = snap.completionDate   || null;
+  state.finalAssessFails    = snap.finalAssessFails || 0;
+  state.finalAssessDeadline = snap.finalAssessDeadline || null;
+  state.courseCompleted     = snap.courseCompleted  || false;
+}
+
+// Debounced push to the sheet. Failures are silent: localStorage still
+// holds the work and the next successful sync catches up.
+let _syncTimer = null;
+function scheduleSync() {
+  if (!state.userEmail || !state.authToken) return;
+  clearTimeout(_syncTimer);
+  _syncTimer = setTimeout(pushProgress, 3000);
+}
+
+function pushProgress() {
+  if (!state.userEmail || !state.authToken) return Promise.resolve();
+  return apiCall({
+    action:   'saveProgress',
+    email:    state.userEmail,
+    token:    state.authToken,
+    progress: buildSnapshot()
+  }).catch(function() {});
+}
+
+function showAccessBanner() {
+  if (!state.paidThrough) return;
+  const el = document.getElementById('access-banner');
+  if (el) {
+    el.innerHTML = 'Subscription active to <strong>' + state.paidThrough + '</strong>';
+    el.style.display = 'block';
+  }
+}
+
+function buildSnapshot() {
+  return {
+    savedAt: Date.now(),
+    userName: state.userName,
+    userTrack: state.userTrack,
+    userEmail: state.userEmail || '',
+    currentLesson: state.currentLesson,
+    completed: Array.from(state.completed),
+    exerciseAnswers: state.exerciseAnswers,
+    exerciseUploads: state.exerciseUploads,
+    quizAnswers: state.quizAnswers,
+    quizAttempts: state.quizAttempts,
+    quizLockout: state.quizLockout,
+    openModules: Array.from(state.openModules),
+    certId: state.certId || null,
+    completionDate: state.completionDate || null,
+    finalAssessFails: state.finalAssessFails || 0,
+    finalAssessDeadline: state.finalAssessDeadline || null,
+    courseCompleted: state.courseCompleted || false,
+  };
+}
+
 function saveState() {
   try {
-    const snap = {
-      userName: state.userName,
-      userTrack: state.userTrack,
-      userEmail: state.userEmail || '',
-      currentLesson: state.currentLesson,
-      completed: Array.from(state.completed),
-      exerciseAnswers: state.exerciseAnswers,
-      exerciseUploads: state.exerciseUploads,
-      quizAnswers: state.quizAnswers,
-      quizAttempts: state.quizAttempts,
-      quizLockout: state.quizLockout,
-      openModules: Array.from(state.openModules),
-      certId: state.certId || null,
-      completionDate: state.completionDate || null,
-      finalAssessFails: state.finalAssessFails || 0,
-      finalAssessDeadline: state.finalAssessDeadline || null,
-      courseCompleted: state.courseCompleted || false,
-    };
-    localStorage.setItem(SAVE_KEY, JSON.stringify(snap));
+    localStorage.setItem(SAVE_KEY, JSON.stringify(buildSnapshot()));
   } catch(e) {}
+  scheduleSync();
 }
 
 function loadState() {
@@ -2328,6 +2408,9 @@ let state = {
   finalAssessFails: 0,
   finalAssessDeadline: null,
   courseCompleted: false,
+  authToken: '',
+  paidThrough: null,
+  certPending: false,
 };
 
 // ══════════════════════════════════════
@@ -2335,6 +2418,9 @@ let state = {
 // ══════════════════════════════════════
 function logOff() {
   saveState();
+  pushProgress();
+  state.authToken = '';
+  state.paidThrough = null;
   document.getElementById('screen-app').style.display = 'none';
   document.getElementById('screen-login').style.display = 'flex';
   document.getElementById('login-name').value = '';
@@ -2369,7 +2455,6 @@ function enterApp() {
   const errors   = [];
 
   if (!name)     errors.push('Please enter your full name as it should appear on your certificate.');
-  if (!track)    errors.push('Please select your track.');
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   if (!email)    errors.push('Please enter your email address.');
   else if (!emailValid) errors.push('Please enter a valid email address.');
@@ -2385,43 +2470,51 @@ function enterApp() {
   btn.textContent = 'Verifying access…';
   btn.disabled = true;
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSu0zYCAnMLKtDtuC_SxswpqmS-CDhnc4vblDGmvAe0HjviKj8e-k9tP52pf1cSA/exec';
-
-  fetch(SCRIPT_URL + '?email=' + encodeURIComponent(email) + '&track=' + encodeURIComponent(track) + '&password=' + encodeURIComponent(password))
-    .then(r => r.json())
+  apiCall({ action: 'verify', email: email, password: password })
     .then(data => {
-      btn.textContent = 'Enter Platform →';
+      btn.textContent = 'Enter Platform \u2192';
       btn.disabled = false;
 
       if (data.status === 'approved') {
+        // The track comes from the sheet, not from the dropdown. The
+        // dropdown is only a fallback if the script has not been updated.
+        const serverTrack = (data.track || '').trim();
         state.userName  = name;
-        state.userTrack = track;
+        state.userTrack = serverTrack || track;
         state.userEmail = email;
-        const saved = loadState();
-        if (saved && saved.userEmail === email) {
-          state.completed           = new Set(saved.completed || []);
-          state.exerciseAnswers     = saved.exerciseAnswers  || {};
-          state.exerciseUploads     = saved.exerciseUploads  || {};
-          state.quizAnswers         = saved.quizAnswers      || {};
-          state.quizAttempts        = saved.quizAttempts     || {};
-          state.quizLockout         = saved.quizLockout      || {};
-          state.openModules         = new Set(saved.openModules || ['m1']);
-          state.currentLesson       = saved.currentLesson    || 'home';
-          state.certId              = saved.certId           || null;
-          state.completionDate      = saved.completionDate   || null;
-          state.finalAssessFails    = saved.finalAssessFails || 0;
-          state.finalAssessDeadline = saved.finalAssessDeadline || null;
-          state.courseCompleted     = saved.courseCompleted  || false;
-        }
+        state.authToken = data.token || '';
+        state.paidThrough = data.paidThrough || null;
+
+        const local  = loadState();
+        const remote = data.progress || null;
+        const usable = (local && local.userEmail === email) ? local : null;
+        const snap   = pickNewerProgress(usable, remote);
+        if (snap) applyProgress(snap);
+
         state.userName  = name;
-        state.userTrack = track;
+        state.userTrack = serverTrack || track;
         state.userEmail = email;
         saveState();
+
+        if (serverTrack && track && serverTrack !== track) {
+          setTimeout(function() {
+            alert('Your subscription is registered for the ' + serverTrack +
+                  ' track, so that is what has been loaded. If this is wrong, contact DataEdge on +233 531 667 123.');
+          }, 400);
+        }
+
         document.getElementById('header-avatar').textContent = name.charAt(0).toUpperCase();
         document.getElementById('screen-login').style.display = 'none';
         document.getElementById('screen-app').style.display   = 'flex';
         buildSidebar();
         navigate(state.currentLesson || 'home');
+        showAccessBanner();
+
+      } else if (data.status === 'lapsed') {
+        const until = data.paidThrough ? (' Your access ran to <strong>' + data.paidThrough + '</strong>.') : '';
+        errorEl.innerHTML = '\u23F3 <strong>Subscription ended.</strong>' + until +
+          ' To carry on with the course, restart your monthly subscription by contacting DataEdge on WhatsApp: <strong>+233 531 667 123</strong> or email <strong>dataedgeinsights@gmail.com</strong>. Your saved progress and any certificate already awarded are kept.';
+        errorEl.style.display = 'block';
 
       } else if (data.status === 'wrong_password') {
         errorEl.innerHTML = '🔒 <strong>Incorrect password.</strong> Please check your password and try again. If you have forgotten your password contact DataEdge on WhatsApp: <strong>+233 531 667 123</strong> or email <strong>dataedgeinsights@gmail.com</strong>.';
@@ -3339,6 +3432,34 @@ function calcICI() {
 // CERTIFICATE
 // ══════════════════════════════════════
 // ── Certificate ID generator ──
+// Asks the sheet to record the completion and return the official ID.
+function issueCertificate(today) {
+  apiCall({
+    action:  'certify',
+    email:   state.userEmail,
+    token:   state.authToken,
+    name:    state.userName,
+    track:   state.userTrack,
+    date:    today
+  }).then(function(data) {
+    if (data && data.certId) {
+      state.certId = data.certId;
+      state.completionDate = data.date || today;
+    } else {
+      state.certId = generateCertId(state.userName, state.userTrack, state.userEmail) + '-P';
+      state.completionDate = today;
+    }
+  }).catch(function() {
+    state.certId = generateCertId(state.userName, state.userTrack, state.userEmail) + '-P';
+    state.completionDate = today;
+  }).then(function() {
+    state.courseCompleted = true;
+    state.certPending = false;
+    saveState();
+    navigate('cert');
+  });
+}
+
 function generateCertId(name, track, email) {
   const seed = (name + track + email + Date.now()).split('').reduce((a,c)=>a+c.charCodeAt(0),0);
   const hex = (seed * 2654435761 >>> 0).toString(16).toUpperCase().padStart(8,'0');
@@ -3519,12 +3640,21 @@ function renderCert() {
       </div>`;
   }
 
-  // Generate cert ID once and persist it
+  // The certificate ID is issued and recorded by the sheet, so it can be
+  // verified later. The local generator is only a fallback if the server
+  // cannot be reached, and anything it produces is marked provisional.
   if (!state.certId) {
-    state.certId = generateCertId(state.userName, state.userTrack, state.userEmail);
-    state.completionDate = today;
-    state.courseCompleted = true;
-    saveState();
+    if (!state.certPending) {
+      state.certPending = true;
+      issueCertificate(today);
+    }
+    return `
+      <div class="cert-wrap">
+        <div class="callout callout-note" style="text-align:left;">
+          <div class="callout-title">Issuing your certificate</div>
+          Recording your completion and generating your certificate ID. This takes a moment.
+        </div>
+      </div>`;
   }
   const certId   = state.certId;
   const certDate = state.completionDate || today;
