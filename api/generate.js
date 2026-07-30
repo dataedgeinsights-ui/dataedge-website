@@ -24,15 +24,15 @@
  * Optional environment variables
  * ------------------------------
  *   ALLOWED_ORIGINS        comma-separated list, e.g.
- *                          (required when the site and this function are on
- *                          different domains, since the browser will refuse the
- *                          response without a matching CORS header)
  *                          https://www.dataedgeinsights.org,https://dataedgeinsights.org
  *                          Requests from other origins are refused. Defaults to
- *                          allowing same-origin requests only.
+ *                          allowing same-origin requests only. Required when the
+ *                          site and this function sit on different domains,
+ *                          since the browser discards a response with no
+ *                          matching CORS header.
  *   DEFAULT_MODEL          model used when the caller does not name one, and
-*                          always permitted. Default: claude-sonnet-4-6
-*   ALLOWED_MODELS         comma-separated list of additional permitted models
+ *                          always permitted. Default: claude-sonnet-4-6
+ *   ALLOWED_MODELS         comma-separated list of additional permitted models
  *   MAX_TOKENS_CAP         hard ceiling on max_tokens. Default: 8000
  *   REQUIRE_ACCESS_CODE    set to "1" to require a valid subscription code on
  *                          every request (see VERIFY_URL). Default: off.
@@ -141,14 +141,6 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return fail(res, 405, "Use POST.");
   if (!originPermitted(req)) return fail(res, 403, "This endpoint is not available from that origin.");
 
-  // Echo the origin back when it is allowlisted, so the function can serve a
-  // site hosted on a different domain (for example GitHub Pages).
-  const reqOrigin = (req.headers.origin || "").replace(/\/$/, "");
-  if (reqOrigin && (allowedOrigins().length === 0 || allowedOrigins().includes(reqOrigin))) {
-    res.setHeader("Access-Control-Allow-Origin", reqOrigin);
-    res.setHeader("Vary", "Origin");
-  }
-
   const key = apiKey();
   if (!key) {
     return fail(res, 500, "The server has no API key configured. Set ANTHROPIC_API_KEY in the hosting dashboard and redeploy.");
@@ -234,4 +226,3 @@ export default async function handler(req, res) {
                : "Could not reach the generation service. Try again in a moment.");
   }
 }
-
