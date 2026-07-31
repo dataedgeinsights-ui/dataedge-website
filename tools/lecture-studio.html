@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DataEdge Lecture Studio</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script src="../vendor/pdf.min.js" onerror="console.error('Missing ../vendor/pdf.min.js — PDF reading will not work.')"></script>
+<script src="../vendor/mammoth.browser.min.js" onerror="console.error('Missing ../vendor/mammoth.browser.min.js — Word reading will not work.')"></script>
+<script src="../vendor/pptxgen.bundle.js" onerror="console.error('Missing ../vendor/pptxgen.bundle.js — slide export will not work.')"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
@@ -599,7 +599,7 @@ function timeAgo(iso){
 
 async function parseArrayBufferByExt(buf, ext){
   if(ext === 'pdf'){
-    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "../vendor/pdf.worker.min.js";
     const pdf = await pdfjsLib.getDocument({data: buf}).promise;
     let text = "";
     const maxPages = Math.min(pdf.numPages, 40);
@@ -636,12 +636,16 @@ async function extractFromFile(file){
 }
 
 /* ---- fetching a document from a pasted link ----
-   Client-side fetch is subject to the source site's CORS policy. Many
-   academic hosts and Google Drive do not send the headers a browser
-   requires, so a direct fetch is tried first and a public CORS relay
-   (allorigins.win) is used as a fallback. That relay is a third party:
-   the document passes through it, so this is not suitable for
-   confidential material. */
+   A browser may only fetch a document from another site when that site
+   permits it. Many academic hosts, publishers and Google's export URLs do
+   not, so a pasted link will often fail. It fails with a clear message
+   telling the user to upload the file instead.
+
+   A public relay service was previously used to work around this. It has
+   been removed deliberately: the document passed through a third party's
+   server, which is not acceptable for course material or programme
+   documents held under a confidentiality condition. Uploading a file keeps
+   it entirely inside the browser. */
 function normalizeSourceUrl(raw){
   let url = raw.trim();
   let gdriveFile = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
@@ -665,18 +669,13 @@ function guessExtFromUrlOrType(url, ctype){
 }
 async function fetchDocFromUrl(rawUrl){
   const {url, label} = normalizeSourceUrl(rawUrl);
-  let resp = null, viaProxy = false;
+  let resp = null;
   try{
     resp = await fetch(url, {mode:'cors'});
     if(!resp.ok) throw new Error('HTTP '+resp.status);
   }catch(directErr){
-    try{
-      const proxied = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
-      resp = await fetch(proxied);
-      if(!resp.ok) throw new Error('HTTP '+resp.status);
-      viaProxy = true;
-    }catch(proxyErr){
-      throw new Error("Couldn't fetch that link (the site likely blocks cross-origin access, or the file isn't shared publicly). Try downloading it and uploading the file instead.");
+    {
+      throw new Error("That link could not be read directly by your browser, which is normal: most sites, including Google Docs and Drive, do not allow it. Download the file and use Upload instead, which also keeps the document on your own device.");
     }
   }
   const buf = await resp.arrayBuffer();
@@ -684,7 +683,6 @@ async function fetchDocFromUrl(rawUrl){
   const ext = guessExtFromUrlOrType(url, ctype);
   const parsed = await parseArrayBufferByExt(buf, ext);
   let warn = parsed.warn;
-  if(viaProxy){ warn = (warn ? warn+" " : "") + "Fetched via a public relay because the source blocked direct access; not suitable for confidential documents."; }
   return {text: parsed.text, ext, warn, label};
 }
 
@@ -1634,7 +1632,7 @@ function renderGate(){
       return;
     }
     fields.agreedTerms = "yes";
-    fields.termsVersion = "1.1";
+    fields.termsVersion = "1.2";
     fields.agreedAt = new Date().toISOString();
     state.gateError = null;
     e.target.disabled = true; e.target.textContent = "Sending...";
@@ -1917,7 +1915,7 @@ function renderStep2(){
         <input type="text" id="link-pub" placeholder="Or paste a link to a reading (PDF, Google Drive, or Google Docs)">
         <button class="btn btn-secondary" id="btn-fetch-pub" type="button">Add link</button>
       </div>
-      <div class="fieldnote" style="margin-top:8px;">Links only work if the source allows it: many sites block cross-origin access from a browser tool like this. Google Drive and Google Docs links work if shared as "anyone with the link". If a fetch fails, or if a document is confidential, download it and upload the file instead. When a direct fetch is blocked, the studio automatically retries through a public relay (allorigins.win) &mdash; the document passes through that third party, so avoid pasting links to sensitive material.</div>
+      <div class="fieldnote" style="margin-top:8px;">Most links will not work, and that is normal: sites including Google Docs and Google Drive do not allow a browser tool to read their files directly. <strong>Uploading is the reliable route</strong>, and it keeps the document on your own device, so use it for anything confidential.</div>
       <div class="filelist" id="pubs-list"></div>
     </div>
     <div class="btnrow">

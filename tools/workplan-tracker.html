@@ -6,7 +6,7 @@
 <title>DataEdge Workplan Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="../vendor/xlsx.full.min.js" onerror="console.error('Missing ../vendor/xlsx.full.min.js — Excel export will not work.')"></script>
 <style>
 
 :root{
@@ -940,7 +940,7 @@ renderDashboard();
         return;
       }
       safeSet('awt-download-email', email);
-      safeSet('awt-terms-agreed', JSON.stringify({version:"1.1", at:new Date().toISOString()}));
+      safeSet('awt-terms-agreed', JSON.stringify({version:"1.2", at:new Date().toISOString()}));
       overlay.remove();
       if(onSuccess) onSuccess(); // runs immediately, still inside this click, so the browser treats the resulting download as directly requested by the user
       submitEmail(email); // logs the email in the background; the download doesn't wait on this

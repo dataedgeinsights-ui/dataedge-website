@@ -1265,7 +1265,7 @@ function ensureHtml2Pdf(){
   if(window.html2pdf) return Promise.resolve();
   return new Promise((resolve, reject)=>{
     const s = document.createElement('script');
-    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    s.src = '../vendor/html2pdf.bundle.min.js';
     s.onload = () => resolve();
     s.onerror = () => reject(new Error('Could not load the PDF generator.'));
     document.head.appendChild(s);
@@ -1889,6 +1889,12 @@ showLock();
       + '.deg-gate-btn-primary{background:#16283A;color:#F6F3EA;}'
       + '.deg-gate-btn-secondary{background:transparent;color:#16283A;border:1.5px solid #16283A44;}'
       + '.deg-gate-errbox{background:#A6512D18;border:1px solid #A6512D;color:#7A2D1D;padding:10px 12px;border-radius:5px;font-size:13px;margin-top:12px;}'
+      + '.deg-terms-sum{margin-top:16px;border:1px solid #D7DEE6;border-radius:6px;padding:9px 12px;font-size:12px;line-height:1.6;}'
+      + '.deg-terms-sum summary{cursor:pointer;font-weight:600;color:#2F6B4F;outline:none;}'
+      + '.deg-terms-sum ul{margin:9px 0 0 16px;padding:0;color:#5B7089;}'
+      + '.deg-terms-sum li{margin-bottom:6px;}'
+      + '.deg-terms-sumnote{margin-top:8px;color:#5B7089;font-style:italic;}'
+      + '.deg-terms-sum a{color:#2F6B4F;text-decoration:underline;}'
       + '.deg-terms-row{display:flex;gap:9px;align-items:flex-start;margin:14px 0 4px;cursor:pointer;font-size:12.5px;line-height:1.55;color:#3A4A5C;}'
       + '.deg-terms-row input{margin-top:2px;width:15px;height:15px;accent-color:#3F7A5A;cursor:pointer;flex-shrink:0;}'
       + '.deg-terms-row a{color:#2F6B4F;text-decoration:underline;}'
@@ -1943,6 +1949,11 @@ showLock();
       + '<label>Email</label><input id="deg-g-email" type="text" placeholder="you@example.com">'
       + '<label>What do you need the workbench for?</label><textarea id="deg-g-purpose" rows="3" placeholder="e.g. Running an OECD-DAC evaluation for a client programme"></textarea>'
       + '<label>Country</label><select id="deg-g-country"><option value="">Select...</option>' + COUNTRY_OPTIONS.map(function(c){ return '<option value="'+esc(c)+'">'+esc(c)+'</option>'; }).join('') + '</select>'
+      + '<details class="deg-terms-sum">'
+        + '<summary>Summary of the Terms &amp; Conditions</summary>'
+        + '<ul><li>Registration is free, reviewed by a person, and may be declined. Access codes are for you alone.</li><li>Paid tools are billed monthly in US dollars by Telecel Cash, and do not renew automatically. Nothing is charged to a card.</li><li>Your work stays on your own device unless a specific feature sends it elsewhere. The terms say which features do, and to whom.</li><li>The tools assist your professional judgment. They do not replace it, and the output is yours to check.</li><li>You are responsible for having the right to use any data you put into a tool, especially other people\'s personal data.</li><li>Ratings, findings and conclusions are your own professional judgment. Drafted narrative is a starting point to be verified.</li></ul>'
+        + '<div class="deg-terms-sumnote">A summary only. The full <a href="../tools-terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> are what apply.</div>'
+      + '</details>'
       + '<label class="deg-terms-row" for="deg-g-terms">'
         + '<input type="checkbox" id="deg-g-terms">'
         + '<span>I have read and agree to the <a href="../tools-terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> of the Digital Tool Suite.</span>'
@@ -1973,7 +1984,7 @@ showLock();
     }
     gateState.error = null;
     e.target.disabled = true; e.target.textContent = "Sending...";
-    await submitForm({ formType: "eval_registration", name: name, email: email, purpose: purpose, country: country, agreedTerms: "yes", termsVersion: "1.1", agreedAt: new Date().toISOString() });
+    await submitForm({ formType: "eval_registration", name: name, email: email, purpose: purpose, country: country, agreedTerms: "yes", termsVersion: "1.2", agreedAt: new Date().toISOString() });
     gateState.submitted = true;
     renderGateBody(document.getElementById('deg-gate-body'));
   }
