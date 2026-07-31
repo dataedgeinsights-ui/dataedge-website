@@ -152,7 +152,7 @@ footer { background: #040F1C; padding: 40px; }
     <div class="kicker">Digital Tool Suite</div>
     <h1>Terms &amp; Conditions of Use</h1>
     <div class="meta">
-      Version 1.1 &nbsp;·&nbsp; Effective 30 July 2026<br>
+      Version 1.2 &nbsp;·&nbsp; Effective 31 July 2026<br>
       Applies to all five tools in the DataEdge Insights Ghana Digital Tool Suite
     </div>
   </div>
@@ -272,7 +272,7 @@ footer { background: #040F1C; padding: 40px; }
       <tr>
         <td><strong>Lecture Studio</strong></td>
         <td>Your syllabus and reading text, generated objectives, slides, notes, drafts, and the session archive.</td>
-        <td>Registration and payment details. When you generate a session, the syllabus and reading text needed for the request are sent to our processing endpoint and on to our AI provider. If you paste a document link that your browser cannot fetch directly, the file may be retrieved through a third-party relay service. <strong>Do not use the link option for confidential documents; upload the file instead.</strong></td>
+        <td>Registration and payment details. When you generate a session, the syllabus and reading text needed for the request are sent to our processing endpoint and on to our AI provider. Documents you upload are read inside your browser and are not transmitted anywhere by the upload itself.</td>
       </tr>
       <tr>
         <td><strong>Course Studio: NVivo 15</strong></td>
@@ -310,6 +310,7 @@ footer { background: #040F1C; padding: 40px; }
 
   <h3>10.3 DataEdge Lecture Studio</h3>
   <p>The Lecture Studio generates teaching material from documents you supply. Generated content, including learning objectives, slide text, lecture notes, and any references or citations produced, may contain errors, may misattribute sources, and may cite work that does not exist. <strong>Check every citation against the source before teaching or publishing from it.</strong></p>
+  <p>Documents are read inside your browser. A pasted link is fetched directly by your browser or not at all, so many links will simply fail and the file must be uploaded instead; no third-party relay is involved.</p>
   <p>You must have the right to upload the material you supply. Uploading a copyrighted reading, a publisher's PDF, or a colleague's course document may breach the licence under which you hold it, and that is your responsibility, not ours. Mapping to Bloom's taxonomy levels is an aid to drafting, not an authoritative classification.</p>
   <p>Generated material is yours to use in your teaching. We ask no rights over it and claim no authorship of it.</p>
 
@@ -329,7 +330,7 @@ footer { background: #040F1C; padding: 40px; }
   <p>Output you generate using a Tool from your own inputs is yours, subject to the rights of any third party whose material you supplied.</p>
 
   <h2 id="s12"><span class="num">12</span>Third-party services and trademarks</h2>
-  <p>The Tools rely on services we do not control, including Google (Apps Script, Sheets, Fonts and, where you choose to connect it, Drive), public code libraries served from content delivery networks, our AI processing provider, and Telecel for mobile money payments. Their availability and their own terms are outside our control, and a fault or change in any of them may stop a feature working.</p>
+  <p>The Tools rely on services we do not control, including Google (Apps Script, Sheets, Fonts and, where you choose to connect it, Drive), our AI processing provider, and Telecel for mobile money payments. Their availability and their own terms are outside our control, and a fault or change in any of them may stop a feature working.</p>
   <p>NVivo is a registered trademark of Lumivero. Telecel is a trademark of its owner. Google, Google Drive, and Google Sheets are trademarks of Google LLC. Microsoft Word, Excel, and PowerPoint are trademarks of Microsoft Corporation. All are used here for identification only, and no association or endorsement is implied.</p>
 
   <h2 id="s13"><span class="num">13</span>No professional advice, and no warranty</h2>
@@ -423,7 +424,7 @@ document.getElementById('navToggle').addEventListener('click', function() {
    stored in this browser with the version it applied to, so a later version can
    tell that consent predates it. Nothing is transmitted. */
 (function(){
-  var TERMS_VERSION = "1.1";
+  var TERMS_VERSION = "1.2";
   var KEY = "dei-terms-decision";
   var yes = document.getElementById('agree-yes');
   var no = document.getElementById('agree-no');
