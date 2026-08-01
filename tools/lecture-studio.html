@@ -455,7 +455,6 @@ const LOGO_DATA_URI = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QKyRX
    material. For real secured accounts, this file would need a
    proper backend (see the note in the accompanying reply).
 ============================================================ */
-const ACCESS_CODE_HASHES = ["5f5b5975e336eed923dbc9a8590bd8c27840bb5b84d8689a2900b8affde14b95", "5573753cc11b1f7ac4ddd5ccf25fb9bb99fb93197e4f087478c59440851dc8e0"];
 /* The codes above are stored as SHA-256 hashes, not plain text, so anyone
    viewing this page's source sees a scrambled string, not the actual code.
    This is NOT the same as real server-side authentication (a determined,
@@ -1346,8 +1345,8 @@ async function checkExistingAccess(){
     if(rec){
       const parsed = JSON.parse(rec.value);
       if(parsed && parsed.code){
-        const hash = await sha256(parsed.code);
-        if(ACCESS_CODE_HASHES.includes(hash)){
+        const result = await verifyAccessCodeJSONP(parsed.code);
+        if(result && result.valid){
           state.accessGranted = true;
           return;
         }
@@ -1548,10 +1547,9 @@ function renderGate(){
       state.gateError = null;
       state.gateChecking = true;
       render();
-      // Codes issued via the approval workflow are unique per person and
-      // live in the sheet, so check the server first. Legacy static
-      // codes (issued before approval was required) still work via the
-      // ACCESS_CODE_HASHES fallback below.
+      // Every code must be present in the approvals sheet. There is no
+      // built-in or fallback code: if the sheet does not recognise it, or
+      // cannot be reached, access is refused.
       const result = await verifyAccessCodeJSONP(code);
       state.gateChecking = false;
       if(result && result.valid){
@@ -1560,11 +1558,9 @@ function renderGate(){
         render();
         return;
       }
-      const hash = await sha256(code);
-      if(!ACCESS_CODE_HASHES.includes(hash)){ state.gateError = "That code wasn't recognized. Check it, or register below instead."; render(); return; }
-      state.gateError = null;
-      try{ await appStorage.set('access-grant', JSON.stringify({name, code, grantedAt:new Date().toISOString()}), false); }catch(e){}
-      state.accessGranted = true;
+      state.gateError = (result && (result.reason === "network" || result.reason === "timeout"))
+        ? "Could not reach the server to check that code. Check your connection and try again."
+        : "That code wasn't recognized. Check it, or register below instead.";
       render();
     };
     form.querySelector('#g-submit').addEventListener('click', doSubmit);

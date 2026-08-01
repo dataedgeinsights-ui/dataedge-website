@@ -1938,9 +1938,7 @@ showLock();
 
     if(gateState.submitted){
       body.innerHTML = '<div class="deg-gate-success"><div class="deg-gate-check">&#10003;</div>'
-        + '<p>Thank you for registering. Your request has been recorded. If your registration is approved, you will receive an access code by email.</p>'
-        + '<button class="deg-gate-btn deg-gate-btn-secondary" id="deg-to-code2">I already have a code</button></div>';
-      document.getElementById('deg-to-code2').addEventListener('click', function(){ gateState.tab='code'; gateState.submitted=false; renderGateBody(body); });
+        + '<p>Thank you for registering. Your request has been recorded. If your registration is approved, you will receive an access code by email.</p></div>';
       return;
     }
 
@@ -2017,11 +2015,9 @@ showLock();
       var parsed = JSON.parse(raw);
       if(!parsed || !parsed.code) return false;
       var result = await verifyCodeJSONP("verifyEvalAccess", parsed.code);
-      if(result && (result.reason === "network" || result.reason === "timeout")){
-        // Already verified on this device. A connectivity problem must not
-        // lock the user out, and must never leave an empty screen.
-        return true;
-      }
+      // Deliberately fails closed: if the approvals sheet cannot be reached,
+      // access is refused rather than assumed. A stored grant is not proof
+      // of approval, since the approval may since have been withdrawn.
       return !!(result && result.valid);
     }catch(e){ return false; }
   }
