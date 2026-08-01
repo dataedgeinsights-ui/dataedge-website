@@ -1672,8 +1672,17 @@ startApp();
   var PRICE_BASE = 35;
   var PRICE_PLUS = 40;
 
-  function safeGet(key){ try{ return localStorage.getItem(key); }catch(e){ return null; } }
-  function safeSet(key, value){ try{ localStorage.setItem(key, value); return true; }catch(e){ return false; } }
+  // Access grants live in sessionStorage, not localStorage, so the browser
+  // discards them when it closes and the code must be entered again next time.
+  // Subscription grants stay in localStorage: they are month-long and a paying
+  // subscriber should not have to re-enter a payment code every session.
+  function grantStore(key){
+    try{
+      return (key.indexOf('access-grant') !== -1) ? window.sessionStorage : window.localStorage;
+    }catch(e){ return null; }
+  }
+  function safeGet(key){ try{ var s = grantStore(key); return s ? s.getItem(key) : null; }catch(e){ return null; } }
+  function safeSet(key, value){ try{ var s = grantStore(key); if(!s) return false; s.setItem(key, value); return true; }catch(e){ return false; } }
 
   function el(html){
     var d = document.createElement('div');

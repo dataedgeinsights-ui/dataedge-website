@@ -111,18 +111,29 @@ react/cjs/react-jsx-runtime.production.js:
   var SUBSCRIPTION_PRICE_USD = 10;
 
   var hasNativeStorage = (typeof window.storage !== 'undefined') && window.storage && typeof window.storage.get === 'function';
+
+  // Access grants go to sessionStorage, which the browser clears when it
+  // closes, so the access code must be entered again each session. Everything
+  // else, including the month-long subscription grant and course progress,
+  // stays in localStorage.
+  function storeFor(key){
+    try{
+      return (key.indexOf('access-grant') !== -1) ? window.sessionStorage : window.localStorage;
+    }catch(e){ return window.localStorage; }
+  }
+
   var appStorage = hasNativeStorage ? window.storage : {
     get: function(key, shared){
       return new Promise(function(resolve){
         var k = 'nvivo_' + (shared ? 'shared:' : 'user:') + key;
-        var v = localStorage.getItem(k);
+        var v = storeFor(key).getItem(k);
         resolve(v !== null ? {key:key, value:v, shared:shared} : null);
       });
     },
     set: function(key, value, shared){
       return new Promise(function(resolve){
         var k = 'nvivo_' + (shared ? 'shared:' : 'user:') + key;
-        localStorage.setItem(k, value);
+        storeFor(key).setItem(k, value);
         resolve({key:key, value:value, shared:shared});
       });
     }
@@ -464,6 +475,7 @@ react/cjs/react-jsx-runtime.production.js:
     return new Promise(function(resolve){
       var done = function(){
         try{ localStorage.removeItem('nvivo_user:' + key); }catch(e){ /* storage unavailable */ }
+        try{ sessionStorage.removeItem('nvivo_user:' + key); }catch(e){ /* storage unavailable */ }
         resolve();
       };
       if(hasNativeStorage && typeof window.storage.delete === 'function'){

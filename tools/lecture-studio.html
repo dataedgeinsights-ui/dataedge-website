@@ -509,20 +509,31 @@ const SUBSCRIPTION_VERIFY_URL = GOOGLE_FORM_ACTION; // same Apps Script deployme
    `appStorage`, never to window.storage directly, so the app works
    the same way in both contexts. */
 const hasNativeStorage = (typeof window.storage !== 'undefined') && window.storage && typeof window.storage.get === 'function';
+
+/* Access grants go to sessionStorage, which the browser clears when it closes,
+   so the access code has to be entered again each session. Saved sessions,
+   drafts and the month-long subscription grant stay in localStorage. */
+function storeFor(key){
+  try{
+    return (key.indexOf('access-grant') !== -1) ? window.sessionStorage : window.localStorage;
+  }catch(e){ return window.localStorage; }
+}
+
 const appStorage = hasNativeStorage ? window.storage : {
   get: async (key, shared) => {
     const k = 'des_' + (shared ? 'shared:' : 'user:') + key;
-    const v = localStorage.getItem(k);
+    const v = storeFor(key).getItem(k);
     return v !== null ? {key, value: v, shared} : null;
   },
   set: async (key, value, shared) => {
     const k = 'des_' + (shared ? 'shared:' : 'user:') + key;
-    localStorage.setItem(k, value);
+    storeFor(key).setItem(k, value);
     return {key, value, shared};
   },
   delete: async (key, shared) => {
     const k = 'des_' + (shared ? 'shared:' : 'user:') + key;
-    localStorage.removeItem(k);
+    storeFor(key).removeItem(k);
+    try{ localStorage.removeItem(k); }catch(e){ /* also clear any older copy */ }
     return {key, deleted: true, shared};
   },
   list: async (prefix, shared) => {
