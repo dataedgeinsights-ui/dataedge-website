@@ -1,0 +1,13 @@
+# robots.txt for dataedgeinsights.org
+# Upload to the site root so it resolves at:
+# https://www.dataedgeinsights.org/robots.txt
+
+User-agent: *
+Allow: /
+
+# Block nothing. If you later add admin, draft or staging
+# directories, list them here, for example:
+# Disallow: /drafts/
+# Disallow: /staging/
+
+Sitemap: https://www.dataedgeinsights.org/sitemap.xml
