@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main site. Update lastmod whenever you change the page. -->
+  <url>
+    <loc>https://www.dataedgeinsights.org/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!--
+    Your navigation references several items that may exist as their own
+    files (Terms and Conditions, the YLIM flyer, the enrolment form, the
+    Digital Tool Suite pages, Articles). If any of them is a real URL on
+    dataedgeinsights.org rather than an anchor link or an external link,
+    uncomment and correct the entries below. Delete any that do not apply.
+
+    Only list URLs on your own domain. Do not list Google Forms, LinkedIn
+    or anything else hosted elsewhere.
+  -->
+
+  <!--
+  <url>
+    <loc>https://www.dataedgeinsights.org/terms.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.dataedgeinsights.org/articles.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.dataedgeinsights.org/tools/report-reviewer.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  -->
+
+</urlset>
