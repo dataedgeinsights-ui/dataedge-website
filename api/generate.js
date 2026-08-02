@@ -38,8 +38,9 @@
  *                          every request (see VERIFY_URL). Default: off.
  *   VERIFY_URL             the Apps Script web-app URL used by the tools to
  *                          verify codes. Only needed when REQUIRE_ACCESS_CODE=1.
- *   VERIFY_ACTION          action name passed to that endpoint.
- *                          Default: verifySubscription
+ *   VERIFY_ACTIONS         comma-separated action names tried in turn.
+ *                          Default: verifySubscription,verifyEvalSubscription
+ *                          (the Studio and the Workbench use different names)
  */
 
 const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
@@ -76,23 +77,34 @@ function originPermitted(req) {
   return list.includes(origin);
 }
 
+/* The Lecture Studio and the Evaluation Workbench verify subscription codes
+   under different action names, so every configured action is tried and the
+   code is accepted if any of them recognises it. */
 async function codeAccepted(code) {
   if (process.env.REQUIRE_ACCESS_CODE !== "1") return true;
   if (!code) return false;
   const base = process.env.VERIFY_URL;
   if (!base) return false;
-  const action = process.env.VERIFY_ACTION || "verifySubscription";
-  const url = `${base}?action=${encodeURIComponent(action)}&code=${encodeURIComponent(code)}`;
-  try {
-    const ctl = new AbortController();
-    const timer = setTimeout(() => ctl.abort(), 8000);
-    const r = await fetch(url, { signal: ctl.signal });
-    clearTimeout(timer);
-    const parsed = JSON.parse(await r.text());
-    return !!(parsed && parsed.valid);
-  } catch (e) {
-    return false;   // cannot verify, so do not spend tokens
+
+  const actions = (process.env.VERIFY_ACTIONS || process.env.VERIFY_ACTION ||
+                   "verifySubscription,verifyEvalSubscription")
+                  .split(",").map(s => s.trim()).filter(Boolean);
+
+  for (const action of actions) {
+    const url = `${base}?action=${encodeURIComponent(action)}&code=${encodeURIComponent(code)}`;
+    try {
+      const ctl = new AbortController();
+      const timer = setTimeout(() => ctl.abort(), 8000);
+      const r = await fetch(url, { signal: ctl.signal });
+      clearTimeout(timer);
+      const parsed = JSON.parse(await r.text());
+      if (parsed && parsed.valid) return true;
+    } catch (e) {
+      // Try the next action. If none succeeds, the request is refused, so a
+      // failure here never grants access by accident.
+    }
   }
+  return false;
 }
 
 /** Echo the caller's origin back when it is permitted, so a site on another
